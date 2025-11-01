@@ -45,7 +45,7 @@ const Rootpage = () => {
       <section className="h-screen w-screen flex flex-col justify-center items-center">
         <div className="flex flex-col justify-center items-center w-full">
           <h1 className="text-3xl mb-4 text-center underline">Banner Drops in</h1>
-          <CountdownTimer targetDate="2025-10-27T00:00:00" />
+          <CountdownTimer targetDate="2025-11-03T00:00:00" />
         </div>
         <div className="bottom-0 flex flex-row gap-x-5 mt-10">
           {socials.map((social, index) => (
