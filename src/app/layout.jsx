@@ -2,7 +2,7 @@ import Navbar from "@/myComponents/Navbar";
 import "./globals.css";
 
 export const metadata = {
-  title: "Ojus Sports",
+  title: "Ojus 2025",
   description: "Made by the Ojus Tech Team 26",
 };
 

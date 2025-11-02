@@ -2,112 +2,268 @@
 
 import Link from "next/link";
 
+import { Nova_Square } from "next/font/google";
+
+const nova = Nova_Square({
+  weight: "400",
+  subsets: ["latin"],
+});
+
 import React, { useState } from "react";
 import { FaHome, FaCalendarAlt, FaEnvelope, FaUsers, FaGem } from "react-icons/fa";
-import { FaInstagram, FaLinkedin, FaYoutube, FaXTwitter, FaFacebook, FaDiscord } from "react-icons/fa6";
+import { FaInstagram, FaLinkedin, FaYoutube, FaXTwitter, FaFacebook } from "react-icons/fa6";
 
-const TechfestLanding = () => {
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
+
+const OjusCommonPage = () => {
   const [openDropdown, setOpenDropdown] = useState(false);
 
   return (
-    <div
-      className="relative min-h-screen bg-purple-800 text-white font-sans bg-cover bg-center"
-      // style={{
-      //   backgroundImage:
-      //     "url('https://media.istockphoto.com/id/2180905677/photo/purple-firework-celebrate-anniversary-happy-new-year-2025-4th-of-july-holiday-festival-purple.jpg?s=612x612&w=is&k=20&c=hXUB7KiGh2AuOEtAeyuZk9JHIjyyWCd6ZG4Zj10krxQ=')",
-      // }}
+    <section
+      className={`relative overflow-hidden text-white h-screen w-screen flex flex-col justify-center items-center ${nova.className}`}
     >
-      {/* Top Navbar */}
-      <nav className="flex justify-between items-center px-8 py-4 bg-black/30 backdrop-blur-md">
-        <div className="flex w-full  justify-around items-center gap-10 text-lg font-bold">
-          <Link href={"/sports"} className="hover:text-purple-400 transition">
-            SPORTS
-          </Link>
-          <button className="hover:text-purple-400 transition">CULTURAL</button>
-        </div>
-        <button className="bg-purple-600 px-4 py-2 rounded-md text-nowrap font-semibold hover:bg-purple-700">
-          SIGN IN
-        </button>
-      </nav>
+      {/* Background Video */}
+      <video className="absolute inset-0 z-0 w-screen h-screen object-cover" autoPlay loop muted>
+        <source src="./ojus-bg-vid.mp4" type="video/mp4" />
+      </video>
 
-      {/* Left Sidebar */}
-      <div className="absolute left-4 top-1/2 -translate-y-1/2 flex flex-col gap-4 bg-black/40 p-4 rounded-xl backdrop-blur-md">
-        {/* Home */}
-        <button className="flex items-center gap-2 px-3 py-2 hover:bg-purple-700 rounded-md transition">
-          <FaHome />
-        </button>
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/80 z-10 pointer-events-none"></div>
 
-        {/* Events (Dropdown) */}
-        <div
-          className="relative"
-          onMouseEnter={() => setOpenDropdown(true)}
-          onMouseLeave={() => setOpenDropdown(false)}
-        >
-          <button className="flex items-center gap-2 px-3 py-2 hover:bg-purple-700 rounded-md transition">
-            <FaCalendarAlt />
-          </button>
+      {/* PC view Content */}
+      <div className="hidden md:flex relative z-20 h-screen w-screen flex-col justify-between items-center">
+        {/* NAVBAR */}
+        <nav className="w-full flex justify-between items-center px-8 py-2">
+          <img src="./logo.jpg" alt="ojus logo" height="100" className="h-12 rounded-full" />
 
-          {openDropdown && (
-            <div className="absolute left-full top-0 ml-2 bg-black/80 rounded-md p-2 w-40 shadow-lg">
-              <ul className="flex flex-col gap-2">
-                <li className="hover:bg-purple-700 px-3 py-1 rounded-md cursor-pointer">Tech</li>
-                <li className="hover:bg-purple-700 px-3 py-1 rounded-md cursor-pointer">Cultural</li>
-                <li className="hover:bg-purple-700 px-3 py-1 rounded-md cursor-pointer">Gaming</li>
-              </ul>
+          <div className="flex gap-x-20 text-2xl font-medium justify-center items-center">
+            <div className=" gap-0 flex flex-col justify-center items-center">
+              <Link href="/sports" className="px-6 py-2 transform hover:-translate-y-1 transition duration-500">
+                Sports
+              </Link>
+              <span className="border w-[70%]"></span>
             </div>
-          )}
+
+            <div className=" gap-0 flex flex-col justify-center items-center">
+              <Link href="/cultural" className="px-6 py-2 transform hover:-translate-y-1 transition duration-500">
+                Cultural
+              </Link>
+              <span className="border w-[70%]"></span>
+            </div>
+          </div>
+
+          <button className="px-3 py-2 border border-black text-black bg-white rounded-lg font-bold transform hover:-translate-y-1 transition duration-400">
+            Sign Up
+          </button>
+        </nav>
+
+        {/* HERO SECTION */}
+        <div className="flex-row relative flex justify-center items-center w-full">
+          {/* Left Sidebar */}
+          <div className="absolute left-4 top-1/2 -translate-y-1/2 flex flex-col gap-4 bg-black/40 p-4 rounded-xl backdrop-blur-md">
+            {/* Home */}
+            <button className="flex items-center gap-2 px-3 py-2 hover:bg-purple-700 rounded-md transition">
+              <FaHome />
+            </button>
+
+            {/* Events Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setOpenDropdown(true)}
+              onMouseLeave={() => setOpenDropdown(false)}
+            >
+              <button className="flex items-center gap-2 px-3 py-2 hover:bg-purple-700 rounded-md transition">
+                <FaCalendarAlt />
+              </button>
+
+              {openDropdown && (
+                <div className="absolute left-full top-0 ml-2 bg-black/80 rounded-md p-2 w-40 shadow-lg">
+                  <ul className="flex flex-col gap-2">
+                    <li className="hover:bg-purple-700 px-3 py-1 rounded-md cursor-pointer">Tech</li>
+                    <li className="hover:bg-purple-700 px-3 py-1 rounded-md cursor-pointer">Cultural</li>
+                    <li className="hover:bg-purple-700 px-3 py-1 rounded-md cursor-pointer">Gaming</li>
+                  </ul>
+                </div>
+              )}
+            </div>
+
+            {/* Contact */}
+            <button className="flex items-center gap-2 px-3 py-2 hover:bg-purple-700 rounded-md transition">
+              <FaEnvelope />
+            </button>
+
+            {/* About */}
+            <button className="flex items-center gap-2 px-3 py-2 hover:bg-purple-700 rounded-md transition">
+              <FaUsers />
+            </button>
+
+            {/* Sponsors */}
+            <button className="flex items-center gap-2 px-3 py-2 hover:bg-purple-700 rounded-md transition">
+              <FaGem />
+            </button>
+          </div>
+
+          {/* Center Title */}
+          <div className="flex flex-col items-center justify-center text-center">
+            <h1 className="text-6xl font-extrabold tracking-widest text-purple-300 drop-shadow-lg">OJUS 2025</h1>
+            <p className="text-lg mt-3 tracking-wide">Cultural fest of AP Shah College</p>
+            <p className="mt-2 font-semibold">Banner drop soon...</p>
+          </div>
+
+          {/* Right Social Icons */}
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col gap-4 bg-black/40 p-4 rounded-xl backdrop-blur-md">
+            <a href="#" className="hover:text-purple-400 cursor-pointer transform translate-y-1">
+              <FaInstagram size={20} />
+            </a>
+            <a href="#" className="hover:text-purple-400 cursor-pointer transform translate-y-1">
+              <FaLinkedin size={20} />
+            </a>
+            <a href="#" className="hover:text-purple-400 cursor-pointer transform translate-y-1">
+              <FaYoutube size={20} />
+            </a>
+            <a href="#" className="hover:text-purple-400 cursor-pointer transform translate-y-1">
+              <FaXTwitter size={20} />
+            </a>
+            <a href="#" className="hover:text-purple-400 cursor-pointer transform translate-y-1">
+              <FaFacebook size={20} />
+            </a>
+          </div>
         </div>
 
-        {/* Contact */}
-        <button className="flex items-center gap-2 px-3 py-2 hover:bg-purple-700 rounded-md transition">
-          <FaEnvelope />
-        </button>
-
-        {/* About */}
-        <button className="flex items-center gap-2 px-3 py-2 hover:bg-purple-700 rounded-md transition">
-          <FaUsers />
-        </button>
-
-        {/* Sponsors */}
-        <button className="flex items-center gap-2 px-3 py-2 hover:bg-purple-700 rounded-md transition">
-          <FaGem />
-        </button>
+        {/* FOOTER */}
+        <div className="w-full text-center mb-6">
+          <p className="text-xl font-mono tracking-widest">
+            Sports events are live &nbsp;&nbsp; | &nbsp;&nbsp; Banner drops in 2 days
+          </p>
+        </div>
       </div>
 
-      {/* Right Social Icons */}
-      <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col gap-4 bg-black/40 p-4 rounded-xl backdrop-blur-md">
-        <a href="#" className="hover:text-purple-400 cursor-pointer transform translate-y-1">
-          <FaInstagram size={20} />
-        </a>
-        <a href="#" className="hover:text-purple-400 cursor-pointer transform translate-y-1">
-          <FaLinkedin size={20} />
-        </a>
-        <a href="#" className="hover:text-purple-400 cursor-pointer transform translate-y-1">
-          <FaYoutube size={20} />
-        </a>
-        <a href="#" className="hover:text-purple-400 cursor-pointer transform translate-y-1">
-          <FaXTwitter size={20} />
-        </a>
-        <a href="#" className="hover:text-purple-400 cursor-pointer transform translate-y-1">
-          <FaFacebook size={20} />
-        </a>
-      </div>
+      {/* Mobile view Content */}
+      <div className="flex md:hidden relative z-20 h-screen w-screen flex-col justify-between items-center">
+        {/* NAVBAR */}
+        <nav className="w-full flex justify-between items-center px-8 py-2">
+          <img src="./logo.jpg" alt="ojus logo" height="100" className="h-12 rounded-full" />
 
-      {/* Center Title */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-        <h1 className="text-6xl font-extrabold tracking-widest text-purple-300 drop-shadow-lg">OJUS 2025</h1>
-        <p className="text-lg mt-3 tracking-wide">Cultural fest of AP shah college</p>
-        <p className="mt-2 font-semibold">Banner drop soon...</p>
-      </div>
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="px-3 py-2 border border-black text-black bg-white rounded-lg font-medium transform hover:-translate-y-1 transition duration-400">
+                  Check Events
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <NavigationMenuLink>
+                    <Link className="border-black border-b" href={"/sports"}>
+                      Sports
+                    </Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink>
+                    <Link className="border-black border-b" href={"/cultural"}>
+                      Cultural
+                    </Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink>
+                    <Link className="border-black border-b" href={"/cultural"}>
+                      Sign Up
+                    </Link>
+                  </NavigationMenuLink>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+        </nav>
 
-      {/* Bottom text */}
-      <div className="absolute bottom-6 w-full text-center">
-        <p className="text-xl font-mono tracking-widest">
-          Sports events are live &nbsp;&nbsp; | &nbsp;&nbsp; Banner drops in 2 days
-        </p>
+        {/* HERO SECTION */}
+        <div className="flex-col gap-y-5 relative flex justify-center items-center w-full">
+          {/* Center Title */}
+          <div className="flex flex-col items-center justify-center text-center">
+            <h1 className="text-6xl font-extrabold tracking-widest text-purple-300 drop-shadow-lg">OJUS 2025</h1>
+            <p className="text-lg mt-3 tracking-wide">Cultural fest of AP Shah College</p>
+            <p className="mt-2 font-semibold">Banner drop soon...</p>
+          </div>
+          <div className=" flex flex-row justify-center items-center gap-4 bg-black/40 p-4 rounded-xl backdrop-blur-xs">
+            <Link href="#" className="hover:text-purple-400 cursor-pointer transform translate-y-1">
+              <FaInstagram size={20} />
+            </Link>
+            <Link href="#" className="hover:text-purple-400 cursor-pointer transform translate-y-1">
+              <FaYoutube size={20} />
+            </Link>
+            <Link href="#" className="hover:text-purple-400 cursor-pointer transform translate-y-1">
+              <FaXTwitter size={20} />
+            </Link>
+            <Link href="#" className="hover:text-purple-400 cursor-pointer transform translate-y-1">
+              <FaFacebook size={20} />
+            </Link>
+          </div>
+        </div>
+
+        {/* FOOTER */}
+        <div className="w-full text-center mb-6 text-xl">
+          <div className="flex flex-row gap-4 justify-center items-center bg-black/40 p-4 rounded-xl backdrop-blur-md">
+            {/* Home */}
+            <button className="flex items-center gap-2 px-3 py-2 hover:bg-purple-700 rounded-md transition">
+              <FaHome />
+            </button>
+
+            {/* Events Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setOpenDropdown(true)}
+              onMouseLeave={() => setOpenDropdown(false)}
+            >
+              <button className="flex items-center gap-2 px-3 py-2 hover:bg-purple-700 rounded-md transition">
+                <FaCalendarAlt />
+              </button>
+
+              {openDropdown && (
+                <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-black/80 rounded-md p-2 w-40 shadow-lg">
+                  <ul className="flex flex-col gap-2">
+                    <li className="hover:bg-purple-700 px-3 py-1 rounded-md cursor-pointer">Tech</li>
+                    <li className="hover:bg-purple-700 px-3 py-1 rounded-md cursor-pointer">Cultural</li>
+                    <li className="hover:bg-purple-700 px-3 py-1 rounded-md cursor-pointer">Gaming</li>
+                  </ul>
+                </div>
+              )}
+            </div>
+
+            {/* Contact */}
+            <button className="flex items-center gap-2 px-3 py-2 hover:bg-purple-700 rounded-md transition">
+              <FaEnvelope />
+            </button>
+
+            {/* About */}
+            <button className="flex items-center gap-2 px-3 py-2 hover:bg-purple-700 rounded-md transition">
+              <FaUsers />
+            </button>
+
+            {/* Sponsors */}
+            <button className="flex items-center gap-2 px-3 py-2 hover:bg-purple-700 rounded-md transition">
+              <FaGem />
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default TechfestLanding;
+export default OjusCommonPage;
+
+// <div
+//   className={`relative min-h-screen bg-purple-800 text-white font-sans bg-cover bg-center `}
+//   style={{
+//     backgroundImage:
+//       "url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.instagram.com%2Fpurplefestgoa%2F&psig=AOvVaw0Hzr6MwEN85-vjgn64PW4K&ust=1762092880324000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCMD_nNSR0ZADFQAAAAAdAAAAABAE')",
+//   }}
+// >
+//   {/* Top Navbar */}
+
+//   {/* Bottom text */}
+
+// </div>
