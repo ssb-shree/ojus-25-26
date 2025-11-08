@@ -10,6 +10,7 @@ const nova = Nova_Square({
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import DomeGallery from "@/components/DomeGallery";
 
 const OjusCommonPage = () => {
   const [openDropdown, setOpenDropdown] = useState(false);
@@ -28,7 +29,9 @@ const OjusCommonPage = () => {
   };
 
   return (
-    <div className={`cursor-none w-full min-h-screen text-white font-sans overflow-x-hidden ${nova.className}`}>
+    <div
+      className={`cursor-none w-full min-h-screen text-white font-sans overflow-x-hidden scroll-smooth scroll-my-10 ${nova.className}`}
+    >
       {/* ------------------ SECTION 1 ------------------ */}
       <section className="relative w-full h-screen flex items-center justify-center overflow-hidden">
         <video className="absolute inset-0 w-full h-full object-cover z-0" autoPlay loop muted>
@@ -43,20 +46,25 @@ const OjusCommonPage = () => {
         <div className="relative w-full h-full flex flex-col z-20 text-center">
           {/* Navbar */}
           <div className="h-20 w-full p-4 flex items-center justify-between">
-            <a href="/" className="h-full flex items-center">
+            <Link href="/" className="cursor-none h-full flex items-center">
               <img
                 src="/logo.jpg"
                 alt="ojus logo"
                 className="h-full rounded-full scale-75 sm:scale-90 md:scale-100 object-contain"
               />
-            </a>
+            </Link>
 
             <div className="flex items-center gap-2 sm:gap-4">
-              <button className="font-bold text-lg sm:text-xl bg-purple-500 text-white px-3 sm:px-4 py-1 rounded-lg">
+              <Link
+                href={"#highlights"}
+                className="cursor-none  font-bold text-lg sm:text-xl bg-purple-500 text-white px-3 sm:px-4 py-1 rounded-lg"
+              >
                 HIGHLIGHTS
-              </button>
+              </Link>
 
-              <button className="font-bold text-lg sm:text-xl">LOGIN</button>
+              <Link href={"#"} className="cursor-none font-bold text-lg sm:text-xl">
+                LOGIN
+              </Link>
             </div>
           </div>
 
@@ -75,7 +83,7 @@ const OjusCommonPage = () => {
             <div className="flex flex-wrap gap-4 mt-4">
               <Link
                 href={"/sports"}
-                className="cursor-none px-5 py-2 bg-purple-500 text-white font-semibold rounded-lg text-lg hover:bg-purple-400 transition"
+                className="cursor-none transform hover:transition-x-1 px-5 py-2 bg-purple-500 text-white font-semibold rounded-lg text-lg hover:bg-purple-400 transition"
               >
                 SPORTS
               </Link>
@@ -164,6 +172,11 @@ const OjusCommonPage = () => {
             </p>
           </motion.div>
         </div>
+      </section>
+
+      {/* --------- --------- SECTION 4 ------------------ */}
+      <section id="highlights" style={{ width: "100vw", height: "90vh" }}>
+        <DomeGallery grayscale={false} fitBasis={"max"} minRadius={1000} />
       </section>
     </div>
   );
