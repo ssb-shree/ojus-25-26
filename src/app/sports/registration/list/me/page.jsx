@@ -8,20 +8,20 @@ export default function Page() {
   const [loading, setLoading] = useState(true);
 
   // Get username from user profile in localStorage
-  const user = JSON.parse(localStorage.getItem("user"));
-  const username = user?.username;
+  // const user = JSON.parse(localStorage.getItem("user"));
+  // const username = user?.username;
   const router = useRouter();
 
   useEffect(() => {
-    if (!username) {
-      router.replace("/auth");
-      return;
-    }
-    api.get(`/api/user-registration-info/${username}/`)
+    // if (!username) {
+    //   router.replace("/auth");
+    //   return;
+    // }
+    api.get(`/api/user-registration-info/`)
       .then(res => setUserInfo(res.data))
       .catch(() => setUserInfo(null))
       .finally(() => setLoading(false));
-  }, [username, router]);
+  }, [router]);
 
   return (
     <div style={{ padding: "1rem" }}>
