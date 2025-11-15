@@ -18,25 +18,24 @@ const OjusCommonPage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const domeImages = [
-  "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147772/13_pvmckt.jpg",
-  "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147766/76f73241-eab9-427d-993e-4b1995fa9b1d_o0yhll.jpg",
-  "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147755/IMG_3799_x7yx7n.jpg",
+    "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147772/13_pvmckt.jpg",
+    "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147766/76f73241-eab9-427d-993e-4b1995fa9b1d_o0yhll.jpg",
+    "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147755/IMG_3799_x7yx7n.jpg",
 
-  "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147738/IMG_3840_scpwhs.jpg",
-  "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147757/IMG_4973_qdcnob.jpg",
-  "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147757/IMG_6228_c0ey2q.jpg",
-  "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147773/IMG_7057_xqypve.jpg",
-  "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147772/IMG_7348_d86u0z.jpg",
-  "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147772/IMG_7349_u0loil.jpg",
-  "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147731/IMG_7913_h7hlex.jpg",
-  "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147730/IMG_8277_mqbqju.jpg",
-  "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147732/IMG_8299_bdaa6y.jpg",
-  "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147739/IMG_8755_p9j58i.jpg",
-  "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147753/_DSC0119_bggwyq.jpg",
+    "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147738/IMG_3840_scpwhs.jpg",
+    "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147757/IMG_4973_qdcnob.jpg",
+    "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147757/IMG_6228_c0ey2q.jpg",
+    "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147773/IMG_7057_xqypve.jpg",
+    "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147772/IMG_7348_d86u0z.jpg",
+    "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147772/IMG_7349_u0loil.jpg",
+    "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147731/IMG_7913_h7hlex.jpg",
+    "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147730/IMG_8277_mqbqju.jpg",
+    "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147732/IMG_8299_bdaa6y.jpg",
+    "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147739/IMG_8755_p9j58i.jpg",
+    "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147753/_DSC0119_bggwyq.jpg",
 
-  "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147751/_DSC0834_exwqzn.jpg",
-];
-
+    "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147751/_DSC0834_exwqzn.jpg",
+  ];
 
   useEffect(() => {
     const token = localStorage.getItem("access");
@@ -208,7 +207,7 @@ const OjusCommonPage = () => {
       </section>
       {/* --------- --------- SECTION 4 ------------------ */}
       <section id="highlights" style={{ width: "100vw", height: "80vh" }}>
-        <DomeGallery images={domeImages} grayscale={false} fitBasis={"max"} minRadius={870} />
+        <DomeGallery images={domeImages} grayscale={false} fitBasis={"max"} minRadius={1000} />
       </section>
 
       {/* --------- --------- SECTION 5 ------------------ */}
