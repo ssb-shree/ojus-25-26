@@ -80,6 +80,7 @@ const OjusCommonPage = () => {
       <div
         className={`cursor-none w-full min-h-screen text-white font-sans overflow-x-hidden !scroll-smooth scroll-my-10 ${nova.className}`}
       >
+        {/* --------- --------- SECTION 1 ------------------ */}
         <section className="relative w-full h-screen flex items-center justify-center overflow-hidden">
           <video className="absolute inset-0 w-full h-full object-cover z-0" autoPlay loop muted>
             <source
@@ -140,7 +141,7 @@ const OjusCommonPage = () => {
             </motion.div>
           </div>
         </section>
-
+        {/* --------- --------- SECTION 2 ------------------ */}
         <section className="w-full min-h-screen flex justify-center items-center px-6 sm:px-10 md:px-20 py-16 bg-zinc-200 text-black">
           <div className="flex flex-col md:flex-row justify-between gap-16 w-full">
             <motion.div
@@ -186,7 +187,7 @@ const OjusCommonPage = () => {
             </motion.div>
           </div>
         </section>
-
+        {/* --------- --------- SECTION 3 ------------------ */}
         <section className="w-full min-h-screen flex justify-center items-center px-6 sm:px-12 md:px-20 py-16 bg-black text-white">
           <div className="flex flex-col-reverse md:flex-row justify-between gap-16 w-full">
             <motion.div
@@ -228,8 +229,8 @@ const OjusCommonPage = () => {
           </div>
         </section>
         {/* --------- --------- SECTION 4 ------------------ */}
-        <section id="highlights" style={{ width: "100vw", height: "80vh" }}>
-          <DomeGallery images={domeImages} grayscale={false} fitBasis={"max"} minRadius={1100} />
+        <section id="highlights" className="w-screen h-[75vh] md:h-[80vh]">
+          <DomeGallery images={domeImages} grayscale={false} fitBasis={"max"} minRadius={1100} segments={30} />
         </section>
 
         {/* --------- --------- SECTION 5 ------------------ */}
