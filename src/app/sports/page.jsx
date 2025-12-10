@@ -1,5 +1,3 @@
- 
-
 "use client";
 
 import CountdownTimer from "@/myComponents/CountdownTimer";
@@ -12,6 +10,8 @@ import { motion } from "framer-motion";
 
 import { FaXTwitter, FaInstagram, FaFacebook, FaYoutube } from "react-icons/fa6";
 import { Nova_Square } from "next/font/google";
+import { alfa, items } from "../(root)/page";
+import ImageMouseTrail from "@/components/mousetrail";
 
 const nova = Nova_Square({
   weight: "400",
@@ -61,10 +61,8 @@ const SportsPage = () => {
       <main className={`relative z-10 ${nova.className}`}>
         {/* --- Countdown Section --- */}
         <section className="h-screen w-screen flex flex-col justify-center items-center relative">
-          <img
-            src="https://as2.ftcdn.net/v2/jpg/04/61/87/15/1000_F_461871566_HjDzxGg7labHajuQD3yPvxRx0Jfh8zFP.jpg"
-            className="absolute inset-0 w-full h-full object-cover z-0"
-          />
+          <img src="/pc-sports-hero.png" className="hidden md:flex absolute inset-0 w-full h-full  z-0" />
+          <img src="/mobile-sports-hero.png" className="flex md:hidden absolute inset-0 w-full h-full  z-0" />
           <div className="absolute inset-0 bg-black/45 z-0"></div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -73,7 +71,7 @@ const SportsPage = () => {
             className="flex flex-col justify-center items-center w-full z-10"
           >
             <h1 className="text-3xl mb-4 text-center underline">Banner Drops in</h1>
-            <CountdownTimer targetDate="2025-12-02T00:00:00" />
+            <CountdownTimer targetDate="2025-12-12T00:00:00" />
             <div className="bottom-0 flex flex-row gap-x-5 mt-10">
               {socials.map((social) => (
                 <Link
@@ -179,7 +177,8 @@ const SportsPage = () => {
 
                   <p className="text-gray-300 mb-6">{arena.activities.join(" · ")}</p>
 
-                  <Link href={arena.link}
+                  <Link
+                    href={arena.link}
                     className="text-fuchsia-300 font-medium tracking-wide
               group-hover:text-fuchsia-200 transition-colors
               underline underline-offset-4 decoration-fuchsia-500/50"
@@ -196,7 +195,7 @@ const SportsPage = () => {
         </section>
 
         {/* SECTION 3 */}
-        <section className="w-full min-h-screen flex justify-center items-center px-6 sm:px-10 md:px-20 py-16 bg-zinc-200 text-black">
+        <section className="w-full md:min-h-screen flex justify-center items-center px-6 sm:px-10 md:px-20 py-16 bg-zinc-200 text-black">
           <div className="flex flex-col md:flex-row justify-between gap-16 w-full">
             <motion.div
               initial={{ opacity: 0, x: -60 }}
@@ -222,27 +221,24 @@ const SportsPage = () => {
               </p>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 60 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1 }}
-              viewport={{ once: false, amount: 0.4 }}
-              className="hidden md:flex md:flex-1 md:flex-col items-end text-right"
-            >
-              <p className="text-xs tracking-widest">OJUS</p>
-              <p className="text-xs tracking-widest">25</p>
-              <img
-                src="https://placehold.co/600x400"
-                alt="Videos of OJUS"
-                className="w-24 sm:w-28 md:w-32 h-auto mt-2"
-              />
-              <p className="text-xs mt-1 tracking-widest">2024</p>
-            </motion.div>
+            <div className="size-full hidden md:flex flex-col overflow-hidden">
+              <h3 className={` text-xl text-center ${alfa.className}`}>Hover Mouse Below</h3>
+              <ImageMouseTrail
+                // className={"border border-black"}
+                items={items}
+                maxNumberOfImages={5}
+                distance={25}
+                imgClass="sm:w-40 w-28 sm:h-48 h-36 rounded-sm"
+              ></ImageMouseTrail>
+            </div>
           </div>
         </section>
 
         {/* SECTION 4 */}
-        <section  id="leaderboard"  className="w-full min-h-screen flex justify-center items-center px-6 sm:px-12 md:px-20 py-16 bg-black text-white">
+        <section
+          id="leaderboard"
+          className="w-full min-h-screen flex justify-center items-center px-6 sm:px-12 md:px-20 py-16 bg-black text-white"
+        >
           LEADERBOARD SCORE OF PLAYERS AND DEPARTMENT WILL BE SHOWN HERE DURING THE SPORTS EVENT
         </section>
       </main>

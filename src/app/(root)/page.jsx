@@ -18,12 +18,12 @@ const nova = Nova_Square({
   subsets: ["latin"],
 });
 
-const alfa = Alfa_Slab_One({
+export const alfa = Alfa_Slab_One({
   weight: "400",
   subsets: ["latin"],
 });
 
-const items = [
+export const items = [
   "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147772/13_pvmckt.jpg",
   "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147766/76f73241-eab9-427d-993e-4b1995fa9b1d_o0yhll.jpg",
   "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147755/IMG_3799_x7yx7n.jpg",
