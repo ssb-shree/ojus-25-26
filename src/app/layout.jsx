@@ -2,6 +2,7 @@ import Navbar from "@/myComponents/Navbar";
 import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
 import { SmoothCursor } from "@/components/ui/smooth-cursor";
+import LenisProvider from "@/components/LenisProvider";
 
 export const metadata = {
   title: "Ojus 2026",
@@ -11,10 +12,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="relative bg-black text-white overflow-x-hidden">
+      <body className=" bg-black text-white overflow-x-hidden">
         <AuthProvider>
           <SmoothCursor />
-          {children}
+          <LenisProvider>{children}</LenisProvider>
         </AuthProvider>
       </body>
     </html>
