@@ -217,9 +217,7 @@ const OjusCommonPage = () => {
             distance={25}
             imgClass="sm:w-40 w-28 sm:h-48 h-36 rounded-sm"
           ></ImageMouseTrail>
-          <h3 className={` text-xl text-center font-light ${alfa.className} text-zinc-300`}>
-            Slide Your Fingers Above
-          </h3>
+          <h3 className={` text-xl text-center font-light ${alfa.className} text-zinc-300`}>Swipe Or Tap Above</h3>
         </section>
         {/* --------- --------- SECTION 3 ------------------ */}
         <section className="w-full md:mmin-h-screen flex justify-center items-center px-6 sm:px-12 md:px-20 py-16 bg-black text-white">
