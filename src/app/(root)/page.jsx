@@ -1,17 +1,14 @@
 "use client";
 
-import Lenis from "lenis";
-
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Nova_Square, Alfa_Slab_One } from "next/font/google";
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import DomeGallery from "@/components/DomeGallery";
-import { Marquee } from "@/components/ui/marquee";
 import { AuthProvider, useAuth } from "@/context/AuthContext";
-import ImageTrail from "@/components/ImageTrail";
 import ImageMouseTrail from "@/components/mousetrail";
+import { FaFacebook, FaInstagram, FaXTwitter, FaYoutube, FaCode } from "react-icons/fa6";
 
 const nova = Nova_Square({
   weight: "400",
@@ -72,6 +69,8 @@ const OjusCommonPage = () => {
   const [openDropdown, setOpenDropdown] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const [footerClicked, setFooterClick] = useState(true);
+
   const domeImages = [
     "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147772/13_pvmckt.jpg",
     "https://res.cloudinary.com/dwbqrzur6/image/upload/f_auto,q_auto,w_1600/fl_preserve_transparency/v1763147766/76f73241-eab9-427d-993e-4b1995fa9b1d_o0yhll.jpg",
@@ -102,6 +101,34 @@ const OjusCommonPage = () => {
     window.location.href = "/login";
   };
 
+  const socials = [
+    {
+      name: "x",
+      link: "https://twitter.com/",
+      icon: <FaXTwitter className="size-6 text-white hover:scale-110 transition-transform duration-200" />,
+    },
+    {
+      name: "instagram",
+      link: "https://instagram.com/",
+      icon: <FaInstagram className="size-6 hover:text-pink-500 hover:scale-110 transition-transform duration-200" />,
+    },
+    {
+      name: "facebook",
+      link: "https://facebook.com/",
+      icon: <FaFacebook className="size-6 hover:text-blue-500 hover:scale-110 transition-transform duration-200" />,
+    },
+    {
+      name: "youtube",
+      link: "https://youtube.com/",
+      icon: <FaYoutube className="size-6 hover:text-red-500 hover:scale-110 transition-transform duration-200" />,
+    },
+    {
+      name: "developers",
+      link: "https://youtube.com/",
+      icon: <FaCode className="size-6 hover:text-green-500 hover:scale-110 transition-transform duration-200" />,
+    },
+  ];
+
   return (
     <AuthProvider>
       <main className={`cursor-none w-screen min-h-screen text-white font-sans overflow-x-hidden ${nova.className}`}>
@@ -116,7 +143,7 @@ const OjusCommonPage = () => {
 
           <div className="absolute inset-0 bg-black/40 z-10"></div>
 
-          <div className="relative w-full h-full flex flex-col z-20 text-center">
+          <nav className="relative w-full h-full flex flex-col z-20 text-center">
             <div className="h-20 w-full p-4 flex items-center justify-between">
               <Link href="/" className="cursor-none h-full flex items-center">
                 <img
@@ -127,12 +154,12 @@ const OjusCommonPage = () => {
               </Link>
 
               <div className="flex items-center gap-2 sm:gap-4">
-                <Link
-                  href={"#highlights"}
+                <button
+                  onClick={() => window.lenis.scrollTo("#highlights")}
                   className="cursor-none  font-bold text-lg sm:text-xl bg-purple-500 text-white px-3 sm:px-4 py-1 rounded-lg"
                 >
                   HIGHLIGHTS
-                </Link>
+                </button>
 
                 <NavbarAuth />
               </div>
@@ -164,7 +191,7 @@ const OjusCommonPage = () => {
                 </Link>
               </div>
             </motion.div>
-          </div>
+          </nav>
         </section>
 
         {/* --------- --------- SECTION 2 ------------------ */}
@@ -267,57 +294,62 @@ const OjusCommonPage = () => {
         </section>
 
         {/* --------- --------- SECTION 5 ------------------ */}
-        <footer className="footer w-screen sm:footer-horizontal bg-neutral text-neutral-content">
-          <aside>
-            <Link href="/" className="cursor-none h-20 flex items-center">
-              <img
-                src="/apsit-logo-color.png"
+        <footer className="w-screen bg-black text-white flex flex-col md:flex-row justify-around items-center py-5">
+          {/* LEFT SECTION */}
+          <div className="flex flex-row justify-center items-center min-h-[90px]">
+            {/* FIXED SIZE LOGO BOX */}
+            <motion.div
+              onClick={() => setFooterClick((p) => !p)}
+              className="cursor-none mr-5 flex justify-center items-center w-[90px] h-[90px]"
+              whileTap={{ scale: 0.9 }}
+            >
+              <motion.img
+                key={footerClicked ? "color" : "bw"}
+                src={footerClicked ? "/apsit-logo-color.png" : "/logo.jpg"}
                 alt="apsit logo"
-                className="h-full scale-75 sm:scale-90 md:scale-100 object-contain"
+                className={`object-contain scale-75 w-full ${footerClicked ? "" : "rounded-full"}`}
+                initial={{ opacity: 0, scale: 0.7, rotate: -10 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                exit={{ opacity: 0, scale: 0.7, rotate: 10 }}
+                transition={{ duration: 0.4 }}
               />
-            </Link>
-            <p>
-              A.P. Shah Institue Of Technology
-              <br />
-              Thane, Maharashtra
-            </p>
-          </aside>
-          <nav>
-            <h6 className="footer-title">Social</h6>
-            <div className="grid grid-flow-col gap-4">
-              <a>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  className="fill-current"
+            </motion.div>
+
+            {/* TEXT WITH RESERVED SPACE */}
+            <div className="flex flex-col justify-start items-center md:w-70">
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={footerClicked ? "apsit" : "ojus"}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.25 }}
                 >
-                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path>
-                </svg>
-              </a>
-              <a>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  className="fill-current"
-                >
-                  <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path>
-                </svg>
-              </a>
-              <a>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  className="fill-current"
-                >
-                  <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
-                </svg>
-              </a>
+                  {footerClicked ? "A.P. Shah Institue Of Technology" : "OJUS - Radiance Of Euphoria"}
+                  <br />
+                  Thane, Maharashtra
+                </motion.p>
+              </AnimatePresence>
+            </div>
+          </div>
+
+          {/* RIGHT: SOCIAL ICONS (NO MORE MOVING) */}
+          <nav className="flex flex-col-reverse md:flex-col mt-3 md:mt-0 min-w-[150px] justify-center gap-y-3">
+            <p className="whitespace-nowrap text-center uppercase">Experience the fest vibes on socials</p>
+
+            <div className="flex flex-row items-center justify-center gap-x-5">
+              {socials.map((social) => (
+                <motion.div key={social.name} whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}>
+                  <Link
+                    href={social.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`transition-colors hover:text-${social.color}-400`}
+                  >
+                    {social.icon}
+                  </Link>
+                </motion.div>
+              ))}
             </div>
           </nav>
         </footer>
