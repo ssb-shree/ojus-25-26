@@ -1,10 +1,13 @@
 "use client";
 import { motion } from "framer-motion";
 import Galaxy from "./Galaxy";
-import { nova } from "@/app/(root)/page";
 import Link from "next/link";
 
 import { RxCross2 } from "react-icons/rx";
+export const nova = Nova_Square({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 const ComingSoon = ({ type }) => {
   return (

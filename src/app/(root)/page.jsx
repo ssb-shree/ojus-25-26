@@ -10,7 +10,7 @@ import { AuthProvider, useAuth } from "@/context/AuthContext";
 import ImageMouseTrail from "@/components/mousetrail";
 import { FaFacebook, FaInstagram, FaXTwitter, FaYoutube, FaCode } from "react-icons/fa6";
 
-export const nova = Nova_Square({
+const nova = Nova_Square({
   weight: "400",
   subsets: ["latin"],
 });
