@@ -10,6 +10,9 @@ export default function LenisProvider({ children }) {
       smooth: true,
     });
 
+    // make it available everywhere
+    window.lenis = lenis;
+
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);

@@ -103,30 +103,20 @@ const OjusCommonPage = () => {
 
   const socials = [
     {
-      name: "x",
-      link: "https://twitter.com/",
-      icon: <FaXTwitter className="size-6 text-white hover:scale-110 transition-transform duration-200" />,
-    },
-    {
       name: "instagram",
-      link: "https://instagram.com/",
+      link: "https://instagram.com/ojus_apsit",
       icon: <FaInstagram className="size-6 hover:text-pink-500 hover:scale-110 transition-transform duration-200" />,
     },
     {
       name: "facebook",
-      link: "https://facebook.com/",
+      link: "https://www.facebook.com/ojusapsit",
       icon: <FaFacebook className="size-6 hover:text-blue-500 hover:scale-110 transition-transform duration-200" />,
     },
     {
       name: "youtube",
-      link: "https://youtube.com/",
+      link: "https://www.youtube.com/@ojus-radianceofeuphoria5292",
       icon: <FaYoutube className="size-6 hover:text-red-500 hover:scale-110 transition-transform duration-200" />,
-    },
-    {
-      name: "developers",
-      link: "https://youtube.com/",
-      icon: <FaCode className="size-6 hover:text-green-500 hover:scale-110 transition-transform duration-200" />,
-    },
+    }
   ];
 
   return (
@@ -350,6 +340,9 @@ const OjusCommonPage = () => {
                   </Link>
                 </motion.div>
               ))}
+              <div>
+                 <FaCode className="size-6 hover:text-green-500 hover:scale-110 transition-transform duration-200" />
+              </div>
             </div>
           </nav>
         </footer>
