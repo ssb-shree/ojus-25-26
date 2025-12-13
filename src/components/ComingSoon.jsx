@@ -4,11 +4,6 @@ import Galaxy from "./Galaxy";
 import Link from "next/link";
 
 import { RxCross2 } from "react-icons/rx";
-import { Nova_Square } from "next/font/google";
-export const nova = Nova_Square({
-  weight: "400",
-  subsets: ["latin"],
-});
 
 const ComingSoon = ({ type }) => {
   return (
@@ -25,7 +20,7 @@ const ComingSoon = ({ type }) => {
       />
 
       {/* Foreground content */}
-      <div className={`relative z-10 flex items-center justify-center gap-x-4 ${nova.className}`}>
+      <div className={`relative z-10 flex items-center justify-center gap-x-4 `}>
         <motion.img
           src="/apsit-logo-color.png"
           className="size-30 md:size-50 object-contain shrink-0"
@@ -81,7 +76,7 @@ const ComingSoon = ({ type }) => {
         {/* CTA */}
         <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.4 }}>
           <Link
-            href={`/${type}`}
+            href={`/`}
             className="inline-block mt-4 px-7 py-2.5 rounded-lg border border-white text-white font-semibold tracking-wide
                  bg-white/5 backdrop-blur-sm
                  hover:bg-white hover:text-black
