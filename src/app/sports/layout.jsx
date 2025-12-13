@@ -1,9 +1,9 @@
-"use client";
-import Link from "next/link";
+export const metadata = {
+  title: "OJUS SPORTS",
+  description: "Made by the Ojus Tech Team 25",
+};
 
-import { motion } from "framer-motion";
 import ComingSoon from "@/components/ComingSoon";
-import Galaxy from "@/components/Galaxy";
 
 const SportsLayout = ({ children }) => {
   return <ComingSoon type="sports" />;

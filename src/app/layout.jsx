@@ -11,8 +11,8 @@ const nova = Nova_Square({
 });
 
 export const metadata = {
-  title: "Ojus 2026",
-  description: "Made by the Ojus Tech Team 26",
+  title: "OJUS - Radiance Of Euphoria",
+  description: "Made by the Ojus Tech Team 25",
 };
 
 export default function RootLayout({ children }) {
