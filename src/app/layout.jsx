@@ -11,8 +11,24 @@ const nova = Nova_Square({
 });
 
 export const metadata = {
-  title: "OJUS - Radiance Of Euphoria",
-  description: "Made by the Ojus Tech Team 25",
+  title: "OJUS – Radiance Of Euphoria",
+  description: "Made by the Ojus Tech Team 26",
+
+  openGraph: {
+    title: "OJUS – Radiance Of Euphoria",
+    description: "The official fest of APSIT. Music, chaos, memories.",
+    url: "https://ojus-2025.vercel.app",
+    siteName: "OJUS",
+    images: [
+      {
+        url: "https://ojus-2025.vercel.app/logo.jpg",
+        width: 1200,
+        height: 630,
+        alt: "OJUS Logo",
+      },
+    ],
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }) {
