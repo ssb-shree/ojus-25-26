@@ -162,9 +162,9 @@ const OjusCommonPage = () => {
               viewport={{ once: false, amount: 0.3 }}
               className="flex flex-col justify-center items-center md:justify-end md:items-start h-full w-full px-6 sm:px-12 lg:px-20 pb-20 text-left"
             >
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold">OJUS 2026</h1>
-              <h2 className="text-lg sm:text-xl md:text-2xl opacity-90">OJUS theme of theme</h2>
-              <p className="text-sm sm:text-base md:text-lg opacity-80">Get ready for ojus 2025</p>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold">Reveric Etheria</h1>
+              <h2 className="text-lg sm:text-xl md:text-2xl opacity-90">OJUS - Radiance Of Euphoria</h2>
+              {/* <p className="text-sm sm:text-base md:text-lg opacity-80">OJUS 2026</p> */}
 
               <div className="flex flex-wrap gap-4 mt-4">
                 <Link
@@ -213,7 +213,7 @@ const OjusCommonPage = () => {
             </motion.div>
           </div>
           <div className="size-full hidden md:flex flex-col">
-            <h3 className={` text-xl text-center ${alfa.className}`}>Hover Mouse Below</h3>
+            <h3 className={` text-xl text-center font-extrabold`}>Hover Mouse Below</h3>
             <ImageMouseTrail
               // className={"border border-black"}
               items={items}
@@ -239,7 +239,7 @@ const OjusCommonPage = () => {
         {/* --------- --------- SECTION 3 ------------------ */}
         <section className="w-full md:mmin-h-screen flex justify-center items-center px-6 sm:px-12 md:px-20 py-16 bg-black text-white">
           <div className="hidden md:flex flex-col size-full md:mr-10">
-            <h3 className={` text-xl text-center ${alfa.className}`}>Hover Mouse Below</h3>
+            <h3 className={` text-xl text-center font-extrabold`}>Hover Mouse Below</h3>
             <ImageMouseTrail
               // className={" border"}
               items={items}
