@@ -4,6 +4,7 @@ import Galaxy from "./Galaxy";
 import Link from "next/link";
 
 import { RxCross2 } from "react-icons/rx";
+import { Nova_Square } from "next/font/google";
 export const nova = Nova_Square({
   weight: "400",
   subsets: ["latin"],
