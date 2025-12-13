@@ -10,7 +10,7 @@ import { AuthProvider, useAuth } from "@/context/AuthContext";
 import ImageMouseTrail from "@/components/mousetrail";
 import { FaFacebook, FaInstagram, FaXTwitter, FaYoutube, FaCode } from "react-icons/fa6";
 
-const nova = Nova_Square({
+export const nova = Nova_Square({
   weight: "400",
   subsets: ["latin"],
 });
@@ -116,7 +116,7 @@ const OjusCommonPage = () => {
       name: "youtube",
       link: "https://www.youtube.com/@ojus-radianceofeuphoria5292",
       icon: <FaYoutube className="size-6 hover:text-red-500 hover:scale-110 transition-transform duration-200" />,
-    }
+    },
   ];
 
   return (
@@ -341,7 +341,7 @@ const OjusCommonPage = () => {
                 </motion.div>
               ))}
               <div>
-                 <FaCode className="size-6 hover:text-green-500 hover:scale-110 transition-transform duration-200" />
+                <FaCode className="size-6 hover:text-green-500 hover:scale-110 transition-transform duration-200" />
               </div>
             </div>
           </nav>
