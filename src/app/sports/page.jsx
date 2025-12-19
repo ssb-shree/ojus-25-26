@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 
 import { FaXTwitter, FaInstagram, FaFacebook, FaYoutube } from "react-icons/fa6";
 import { Nova_Square } from "next/font/google";
-import { alfa, items } from "../(root)/page";
+import { alfa } from "../(root)/page";
 import ImageMouseTrail from "@/components/mousetrail";
 
 const nova = Nova_Square({
@@ -225,7 +225,7 @@ const SportsPage = () => {
               <h3 className={` text-xl text-center ${alfa.className}`}>Hover Mouse Below</h3>
               <ImageMouseTrail
                 // className={"border border-black"}
-                items={items}
+                items={[]}
                 maxNumberOfImages={5}
                 distance={25}
                 imgClass="sm:w-40 w-28 sm:h-48 h-36 rounded-sm"
