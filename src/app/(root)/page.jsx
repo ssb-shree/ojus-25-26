@@ -250,7 +250,7 @@ const OjusCommonPage = () => {
           <h3 className={` text-xl text-center ${alfa.className}`}>Experience The Radiance of Ojus</h3>
           <ImageMouseTrail
             className={"h-full"}
-            items={items}
+            items={[...apsitTop10, ...ojusTop10]}
             maxNumberOfImages={5}
             distance={25}
             imgClass="sm:w-40 w-28 sm:h-48 h-36 rounded-sm"
