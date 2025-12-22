@@ -160,7 +160,7 @@ const CulturalPage = () => {
             </span>
           </div>
 
-          <Link href="/floors/floor1" className="inline-block px-4">
+          <Link href="/cultural/floor/1" className="inline-block px-4">
             <Button
               size="lg"
               className="text-base sm:text-lg md:text-xl font-bold bg-white text-purple-900 hover:bg-white/90 hover:scale-105 transition-transform shadow-2xl px-8 sm:px-10 md:px-12 py-6 sm:py-7 md:py-8 w-full sm:w-auto"
@@ -241,7 +241,7 @@ const CulturalPage = () => {
             </span>
           </div>
 
-          <Link href="/floors/floor2" className="inline-block px-4">
+          <Link href="/cultural/floor/2" className="inline-block px-4">
             <Button
               size="lg"
               className="text-base sm:text-lg md:text-xl font-bold bg-white text-pink-900 hover:bg-white/90 hover:scale-105 transition-transform shadow-2xl px-8 sm:px-10 md:px-12 py-6 sm:py-7 md:py-8 w-full sm:w-auto"
@@ -322,7 +322,7 @@ const CulturalPage = () => {
             </span>
           </div>
 
-          <Link href="/floors/floor3" className="inline-block px-4">
+          <Link href="/cultural/floor/3" className="inline-block px-4">
             <Button
               size="lg"
               className="text-base sm:text-lg md:text-xl font-bold bg-white text-teal-900 hover:bg-white/90 hover:scale-105 transition-transform shadow-2xl px-8 sm:px-10 md:px-12 py-6 sm:py-7 md:py-8 w-full sm:w-auto"
@@ -403,7 +403,7 @@ const CulturalPage = () => {
             </span>
           </div>
 
-          <Link href="/floors/floor4" className="inline-block px-4">
+          <Link href="/cultural/floor/4" className="inline-block px-4">
             <Button
               size="lg"
               className="text-base sm:text-lg md:text-xl font-bold bg-white text-blue-900 hover:bg-white/90 hover:scale-105 transition-transform shadow-2xl px-8 sm:px-10 md:px-12 py-6 sm:py-7 md:py-8 w-full sm:w-auto"
