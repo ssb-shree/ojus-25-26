@@ -103,7 +103,7 @@ export default function OutdoorSportsPage() {
               key={key}
               onClick={() => {
                 setActiveTab(key);
-                searchInput("");
+                setSearchInput("");
               }}
             >
               {displayValue}
