@@ -184,8 +184,7 @@ const OjusCommonPage = () => {
               className="flex flex-col justify-center items-center md:justify-end md:items-start h-full w-full px-6 sm:px-12 lg:px-20 pb-20 text-left"
             >
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold">Reveric Etheria</h1>
-              <h2 className="text-lg sm:text-xl md:text-2xl opacity-90"></h2>
-              {/* <p className="text-sm sm:text-base md:text-lg opacity-80">OJUS 2026</p> */}
+              <h2 className="text-lg sm:text-xl md:text-2xl opacity-90">APSIT proudly presents OJUS</h2>
 
               <div className="flex flex-wrap gap-4 mt-4">
                 <Link
