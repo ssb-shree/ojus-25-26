@@ -1,0 +1,36 @@
+.hero {
+  background: radial-gradient(circle at 20% 40%, #c2410c 0%, #0f172a 80%);
+}
+
+.title {
+  background: linear-gradient(90deg, #fb923c, #f97316, #facc15);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: gradientSlide 5s ease infinite;
+  filter: drop-shadow(0 0 12px #fb923caa);
+}
+
+@keyframes gradientSlide {
+  0% {
+    background-position: 0%;
+  }
+  50% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: 0%;
+  }
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
