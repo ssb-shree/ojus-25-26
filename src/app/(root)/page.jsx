@@ -184,7 +184,7 @@ const OjusCommonPage = () => {
               className="flex flex-col justify-center items-center md:justify-end md:items-start h-full w-full px-6 sm:px-12 lg:px-20 pb-20 text-left"
             >
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold">Reveric Etheria</h1>
-              <h2 className="text-lg sm:text-xl md:text-2xl opacity-90">OJUS - Radiance Of Euphoria</h2>
+              <h2 className="text-lg sm:text-xl md:text-2xl opacity-90"></h2>
               {/* <p className="text-sm sm:text-base md:text-lg opacity-80">OJUS 2026</p> */}
 
               <div className="flex flex-wrap gap-4 mt-4">
@@ -225,7 +225,7 @@ const OjusCommonPage = () => {
                   celebration, adding excitement and energy.
                 </span>
 
-                <span className="hidden md:flex">
+                <span className="">
                   From dance and music to fashion, theatre, and gaming, Ojus showcases diverse student talent and
                   embodies APSIT’s cultural spirit, creating unforgettable memories for everyone who attends and
                   experiences the festival’s lively atmosphere.
