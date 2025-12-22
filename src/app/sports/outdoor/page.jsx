@@ -9,8 +9,7 @@ const OutdoorPage = () => {
   const { user, isAuthenticated, loading } = useAuth();
 
   // The clip-path for the main event box
-  const boxClipPath =
-    "polygon(10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%, 0 10%)";
+  const boxClipPath = "polygon(10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%, 0 10%)";
 
   // Outdoor events data with proper image placeholders
   //   const eventsData = {
@@ -100,8 +99,7 @@ const OutdoorPage = () => {
       {
         id: 11,
         name: "Tug of War (Boys)",
-        banner:
-          "https://ichef.bbci.co.uk/news/480/cpsprodpb/61bf/live/ae15cb30-6170-11ef-9ad8-5bacd187043d.jpg.webp",
+        banner: "https://ichef.bbci.co.uk/news/480/cpsprodpb/61bf/live/ae15cb30-6170-11ef-9ad8-5bacd187043d.jpg.webp",
       },
     ], // Day 4 (Original Dec 30): Kabaddi and Box Cricket
     4: [
@@ -114,16 +112,14 @@ const OutdoorPage = () => {
       {
         id: 13,
         name: "Box Cricket (Both)",
-        banner:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMq6U5EUHZr6Dy_4nmpIWBknpRzvf42EslWw&s",
+        banner: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMq6U5EUHZr6Dy_4nmpIWBknpRzvf42EslWw&s",
       },
     ], // Day 5 (Original Dec 31): Football, Volleyball, Throwball, and Kho-kho
     5: [
       {
         id: 14,
         name: "Football (Boys)",
-        banner:
-          "https://www.shutterstock.com/shutterstock/videos/3515852867/thumb/1.jpg?ip=x480",
+        banner: "https://www.shutterstock.com/shutterstock/videos/3515852867/thumb/1.jpg?ip=x480",
       },
       {
         id: 15,
@@ -134,14 +130,12 @@ const OutdoorPage = () => {
       {
         id: 16,
         name: "Throwball (Girls)",
-        banner:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRy2gHzXqwJuTxD7EOaBHFNDzl4q8SMMd5Vsw&s",
+        banner: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRy2gHzXqwJuTxD7EOaBHFNDzl4q8SMMd5Vsw&s",
       },
       {
         id: 17,
         name: "Kho-kho (Girls)",
-        banner:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqxLHlqSxcyUoucBf9J8E5Wj_WMVUPCeGcNA&s",
+        banner: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqxLHlqSxcyUoucBf9J8E5Wj_WMVUPCeGcNA&s",
       },
     ],
   };
@@ -163,15 +157,26 @@ const OutdoorPage = () => {
               EXPERIENCE THE THRILL • PUSH YOUR LIMITS • EMBRACE THE COMPETITION
             </p>
             <Link
-              href="/sports"
-              className="inline-block group/back relative bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 md:py-4 md:px-8 border-2 border-green-500 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-green-500/40 transform hover:-translate-y-1"
+              href="/"
+              className="inline-block group/back relative bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 md:py-4 md:px-8 border-2 border-red-500 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/40 transform hover:-translate-y-1"
               style={{ clipPath: "polygon(10% 0, 90% 0, 100% 100%, 0 100%)" }}
             >
               <span className="relative z-10 group-hover/back:translate-x-1 transition-transform duration-300">
-                ← BACK TO SPORTS
+                BACK TO HOME
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-green-500/10 to-blue-500/10 group-hover/back:from-green-500/20 group-hover/back:to-blue-500/20 transition-all duration-500"></div>
-              <div className="absolute -inset-1 bg-gradient-to-r from-green-500 to-blue-500 rounded-lg blur opacity-0 group-hover/back:opacity-100 transition-opacity duration-500 -z-10"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 to-orange-500/10 group-hover/back:from-red-500/20 group-hover/back:to-orange-500/20 transition-all duration-500"></div>
+              <div className="absolute -inset-1 bg-gradient-to-r from-red-500 to-orange-500 rounded-lg blur opacity-0 group-hover/back:opacity-100 transition-opacity duration-500 -z-10"></div>
+            </Link>
+            <Link
+              href="/sports/indoor"
+              className="inline-block group/back relative bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 md:py-4 md:px-8 border-2 border-red-500 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/40 transform hover:-translate-y-1"
+              style={{ clipPath: "polygon(10% 0, 90% 0, 100% 100%, 0 100%)" }}
+            >
+              <span className="relative mr-4 z-10 group-hover/back:translate-x-1 transition-transform duration-300">
+                CHECK OUT INDOOR
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 to-orange-500/10 group-hover/back:from-red-500/20 group-hover/back:to-orange-500/20 transition-all duration-500"></div>
+              <div className="absolute -inset-1 bg-gradient-to-r from-red-500 to-orange-500 rounded-lg blur opacity-0 group-hover/back:opacity-100 transition-opacity duration-500 -z-10"></div>
             </Link>
           </div>
         </div>
@@ -197,9 +202,7 @@ const OutdoorPage = () => {
                 >
                   <span
                     className={`relative z-10 transition-all duration-300 ${
-                      selectedDay === day
-                        ? "group-hover/day:scale-110"
-                        : "group-hover/day:translate-x-1"
+                      selectedDay === day ? "group-hover/day:scale-110" : "group-hover/day:translate-x-1"
                     }`}
                   >
                     DAY {day}
@@ -316,8 +319,7 @@ const OutdoorPage = () => {
           </div>
 
           {/* No Events Message with enhanced hover */}
-          {(!eventsData[selectedDay] ||
-            eventsData[selectedDay].length === 0) && (
+          {(!eventsData[selectedDay] || eventsData[selectedDay].length === 0) && (
             <div
               className="text-center py-12 md:py-20 border-2 border-green-500/30 bg-gray-800/50 mx-auto max-w-2xl relative group/no-events transform hover:scale-105 transition-transform duration-500"
               style={{ clipPath: "polygon(5% 0, 95% 0, 100% 100%, 0 100%)" }}
@@ -345,8 +347,7 @@ const OutdoorPage = () => {
           >
             <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 to-blue-500/5 group-hover/footer:from-green-500/10 group-hover/footer:to-blue-500/10 transition-all duration-500"></div>
             <p className="text-lg md:text-xl text-gray-300 font-bold uppercase tracking-wide relative z-10 px-2 group-hover/footer:text-white transition-colors duration-300">
-              FEEL THE ADRENALINE RUSH! CHOOSE YOUR SPORT AND SHOWCASE YOUR
-              TALENT IN THE GREAT OUTDOORS! ⚽🏏🏀
+              FEEL THE ADRENALINE RUSH! CHOOSE YOUR SPORT AND SHOWCASE YOUR TALENT IN THE GREAT OUTDOORS! ⚽🏏🏀
             </p>
             {/* Animated emoji */}
             <div className="absolute right-8 top-1/2 transform -translate-y-1/2 text-2xl group-hover/footer:scale-125 group-hover/footer:rotate-12 transition-transform duration-500">

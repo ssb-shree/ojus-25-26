@@ -189,7 +189,7 @@ const OjusCommonPage = () => {
 
               <div className="flex flex-wrap gap-4 mt-4">
                 <Link
-                  href={"/sports"}
+                  href={"/sports/indoor"}
                   className="cursor-none transform hover:transition-x-1 px-5 py-2 bg-purple-500 text-white font-semibold rounded-lg text-lg hover:bg-purple-400 transition"
                 >
                   SPORTS

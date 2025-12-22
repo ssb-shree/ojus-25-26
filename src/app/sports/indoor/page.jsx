@@ -9,8 +9,7 @@ const IndoorPage = () => {
   const { user, isAuthenticated, loading } = useAuth();
 
   // The clip-path for the main event box
-  const boxClipPath =
-    "polygon(10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%, 0 10%)";
+  const boxClipPath = "polygon(10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%, 0 10%)";
 
   // Events data with proper image placeholders
   //   const eventsData = {
@@ -76,8 +75,7 @@ const IndoorPage = () => {
       {
         id: 5,
         name: "Table Tennis",
-        banner:
-          "https://www.shutterstock.com/image-photo/hand-ping-pong-racket-hitting-260nw-1963053211.jpg",
+        banner: "https://www.shutterstock.com/image-photo/hand-ping-pong-racket-hitting-260nw-1963053211.jpg",
       },
     ],
   };
@@ -99,12 +97,23 @@ const IndoorPage = () => {
               MASTER YOUR SKILLS • DOMINATE THE COMPETITION • CLAIM VICTORY
             </p>
             <Link
-              href="/sports"
+              href="/"
               className="inline-block group/back relative bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 md:py-4 md:px-8 border-2 border-red-500 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/40 transform hover:-translate-y-1"
               style={{ clipPath: "polygon(10% 0, 90% 0, 100% 100%, 0 100%)" }}
             >
               <span className="relative z-10 group-hover/back:translate-x-1 transition-transform duration-300">
-                ← BACK TO SPORTS
+                BACK TO HOME
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 to-orange-500/10 group-hover/back:from-red-500/20 group-hover/back:to-orange-500/20 transition-all duration-500"></div>
+              <div className="absolute -inset-1 bg-gradient-to-r from-red-500 to-orange-500 rounded-lg blur opacity-0 group-hover/back:opacity-100 transition-opacity duration-500 -z-10"></div>
+            </Link>
+            <Link
+              href="/sports/outdoor"
+              className="inline-block group/back relative bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 md:py-4 md:px-8 border-2 border-red-500 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/40 transform hover:-translate-y-1"
+              style={{ clipPath: "polygon(10% 0, 90% 0, 100% 100%, 0 100%)" }}
+            >
+              <span className="relative mr-4 z-10 group-hover/back:translate-x-1 transition-transform duration-300">
+                CHECK OUT OUTDOOR
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 to-orange-500/10 group-hover/back:from-red-500/20 group-hover/back:to-orange-500/20 transition-all duration-500"></div>
               <div className="absolute -inset-1 bg-gradient-to-r from-red-500 to-orange-500 rounded-lg blur opacity-0 group-hover/back:opacity-100 transition-opacity duration-500 -z-10"></div>
@@ -133,9 +142,7 @@ const IndoorPage = () => {
                 >
                   <span
                     className={`relative z-10 transition-all duration-300 ${
-                      selectedDay === day
-                        ? "group-hover/day:scale-110"
-                        : "group-hover/day:translate-x-1"
+                      selectedDay === day ? "group-hover/day:scale-110" : "group-hover/day:translate-x-1"
                     }`}
                   >
                     DAY {day}
@@ -252,8 +259,7 @@ const IndoorPage = () => {
           </div>
 
           {/* No Events Message with enhanced hover */}
-          {(!eventsData[selectedDay] ||
-            eventsData[selectedDay].length === 0) && (
+          {(!eventsData[selectedDay] || eventsData[selectedDay].length === 0) && (
             <div
               className="text-center py-12 md:py-20 border-2 border-red-500/30 bg-gray-800/50 mx-auto max-w-2xl relative group/no-events transform hover:scale-105 transition-transform duration-500"
               style={{ clipPath: "polygon(5% 0, 95% 0, 100% 100%, 0 100%)" }}
@@ -281,8 +287,7 @@ const IndoorPage = () => {
           >
             <div className="absolute inset-0 bg-gradient-to-r from-red-500/5 to-orange-500/5 group-hover/footer:from-red-500/10 group-hover/footer:to-orange-500/10 transition-all duration-500"></div>
             <p className="text-lg md:text-xl text-gray-300 font-bold uppercase tracking-wide relative z-10 px-2 group-hover/footer:text-white transition-colors duration-300">
-              READY TO COMPETE? CHOOSE YOUR ARENA AND SHOW THEM WHAT YOU'RE MADE
-              OF! 🏆
+              READY TO COMPETE? CHOOSE YOUR ARENA AND SHOW THEM WHAT YOU'RE MADE OF! 🏆
             </p>
             {/* Animated emoji */}
             <div className="absolute right-8 top-1/2 transform -translate-y-1/2 text-2xl group-hover/footer:scale-125 group-hover/footer:rotate-12 transition-transform duration-500">
