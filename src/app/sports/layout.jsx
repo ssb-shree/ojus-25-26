@@ -23,7 +23,7 @@ export const metadata = {
 };
 
 const CulturalLayout = ({ children }) => {
-  return <ComingSoon type={"cultural"} />;
+  return <ComingSoon type={"sports"} />;
   // return children;
 };
 
