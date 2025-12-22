@@ -11,13 +11,13 @@ const nova = Nova_Square({
 });
 
 export const metadata = {
-  title: "OJUS – Radiance Of Euphoria",
+  title: "OJUS – Reveric Etheria",
   description: "Made by the Ojus Tech Team 26",
 
   openGraph: {
-    title: "OJUS – Radiance Of Euphoria",
+    title: "OJUS – Reveric Etheria",
     description: "The official fest of APSIT. Music, chaos, memories.",
-    url: "https://ojus-2025.vercel.app",
+    url: "https://ojus.apsit.edu.in",
     siteName: "OJUS",
     images: [
       {
