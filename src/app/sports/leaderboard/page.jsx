@@ -151,7 +151,7 @@ export default function DepartmentLeaderboardPage() {
             </div>
 
             {/* Rows */}
-            {standings && standings.map((dept, index) => (
+            {standings[0] && standings?.map((dept, index) => (
               <motion.div
                 key={dept.branch}
                 initial={{ opacity: 0, x: -20 }}

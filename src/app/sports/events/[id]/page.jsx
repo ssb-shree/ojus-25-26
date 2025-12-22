@@ -741,7 +741,7 @@ const allEvents = {
     id: 1,
     name: "Badminton (Singles) (Male & Female)",
     type: "indoor",
-    banner: "https://4kwallpapers.com/images/walls/thumbs/17420.jpg",
+    banner: "https://imgs.search.brave.com/Oh6R46eyLxByjyN45CnVXT6l0UDVh0bYbycIvE6vUTA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zcG9y/dHNtYXRpay5jb20v/dXBsb2Fkcy90aHVt/YnMvOTAweDQ1MC9t/YXRpay1zcG9ydHMt/Y29ybmVyL21hdGlr/LWtub3ctaG93L2Jh/ZG1pbnRvbjFfMTU2/MjMxMzEyNy5qcGc",
     description:
       "Single Elimination Tournament. Test your endurance, skill, and strategic gameplay on the court.",
     time: "3:00 PM - 6:00 PM",
@@ -757,7 +757,7 @@ const allEvents = {
     id: 2,
     name: "Chess (Boys & Girls)",
     type: "indoor",
-    banner: "https://4kwallpapers.com/images/walls/thumbs/16674.jpg",
+    banner: "https://imgs.search.brave.com/GuwPS9Mxksff5TB9UoPxh0Lc-Q_z-njE-VV_SC7VCuA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA0LzQwLzgzLzc2/LzM2MF9GXzQ0MDgz/NzY3Nl9rT1NaT2Fh/am0xbjUyMlZBT1p5/U1hUN2JsR0U0Vmxu/Yi5qcGc",
     description:
       "Rapid Chess Tournament. Challenge your mind with strategic thinking and pattern recognition.",
     time: "2:00 PM - 5:00 PM",
@@ -773,7 +773,7 @@ const allEvents = {
     id: 3,
     name: "Badminton (Doubles)",
     type: "indoor",
-    banner: "https://4kwallpapers.com/images/walls/thumbs/17420.jpg",
+    banner: "https://imgs.search.brave.com/d4rbk-WJtvdVZDbHDcVkI9HZJ14MVSO5bz-kbeUiRdk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTYy/NDQ2MDk5L3Bob3Rv/L2JsdWUtYmFkbWlu/dG9uLWNvdXJ0LWFu/ZC1zaHV0dGxlY29j/a3Mtd2l0aC1wbGF5/ZXJzLWNvbXBldGlu/Zy5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9eWtia2FQZUtF/OHF0dzRvSnpIb21o/U3ltUnhFV3UwVm9Q/a1dEc0kwSlpqaz0",
     description:
       "Double Elimination Tournament. Perfect your teamwork and coordination with your partner.",
     time: "4:00 PM - 7:00 PM",
@@ -1350,7 +1350,7 @@ const EventDetailsPage = () => {
             {/* Banner */}
             <div className={`h-64 bg-gradient-to-r ${gradientColors} relative`}>
               <div className="absolute inset-0 flex items-center justify-center text-white/20 text-2xl font-bold">
-                {event.name}
+                <img className="w-full h-full" src={event.banner} alt="" />
               </div>
               <div className="absolute top-4 right-4">
                 <span
@@ -1369,17 +1369,17 @@ const EventDetailsPage = () => {
                 {event.name}
               </h1>
 
-              <div className="grid grid-cols-3 gap-4 mb-8">
+              <div className="grid grid-cols-2 gap-4 mb-8">
                 <div className="bg-gray-700/50 rounded-xl p-4 text-center">
                   <div className="text-gray-400 text-sm mb-1">Time</div>
                   <div className="text-white font-semibold">{event.time}</div>
                 </div>
-                <div className="bg-gray-700/50 rounded-xl p-4 text-center">
+                {/* <div className="bg-gray-700/50 rounded-xl p-4 text-center">
                   <div className="text-gray-400 text-sm mb-1">Participants</div>
                   <div className="text-white font-semibold">
                     {liveParticipantCount}
                   </div>
-                </div>
+                </div> */}
                 <div className="bg-gray-700/50 rounded-xl p-4 text-center">
                   <div className="text-gray-400 text-sm mb-1">Venue</div>
                   <div className="text-white font-semibold">{event.venue}</div>
@@ -1409,40 +1409,7 @@ const EventDetailsPage = () => {
                       {event.coordinator.contact}
                     </div>
                   </div>
-                  <div className="flex gap-3">
-                    <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors flex items-center gap-2">
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                        />
-                      </svg>
-                      Call
-                    </button>
-                    <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors flex items-center gap-2">
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                        />
-                      </svg>
-                      WhatsApp
-                    </button>
-                  </div>
+                 
                 </div>
               </div>
 

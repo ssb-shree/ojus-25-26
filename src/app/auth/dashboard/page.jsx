@@ -257,7 +257,7 @@ export default function Dashboard() {
                     You haven't registered for any sports yet. Start your journey by exploring available sports!
                   </p>
                   <a
-                    href="/sports#arena"
+                    href="/sports/indoor"
                     className="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white font-semibold py-2 px-5 rounded-xl transition-all shadow-lg hover:shadow-purple-500/50 text-sm"
                   >
                     Browse Sports <ChevronRight className="w-4 h-4" />
@@ -325,11 +325,11 @@ export default function Dashboard() {
           <h3 className="text-2xl font-bold text-white mb-2">Quick Actions</h3>
           <p className="text-slate-400">Navigate to different sections of the platform</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <QuickActionCard
             title="Browse Sports"
             subtitle="Explore all available sports"
-            href="/sports#arena"
+            href="/sports/indoor"
             icon={Trophy}
           />
           <QuickActionCard
@@ -337,12 +337,6 @@ export default function Dashboard() {
             subtitle="View and manage your teams"
             href="/sports/teams/list/all"
             icon={Users}
-          />
-          <QuickActionCard
-            title="Events Calendar"
-            subtitle="Check upcoming schedules"
-            href="/sports"
-            icon={Calendar}
           />
           {isManager ? (
             <QuickActionCard
@@ -356,7 +350,7 @@ export default function Dashboard() {
             <QuickActionCard
               title="Leaderboard"
               subtitle="View department standings"
-              href="/sports#leaderboard"
+              href="/sports/leaderboard"
               icon={Activity}
             />
           )}

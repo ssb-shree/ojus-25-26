@@ -93,31 +93,32 @@ const IndoorPage = () => {
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-6 bg-gradient-to-r from-red-500 via-orange-500 to-red-600 bg-clip-text text-transparent tracking-tight group-hover/hero:from-red-400 group-hover/hero:via-orange-400 group-hover/hero:to-red-500 transition-all duration-500">
               INDOOR ARENA
             </h1>
-            <p className="text-lg md:text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto mb-8 font-medium px-4 group-hover/hero:text-gray-200 transition-colors duration-300">
+            <p className="text-lg md:text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto mb-8 font-medium px-4 sm:text-nowrap group-hover/hero:text-gray-200 transition-colors duration-300">
               MASTER YOUR SKILLS • DOMINATE THE COMPETITION • CLAIM VICTORY
             </p>
-            <Link
+            <div className="flex items-center gap-5 justify-center">
+              <Link
               href="/"
-              className="inline-block group/back relative bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 md:py-4 md:px-8 border-2 border-red-500 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/40 transform hover:-translate-y-1"
-              style={{ clipPath: "polygon(10% 0, 90% 0, 100% 100%, 0 100%)" }}
+              className=" inline-block group/back relative bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 md:py-4 md:px-8 border-2 border-red-500 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/40 transform hover:-translate-y-1 rounded-4xl"
             >
               <span className="relative z-10 group-hover/back:translate-x-1 transition-transform duration-300">
                 BACK TO HOME
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 to-orange-500/10 group-hover/back:from-red-500/20 group-hover/back:to-orange-500/20 transition-all duration-500"></div>
-              <div className="absolute -inset-1 bg-gradient-to-r from-red-500 to-orange-500 rounded-lg blur opacity-0 group-hover/back:opacity-100 transition-opacity duration-500 -z-10"></div>
+              <div className="absolute -inset-1 bg-gradient-to-ropacity-0 group-hover/back:opacity-100 transition-opacity duration-500 -z-10"></div>
             </Link>
             <Link
               href="/sports/outdoor"
-              className="inline-block group/back relative bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 md:py-4 md:px-8 border-2 border-red-500 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/40 transform hover:-translate-y-1"
-              style={{ clipPath: "polygon(10% 0, 90% 0, 100% 100%, 0 100%)" }}
+              className="inline-block group/back relative bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 md:py-4 md:px-8 border-2 border-red-500 transition-all duration-500 hover:scale-105 hover:shadow-sm hover:shadow-red-500/40 transform hover:-translate-y-1 rounded-4xl"
+              
             >
               <span className="relative mr-4 z-10 group-hover/back:translate-x-1 transition-transform duration-300">
                 CHECK OUT OUTDOOR
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 to-orange-500/10 group-hover/back:from-red-500/20 group-hover/back:to-orange-500/20 transition-all duration-500"></div>
-              <div className="absolute -inset-1 bg-gradient-to-r from-red-500 to-orange-500 rounded-lg blur opacity-0 group-hover/back:opacity-100 transition-opacity duration-500 -z-10"></div>
+              <div className="absolute -inset-1 bg-gradient-to-r  opacity-0 group-hover/back:opacity-100 transition-opacity duration-500 -z-10"></div>
             </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -126,7 +127,7 @@ const IndoorPage = () => {
       <section className="py-8 md:py-12 bg-gradient-to-r from-gray-800 to-gray-900 border-y-2 border-red-500/30 group/days">
         <div className="container mx-auto px-4">
           <div className="bg-gray-900 border-2 border-red-500/40 p-2 rounded-lg group-hover/days:border-red-500/60 transition-colors duration-300">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8 pl-2">
               {days.map((day) => (
                 <button
                   key={day}
@@ -136,9 +137,7 @@ const IndoorPage = () => {
                       ? "bg-gradient-to-r from-red-500 to-orange-500 text-white border-red-500 shadow-2xl shadow-red-500/60 scale-105"
                       : "bg-gray-800 text-gray-300 border-gray-600 hover:bg-gray-700 hover:border-red-400 hover:scale-105"
                   }`}
-                  style={{
-                    clipPath: "polygon(10% 0, 90% 0, 100% 100%, 0 100%)",
-                  }}
+                
                 >
                   <span
                     className={`relative z-10 transition-all duration-300 ${
@@ -149,7 +148,7 @@ const IndoorPage = () => {
                   </span>
                   {/* Animated background for selected day */}
                   {selectedDay === day && (
-                    <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-orange-600 opacity-0 group-hover/day:opacity-100 transition-opacity duration-500"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r text-white opacity-0 group-hover/day:opacity-100 transition-opacity duration-500"></div>
                   )}
                   {/* Shine effect */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 transform translate-x-[-100%] group-hover/day:translate-x-[100%] transition-transform duration-1000"></div>
@@ -165,7 +164,7 @@ const IndoorPage = () => {
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-black text-center mb-8 md:mb-16 uppercase tracking-wide group/title">
             EVENTS -{" "}
-            <span className="text-red-500 group-hover/title:bg-gradient-to-r group-hover/title:from-red-400 group-hover/title:to-orange-400 group-hover/title:bg-clip-text group-hover/title:text-transparent transition-all duration-500">
+            <span className="text-white group-hover/title:bg-gradient-to-r ">
               DAY {selectedDay}
             </span>
           </h2>
@@ -230,7 +229,7 @@ const IndoorPage = () => {
                   <div className="mt-auto">
                     <Link
                       href={`/sports/events/${event.id}`}
-                      className="inline-block group/button relative bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-orange-500 text-white font-bold py-2 md:py-3 px-4 md:px-6 border-2 border-white/20 hover:border-white transition-all duration-500 transform hover:scale-105 uppercase tracking-wider w-full text-sm md:text-base overflow-hidden"
+                      className="inline-block group/button relative bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-orange-500 text-white font-bold py-2 md:py-3 px-4 md:px-6 border-2 border-white/20  transition-all duration-500 transform hover:scale-105 uppercase tracking-wider w-full text-sm md:text-base overflow-hidden"
                       style={{
                         clipPath: boxClipPath,
                       }}
