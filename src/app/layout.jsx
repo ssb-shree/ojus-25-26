@@ -17,7 +17,7 @@ export const metadata = {
   openGraph: {
     title: "OJUS – Radiance Of Euphoria",
     description: "The official fest of APSIT. Music, chaos, memories.",
-    url: "https://ojus-2025.vercel.app",
+    url: "https://ojus.apsit.edu.in",
     siteName: "OJUS",
     images: [
       {
