@@ -23,8 +23,8 @@ export const metadata = {
 };
 
 const CulturalLayout = ({ children }) => {
-  return <ComingSoon type={"sports"} />;
-  // return children;
+  // return <ComingSoon type={"sports"} />;
+  return children;
 };
 
 export default CulturalLayout;
