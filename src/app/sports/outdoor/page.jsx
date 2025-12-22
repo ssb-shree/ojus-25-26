@@ -101,7 +101,10 @@ export default function OutdoorSportsPage() {
             <button
               className={`w-full p-2 rounded-lg ${activeTab === key ? "bg-[#1e293b]" : ""}`}
               key={key}
-              onClick={() => setActiveTab(key)}
+              onClick={() => {
+                setActiveTab(key);
+                searchInput("");
+              }}
             >
               {displayValue}
             </button>
