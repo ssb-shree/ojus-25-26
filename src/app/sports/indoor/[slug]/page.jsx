@@ -6,6 +6,8 @@ import React, { useState, useEffect } from "react";
 import api from "@/api/api";
 import { useAuth } from "@/context/AuthContext";
 
+import toast from "react-hot-toast";
+
 import { indoor } from "@/utils/sports_data_final_with_contacts";
 
 const EventDetailsPage = ({ params }) => {
@@ -39,8 +41,7 @@ const EventDetailsPage = ({ params }) => {
         const match = res.data.find((s) => s.name.trim() === event.name.trim());
         if (match) setLiveParticipantCount(match.participants_count);
       })
-      .catch(() => { });
-    console.log(allEvents)
+      .catch(() => {});
   }, [event]);
 
   useEffect(() => {
@@ -51,7 +52,7 @@ const EventDetailsPage = ({ params }) => {
         const found = res.data.registrations?.find((r) => r.sport?.slug === event.slug);
         setIsRegistered(Boolean(found));
       })
-      .catch(() => { });
+      .catch(() => {});
   }, [event]);
 
   useEffect(() => {
@@ -59,23 +60,27 @@ const EventDetailsPage = ({ params }) => {
     api
       .get(`api/sports/${event.slug}/user-team/`)
       .then((res) => setUserTeam(res.data))
-      .catch(() => { });
+      .catch(() => {});
   }, [isRegistered, event]);
 
   const handleRegister = async () => {
+    if (!isAuthenticated) {
+      setMessage("⚠️ Please log in to register.");
+      return;
+    }
+
     setLoading(true);
     setMessage("");
+
     try {
-      if (!isAuthenticated) {
-        setMessage("⚠️ Please log in to register.");
-        return;
-      }
-      await api.post("api/registrations/", {
+      await api.post("/api/registrations/", {
         sport_slug: event.slug,
       });
+
       setMessage("✅ Successfully registered!");
       setLiveParticipantCount((p) => p + 1);
-    } catch {
+      setIsRegistered(true);
+    } catch (err) {
       setMessage("❌ Something went wrong.");
     } finally {
       setLoading(false);
@@ -100,72 +105,70 @@ const EventDetailsPage = ({ params }) => {
 
   return (
     event && (
-      <main className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white pt-20">
-        <div className="container mx-auto px-4 pb-16 flex justify-center items-center flex-col">
-          <Link href={"/sports/indoor"} className="btn btn-ghost mb-6 text-gray-300 self-start">
+      <main className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white pt-16">
+        <div className="container mx-auto px-4 pb-12 flex justify-center items-center flex-col">
+          <Link href="/sports/indoor" className="btn btn-ghost mb-4 text-gray-400 self-start text-sm">
             ← Back to Indoor Events
           </Link>
 
-          <div className="hero bg-base-200 rounded-2xl overflow-hidden border border-gray-700 w-80 sm:w-150 lg:w-300">
+          <div className="hero bg-base-200 rounded-xl overflow-hidden border border-gray-700 w-full max-w-2xl">
             <div className="hero-content p-0 flex-col w-full">
-              <div className="relative w-full h-60 sm:h-72 lg:h-80">
+              <div className="relative w-full h-52">
                 <img src={event.img_url} alt={event.name} className="w-full h-full object-cover" />
-                <span
-                  className={`badge badge-lg absolute top-4 right-4 p-2 ${isIndoor ? "badge-error" : "badge-success"}`}
-                >
+                <span className={`badge badge-sm absolute top-3 right-3 ${isIndoor ? "badge-error" : "badge-success"}`}>
                   {isIndoor ? "Indoor" : "Outdoor"}
                 </span>
               </div>
 
-              <div className="p-3 lg:p-10 w-full  ">
-                <h1 className="text-[17px] sm:text-3xl lg:text-4xl font-bold mb-8">{event.name}</h1>
+              <div className="p-4 w-full">
+                <h1 className="text-xl font-semibold mb-4">{event.name}</h1>
 
-                <div className="stats stats-vertical sm:stats-horizontal flex sm:gap-7 sm:flex-row flex-row shadow mb-10 w-full">
-                  <div className="stat sm:p-5 p-3 bg-base-300 rounded-2xl">
-                    <div className="stat-title text-[10px] sm:text-lg ">Date</div>
-                    <div className="stat-value sm:text-lg text-[10px]">{event.day}</div>
+                <div className="stats stats-horizontal gap-4 shadow mb-6 w-full">
+                  <div className="stat p-3 bg-base-300 rounded-xl">
+                    <div className="stat-title text-xs">Date</div>
+                    <div className="stat-value text-sm">{event.day}</div>
                   </div>
-                  <div className="stat bg-base-300 sm:p-5 p-3 rounded-2xl">
-                    <div className="stat-title text-[10px] sm:text-lg">Venue</div>
-                    <div className="stat-value sm:text-lg text-[10px]">{event.venue}</div>
+                  <div className="stat p-3 bg-base-300 rounded-xl">
+                    <div className="stat-title text-xs">Venue</div>
+                    <div className="stat-value text-sm">{event.venue}</div>
                   </div>
                 </div>
 
-                <div className="grid lg:grid-cols-3 gap-2 -mt-8 sm:mt-0 sm:gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                   <div className="lg:col-span-2 card bg-base-300 shadow">
-                    <div className="card-body rounded-2xl sm:p-5 p-3 ">
-                      <h2 className="card-title sm:text-lg text-[10px] ">About This Event</h2>
-                      <p className="text-gray-300 text-[10px] sm:text-lg ">{event.description}</p>
+                    <div className="card-body p-4">
+                      <h2 className="card-title text-sm">About This Event</h2>
+                      <p className="text-gray-300 text-sm">{event.description}</p>
                     </div>
                   </div>
 
                   <div className="card bg-base-300 shadow">
-                    <div className="card-body rounded-2xl sm:p-5 p-3">
-                      <h2 className="card-title sm:text-lg text-[10px]">Coordinator</h2>
+                    <div className="card-body p-4">
+                      <h2 className="card-title text-sm">Coordinator</h2>
                       {event["co-ordinators"].map((value, index) => (
-                        <p key={index} className="text-gray-300 text-[10px] sm:text-lg">
-                          {event["co-ordinators"][index][0]} - {event["co-ordinators"][index][2]}
+                        <p key={index} className="text-gray-300 text-sm">
+                          {value[0]} – {value[2]}
                         </p>
                       ))}
                     </div>
                   </div>
                 </div>
 
-                <div className="sm:mt-10 mt-3">
+                <div className="mt-6">
                   {!isRegistered ? (
                     <button
                       onClick={handleRegister}
                       disabled={loading || !isAuthenticated}
-                      className="btn btn-primary btn-lg w-72 self-center sm:w-full rounded-2xl "
+                      className="btn btn-primary w-full rounded-xl"
                     >
                       {loading ? "Registering..." : isAuthenticated ? "Register for Event" : "Log in to Register"}
                     </button>
                   ) : userTeam?.in_team ? (
-                    <Link href={`/sports/teams/${userTeam.team.id}`} className="btn btn-secondary btn-lg w-full">
+                    <Link href={`/sports/teams/${userTeam.team.id}`} className="btn btn-secondary w-full">
                       View Team: {userTeam.team.name}
                     </Link>
                   ) : (
-                    <div className="flex flex-col sm:flex-row gap-4">
+                    <div className="flex gap-3">
                       <button onClick={() => setShowCreateTeam(true)} className="btn btn-info flex-1">
                         Create Team
                       </button>
@@ -175,15 +178,192 @@ const EventDetailsPage = ({ params }) => {
                     </div>
                   )}
 
-                  {message && <p className="text-center mt-4 text-sm text-gray-300">{message}</p>}
+                  {message && <p className="text-center mt-3 text-xs text-gray-300">{message}</p>}
+
+                  <CreateTeamModal open={showCreateTeam} onClose={() => setShowCreateTeam(false)} event={event} />
+                  <JoinTeamModal open={showJoinTeam} onClose={() => setShowJoinTeam(false)} event={event} />
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </main>
+      </main> 
     )
   );
 };
 
 export default EventDetailsPage;
+
+function CreateTeamModal({ open, onClose, event }) {
+  const [name, setName] = useState("");
+  const [branch, setBranch] = useState("COMPS");
+  const [submitting, setSubmitting] = useState(false);
+  if (!open) return null;
+
+  async function submit(e) {
+    e.preventDefault();
+    setSubmitting(true);
+    try {
+      if (!event?.slug) {
+        throw new Error("Sport slug missing");
+      }
+      const res = await api.post(`api/sports/${event.slug}/teams/create/`, {
+        name,
+        branch,
+      });
+      onClose();
+      toast.success("Team created successfully");
+    } catch (err) {
+      console.error(err);
+      toast.error(err.response?.data?.error || err.message || "Failed to create team");
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  return (
+    <div
+      style={{
+        position: "fixed",
+        inset: 0,
+        background: "rgba(0,0,0,0.4)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <form
+        onSubmit={submit}
+        style={{
+          background: "#0f1724",
+          padding: 20,
+          borderRadius: 8,
+          minWidth: 360,
+          color: "#fff",
+        }}
+      >
+        <h3 style={{ marginBottom: 12 }}>Create Team for {event?.name}</h3>
+        <div style={{ marginBottom: 8 }}>
+          <label style={{ display: "block", fontSize: 12, opacity: 0.8 }}>Sport (pre-selected)</label>
+          <input
+            value={event.name || ""}
+            disabled
+            style={{
+              width: "100%",
+              padding: 8,
+              background: "#111827",
+              color: "#fff",
+              border: "1px solid #374151",
+              borderRadius: 6,
+            }}
+          />
+        </div>
+        <div style={{ marginBottom: 8 }}>
+          <label style={{ display: "block", fontSize: 12, opacity: 0.8 }}>Team Name</label>
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+            style={{
+              width: "100%",
+              padding: 8,
+              background: "#111827",
+              color: "#fff",
+              border: "1px solid #374151",
+              borderRadius: 6,
+            }}
+          />
+        </div>
+        <div style={{ marginBottom: 8 }}></div>
+        <div style={{ display: "flex", gap: 8, justifyContent: "flex-end" }}>
+          <button type="button" onClick={onClose} style={{ padding: "8px 12px", borderRadius: 6 }}>
+            Cancel
+          </button>
+          <button
+            type="submit"
+            disabled={submitting}
+            style={{
+              padding: "8px 12px",
+              borderRadius: 6,
+              background: "#7c3aed",
+              color: "#fff",
+            }}
+          >
+            {submitting ? "Creating..." : "Create Team"}
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+}
+
+function JoinTeamModal({ open, onClose, event }) {
+  const [teamId, setTeamId] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  if (!open) return null;
+  async function submit(e) {
+    e.preventDefault();
+    setSubmitting(true);
+    try {
+      const res = await api.post(`api/teams/${teamId}/join/`);
+      toast.success("Request sent");
+      onClose();
+    } catch (err) {
+      console.error(err);
+      toast.error(err.response?.data?.error || "Failed to send join request");
+    } finally {
+      setSubmitting(false);
+    }
+  }
+  return (
+    <div
+      style={{
+        position: "fixed",
+        inset: 0,
+        background: "rgba(0,0,0,0.4)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <form
+        onSubmit={submit}
+        style={{
+          background: "#0f1724",
+          padding: 20,
+          borderRadius: 8,
+          minWidth: 320,
+          color: "#fff",
+        }}
+      >
+        <h3 style={{ marginBottom: 12 }}>Join Team</h3>
+        <div style={{ marginBottom: 8 }}>
+          <label style={{ display: "block", fontSize: 12, opacity: 0.8 }}>Team ID</label>
+          <input
+            value={teamId}
+            onChange={(e) => setTeamId(e.target.value)}
+            required
+            style={{ width: "100%", padding: 8, borderRadius: 6 }}
+          />
+        </div>
+        <div style={{ display: "flex", gap: 8, justifyContent: "flex-end" }}>
+          <button type="button" onClick={onClose} style={{ padding: "8px 12px", borderRadius: 6 }}>
+            Cancel
+          </button>
+          <button
+            type="submit"
+            disabled={submitting}
+            style={{
+              padding: "8px 12px",
+              borderRadius: 6,
+              background: "#059669",
+              color: "#fff",
+            }}
+          >
+            {submitting ? "Sending..." : "Send Request"}
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+}

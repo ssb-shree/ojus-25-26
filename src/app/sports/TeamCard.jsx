@@ -4,6 +4,7 @@ import { useState, useEffect, memo } from 'react'
 import { useAuth } from '@/context/AuthContext'
 import api from '@/api/api'
 import { Users, Trophy, MapPin, UserCircle, Shield, Eye, Edit3, Trash2, Loader2 } from 'lucide-react'
+import toast from 'react-hot-toast'
 
 function TeamCard({ team, onDeleted }) {
   const { user } = useAuth()
@@ -28,7 +29,7 @@ function TeamCard({ team, onDeleted }) {
       // Notify parent to remove from UI immediately
       if (onDeleted) onDeleted(team.id)
     } catch (e) {
-      alert('Failed to delete: ' + (e.response?.data?.detail || e.message))
+      toast.error('Failed to delete: ' + (e.response?.data?.detail || e.message))
       setDeleting(false)
     }
   }
@@ -40,7 +41,7 @@ function TeamCard({ team, onDeleted }) {
       setRequests(res.data)
     }catch(err){
       console.error('Failed to load requests', err)
-      alert(err.response?.data?.detail || 'Failed to load requests')
+      toast.error(err.response?.data?.detail || 'Failed to load requests')
     }finally{ setLoadingRequests(false) }
   }
 
@@ -53,7 +54,7 @@ function TeamCard({ team, onDeleted }) {
       }
     }catch(err){
       console.error('Respond failed', err)
-      alert(err.response?.data?.error || 'Action failed')
+      toast.error(err.response?.data?.error || 'Action failed')
     }
   }
 

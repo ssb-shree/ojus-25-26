@@ -5,6 +5,7 @@ import { SmoothCursor } from "@/components/ui/smooth-cursor";
 import LenisProvider from "@/components/LenisProvider";
 
 import { Nova_Square } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 const nova = Nova_Square({
   weight: "400",
   subsets: ["latin"],
@@ -35,6 +36,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`bg-black text-white overflow-x-hidden ${nova.className}`}>
+        <Toaster position="top-right" />
         <AuthProvider>
           <SmoothCursor />
           <LenisProvider>{children}</LenisProvider>

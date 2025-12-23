@@ -16,6 +16,7 @@ import {
   ShieldAlert,
   Calendar,
 } from "lucide-react";
+import toast from "react-hot-toast";
 
 // The DetailSkeleton component must be defined BEFORE it is used in TeamDetails
 function DetailSkeleton() {
@@ -52,7 +53,7 @@ export default function TeamDetails() {
   const [loadingRequests, setLoadingRequests] = useState(false);
   const [reqActionLoading, setReqActionLoading] = useState(false);
   const requestsRef = useRef(null);
-  
+
   async function fetchRequests() {
     if (!id) return;
     setLoadingRequests(true);
@@ -67,7 +68,7 @@ export default function TeamDetails() {
       setLoadingRequests(false);
     }
   }
-  
+
   // 1. Fetch Team Details on ID change
   useEffect(() => {
     // Safety check: If for some reason ID isn't ready, wait for it
@@ -110,7 +111,7 @@ export default function TeamDetails() {
       }
     } catch (err) {
       console.error("Respond failed", err);
-      alert(err.response?.data?.error || "Action failed");
+      toast.error(err.response?.data?.error || "Action failed");
     } finally {
       setReqActionLoading(false);
     }
@@ -118,13 +119,11 @@ export default function TeamDetails() {
 
   // --- Helpers ---
   // Check if current user is the captain
-  const isCaptain =
-    user && team?.captain && user.username === team.captain.username;
+  const isCaptain = user && team?.captain && user.username === team.captain.username;
   // Check if current user is the manager
   const isManager = user && team?.manager && user.username === team.manager.username;
   // Check if current user is already a member
-  const isMember =
-    user && team?.members?.some((m) => m.username === user.username);
+  const isMember = user && team?.members?.some((m) => m.username === user.username);
   // Check if team is full
   const isFull = team?.members?.length >= (team?.sport?.max_players || 99);
 
@@ -141,10 +140,10 @@ export default function TeamDetails() {
     setActionLoading(true);
     try {
       // FIX: Ensure correct API prefix if necessary
-      await api.post(`api/teams/${id}/join/`, { team_code: team.team_code }); 
+      await api.post(`api/teams/${id}/join/`, { team_code: team.team_code });
       window.location.reload();
     } catch (err) {
-      alert(err.response?.data?.detail || "Failed to join team");
+      toast.error(err.response?.data?.detail || "Failed to join team");
     } finally {
       setActionLoading(false);
     }
@@ -158,22 +157,21 @@ export default function TeamDetails() {
       await api.post(`api/teams/${id}/leave/`);
       router.push("/sports/teams/list/all");
     } catch (err) {
-      alert("Failed to leave team");
+      toast.error("Failed to leave team");
     } finally {
       setActionLoading(false);
     }
   };
 
   const handleDelete = async () => {
-    if (!confirm("WARNING: This will disband the team permanently. Continue?"))
-      return;
+    if (!confirm("WARNING: This will disband the team permanently. Continue?")) return;
     setActionLoading(true);
     try {
       // FIX: Ensure correct API prefix if necessary
       await api.delete(`api/teams/${id}/`);
       router.push("/sports/teams/list/all");
     } catch (err) {
-      alert("Failed to delete team");
+      toast.error("Failed to delete team");
     } finally {
       setActionLoading(false);
     }
@@ -253,9 +251,7 @@ export default function TeamDetails() {
                   </span>
                 </div>
 
-                <h1 className="text-4xl md:text-5xl font-black text-white mb-2">
-                  {team.name}
-                </h1>
+                <h1 className="text-4xl md:text-5xl font-black text-white mb-2">{team.name}</h1>
                 <p className="text-slate-400 flex items-center gap-2">
                   <Calendar className="w-4 h-4" /> Created on{" "}
                   {new Date(team.created_at || Date.now()).toLocaleDateString()}
@@ -268,20 +264,16 @@ export default function TeamDetails() {
               <div className="bg-slate-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 hover:border-purple-500/30 transition-all">
                 <div>
                   <h3 className="text-sm text-slate-400 uppercase tracking-wider font-semibold mb-1">
-                    Team Code
+                    Team ID : {team.id}
                   </h3>
-                  <p className="text-xs text-slate-500">
-                    Share this code to invite members
-                  </p>
+                  <p className="text-xs text-slate-500">Share this code to invite members</p>
                 </div>
 
                 <div
                   onClick={handleCopyCode}
                   className="cursor-pointer flex items-center gap-4 bg-slate-950 border border-slate-800 rounded-xl px-5 py-3 hover:border-purple-500/50 transition-all active:scale-95 w-full sm:w-auto justify-between"
                 >
-                  <span className="text-2xl font-mono text-white tracking-widest">
-                    {team.team_code}
-                  </span>
+                  <span className="text-2xl font-mono text-white tracking-widest">{team.team_code}</span>
                   {copied ? (
                     <Check className="w-5 h-5 text-green-400" />
                   ) : (
@@ -299,8 +291,8 @@ export default function TeamDetails() {
                   Team Roster
                 </h3>
                 <span className="text-slate-400 text-sm">
-                  {team.members?.length} / {team.sport?.max_players || "?"}{" "}
-                  Members
+                  {team.members?.length} / {team.sport?.teamSize || "?"} Members
+                  {console.log(team)}
                 </span>
               </div>
 
@@ -316,16 +308,12 @@ export default function TeamDetails() {
                       </div>
                       <div>
                         <p className="font-semibold text-slate-200 flex items-center gap-2">
-                          {member.first_name
-                            ? `${member.first_name} ${member.last_name || ""}`
-                            : member.username}
+                          {member.first_name ? `${member.first_name} ${member.last_name || ""}` : member.username}
                           {team.captain?.username === member.username && (
                             <Crown className="w-3 h-3 text-yellow-500 fill-yellow-500" />
                           )}
                         </p>
-                        <p className="text-xs text-slate-500">
-                          {member.branch || "Student"}
-                        </p>
+                        <p className="text-xs text-slate-500">{member.branch || "Student"}</p>
                       </div>
                     </div>
                     {team.captain?.username === member.username && (
@@ -338,11 +326,7 @@ export default function TeamDetails() {
 
                 {/* Open Slots */}
                 {Array.from({
-                  length: Math.max(
-                    0,
-                    (team.sport?.max_players || 0) -
-                      (team.members?.length || 0)
-                  ),
+                  length: Math.max(0, (team.sport?.max_players || 0) - (team.members?.length || 0)),
                 }).map((_, i) => (
                   <div
                     key={i}
@@ -351,9 +335,7 @@ export default function TeamDetails() {
                     <div className="w-10 h-10 rounded-full bg-slate-900/50 flex items-center justify-center">
                       <UserPlus className="w-4 h-4 opacity-50" />
                     </div>
-                    <span className="text-sm font-medium italic">
-                      Open Slot
-                    </span>
+                    <span className="text-sm font-medium italic">Open Slot</span>
                   </div>
                 ))}
               </div>
@@ -364,9 +346,7 @@ export default function TeamDetails() {
           <div className="lg:col-span-1">
             <div className="sticky top-8 space-y-6">
               <div className="bg-slate-900/50 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-xl">
-                <h3 className="text-lg font-bold text-white mb-4">
-                  Team Actions
-                </h3>
+                <h3 className="text-lg font-bold text-white mb-4">Team Actions</h3>
 
                 <div className="space-y-3">
                   {isManager ? (
@@ -375,7 +355,15 @@ export default function TeamDetails() {
                         onClick={handleEdit}
                         className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-purple-700 text-white py-3 rounded-xl font-semibold transition-all"
                       >
-                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M4 21h4l11-11a2.828 2.828 0 0 0 0-4l-2-2a2.828 2.828 0 0 0-4 0L6 15v4z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
+                          <path
+                            d="M4 21h4l11-11a2.828 2.828 0 0 0 0-4l-2-2a2.828 2.828 0 0 0-4 0L6 15v4z"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
                         Edit Team
                       </button>
 
@@ -386,7 +374,9 @@ export default function TeamDetails() {
                         <ShieldAlert className="w-5 h-5 text-slate-200" />
                         Manage Requests
                         {requests.length > 0 && (
-                          <span className="ml-2 inline-flex items-center justify-center px-2 py-0.5 rounded-full bg-emerald-500 text-xs text-white">{requests.length}</span>
+                          <span className="ml-2 inline-flex items-center justify-center px-2 py-0.5 rounded-full bg-emerald-500 text-xs text-white">
+                            {requests.length}
+                          </span>
                         )}
                       </button>
 
@@ -395,11 +385,7 @@ export default function TeamDetails() {
                         disabled={actionLoading}
                         className="w-full flex items-center justify-center gap-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 py-3 rounded-xl font-semibold transition-all hover:scale-[1.02]"
                       >
-                        {actionLoading ? (
-                          <span className="animate-spin">⌛</span>
-                        ) : (
-                          <Trash2 className="w-5 h-5" />
-                        )}
+                        {actionLoading ? <span className="animate-spin">⌛</span> : <Trash2 className="w-5 h-5" />}
                         Disband Team
                       </button>
                     </div>
@@ -409,11 +395,7 @@ export default function TeamDetails() {
                       disabled={actionLoading}
                       className="w-full flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 py-4 rounded-xl font-semibold transition-all hover:scale-[1.02]"
                     >
-                      {actionLoading ? (
-                        <span className="animate-spin">⌛</span>
-                      ) : (
-                        <LogOut className="w-5 h-5" />
-                      )}
+                      {actionLoading ? <span className="animate-spin">⌛</span> : <LogOut className="w-5 h-5" />}
                       Leave Team
                     </button>
                   ) : !isFull ? (
@@ -422,11 +404,7 @@ export default function TeamDetails() {
                       disabled={actionLoading}
                       className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white shadow-lg shadow-purple-900/20 py-4 rounded-xl font-semibold transition-all hover:scale-[1.02]"
                     >
-                      {actionLoading ? (
-                        <span className="animate-spin">⌛</span>
-                      ) : (
-                        <UserPlus className="w-5 h-5" />
-                      )}
+                      {actionLoading ? <span className="animate-spin">⌛</span> : <UserPlus className="w-5 h-5" />}
                       Join Team
                     </button>
                   ) : (
@@ -437,9 +415,7 @@ export default function TeamDetails() {
                 </div>
 
                 <div className="mt-6 pt-6 border-t border-white/5">
-                  <h4 className="text-xs text-slate-500 uppercase tracking-widest font-semibold mb-3">
-                    Captain
-                  </h4>
+                  <h4 className="text-xs text-slate-500 uppercase tracking-widest font-semibold mb-3">Captain</h4>
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 border border-purple-500/30">
                       <Crown className="w-5 h-5" />
@@ -447,14 +423,10 @@ export default function TeamDetails() {
                     <div>
                       <p className="text-sm font-bold text-white">
                         {team.captain?.first_name
-                          ? `${team.captain.first_name} ${
-                              team.captain.last_name || ""
-                            }`
+                          ? `${team.captain.first_name} ${team.captain.last_name || ""}`
                           : team.captain?.username}
                       </p>
-                      <p className="text-xs text-slate-400">
-                        {team.captain?.email || "No contact info"}
-                      </p>
+                      <p className="text-xs text-slate-400">{team.captain?.email || "No contact info"}</p>
                     </div>
                   </div>
                 </div>
@@ -462,37 +434,26 @@ export default function TeamDetails() {
 
               {/* Pending Requests - visible only to team manager */}
               {user && team?.manager && user.username === team.manager.username && (
-                <div id="team-requests" ref={requestsRef} className="mt-6 bg-slate-900/40 border border-white/5 rounded-2xl p-4">
-                  <h4 className="text-sm font-bold text-white mb-3">
-                    Pending Join Requests
-                  </h4>
-                  {loadingRequests && (
-                    <div className="text-sm text-slate-400">
-                      Loading requests...
-                    </div>
-                  )}
+                <div
+                  id="team-requests"
+                  ref={requestsRef}
+                  className="mt-6 bg-slate-900/40 border border-white/5 rounded-2xl p-4"
+                >
+                  <h4 className="text-sm font-bold text-white mb-3">Pending Join Requests</h4>
+                  {loadingRequests && <div className="text-sm text-slate-400">Loading requests...</div>}
                   {!loadingRequests && requests.length === 0 && (
-                    <div className="text-sm text-slate-500">
-                      No pending requests.
-                    </div>
+                    <div className="text-sm text-slate-500">No pending requests.</div>
                   )}
                   <div className="space-y-3">
                     {requests.map((r) => (
-                      <div
-                        key={r.id}
-                        className="flex items-center justify-between bg-slate-800/30 p-3 rounded"
-                      >
+                      <div key={r.id} className="flex items-center justify-between bg-slate-800/30 p-3 rounded">
                         <div>
                           <div className="font-medium text-white">
                             {r.student?.first_name
-                              ? `${r.student.first_name} ${
-                                  r.student.last_name || ""
-                                }`
+                              ? `${r.student.first_name} ${r.student.last_name || ""}`
                               : r.student?.username}
                           </div>
-                          <div className="text-xs text-slate-400">
-                            MoodleID: {r.student?.moodleID || "—"}
-                          </div>
+                          <div className="text-xs text-slate-400">MoodleID: {r.student?.moodleID || "—"}</div>
                         </div>
                         <div className="flex items-center gap-2">
                           <button

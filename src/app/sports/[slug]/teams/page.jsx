@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import TeamCard from '../../TeamCard'
 import api from '@/api/api'
+import toast from 'react-hot-toast'
 
 function CreateTeamModal({ open, onClose, sportSlug, onCreated }){
   const [name, setName] = useState("")
@@ -20,7 +21,7 @@ function CreateTeamModal({ open, onClose, sportSlug, onCreated }){
       onClose()
     }catch(err){
       console.error(err)
-      alert(err.response?.data?.error || 'Failed to create team')
+      toast.error(err.response?.data?.error || 'Failed to create team')
     }finally{ setLoading(false) }
   }
 
@@ -65,7 +66,7 @@ function JoinTeamModal({ open, onClose, onRequested }){
       onClose()
     }catch(err){
       console.error(err)
-      alert(err.response?.data?.error || 'Failed to send request')
+      toast.error(err.response?.data?.error || 'Failed to send request')
     }finally{ setLoading(false) }
   }
   return (
