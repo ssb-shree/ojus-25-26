@@ -246,7 +246,7 @@ const OjusCommonPage = () => {
 
         {/* --------- --------- SECTION FOR MOBILE VIEW ONLY ------------------ */}
         <div className="w-full h-[70vh] md:hidden flex flex-col gap-y-4 justify-center items-center p-6 bg-linear-to-b from-zinc-200 to-zinc-black text-black">
-          <h3 className={` text-xl text-center ${alfa.className}`}>Experience The Radiance of Ojus</h3>
+          <h3 className={` text-xl text-center ${alfa.className}`}>Experience The Warmth of Ojus</h3>
           <ImageMouseTrail
             className={"h-full"}
             items={[...apsitTop10, ...ojusTop10]}
