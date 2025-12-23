@@ -164,7 +164,7 @@ export default function TeamDetails() {
   };
 
   const handleDelete = async () => {
-    if (!confirm("WARNING: This will disband the team permanently. Continue?")) return;
+    if (!confirm("WARNING: This will disband the team per manently. Continue?")) return;
     setActionLoading(true);
     try {
       // FIX: Ensure correct API prefix if necessary
