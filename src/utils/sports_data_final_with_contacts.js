@@ -184,8 +184,8 @@ const data = {
         category: "indoor",
         "co-ordinators": [
           ["Nirmala Sahu", "24104102", "9082074614"],
+          ["Mahipal Singh Solanki", "24104074", "8369760406"],
           ["Amey Sheteye", "", "7777020247"],
-          ["Mahipal Singh solanki", "24104074", "8369760406"],
           ["Santoshi Metkel", "", "7350518482"],
         ],
       },
@@ -204,8 +204,8 @@ const data = {
         category: "indoor",
         "co-ordinators": [
           ["Nirmala Sahu", "24104102", "9082074614"],
+          ["Mahipal Singh Solanki", "24104074", "8369760406"],
           ["Amey Sheteye", "", "7777020247"],
-          ["Mahipal Singh solanki", "24104074", "8369760406"],
           ["Santoshi Metkel", "", "7350518482"],
         ],
       },
