@@ -287,7 +287,7 @@ const OjusCommonPage = () => {
                   preparing students to become skilled professionals and responsible citizens.
                 </span>
 
-                <span className="hidden md:flex">
+                <span className="md:flex">
                   The institute offers undergraduate engineering programs with modern infrastructure, advanced
                   laboratories and experienced faculty. APSIT bridges the gap between theory and practical learning
                   through industry collaborations, research, project-based education and internships, ensuring students
@@ -335,7 +335,7 @@ const OjusCommonPage = () => {
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.25 }}
                 >
-                  {footerClicked ? "A.P. Shah Institue Of Technology" : "OJUS - Radiance Of Euphoria"}
+                  {footerClicked ? "A.P. Shah Institue Of Technology" : "OJUS - Reveric Etheria"}
                   <br />
                   Thane, Maharashtra
                 </motion.p>
