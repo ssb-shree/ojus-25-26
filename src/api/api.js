@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseURL = ["https://ojus-sport26.onrender.com/", "http://127.0.0.1:8000/", "https://34.180.73.149/"];
+const baseURL = ["https://ojus-sport26.onrender.com/", "http://127.0.0.1:8000/", "https://34.180.73.149/", "https://specialist-apart-chrome-metadata.trycloudflare.com/"];
 const axiosInstance = axios.create({
   baseURL: baseURL[2],
   headers: {
