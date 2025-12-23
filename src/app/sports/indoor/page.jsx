@@ -122,7 +122,7 @@ export default function IndoorSportsPage() {
             {(searchInput
               ? indoor[activeTab]?.filter(({ name }) => name.toLowerCase().includes(searchInput.toLowerCase()))
               : indoor[activeTab]
-            )?.map(({ name, description, img_url, id }, index) => (
+            )?.map(({ name, description, img_url, slug }, index) => (
               <motion.div
                 key={index}
                 variants={cardVariants}
@@ -131,7 +131,7 @@ export default function IndoorSportsPage() {
                 animate="visible"
                 exit={{ opacity: 0, y: 20, transition: { duration: 0.5 } }}
               >
-                <Cards name={name} description={description} img={img_url} id={id} />
+                <Cards name={name} description={description} img={img_url} slug={slug} />
               </motion.div>
             )) || <p className="text-gray-400">No Sports to display...</p>}
           </AnimatePresence>
@@ -141,7 +141,7 @@ export default function IndoorSportsPage() {
   );
 }
 
-function Cards({ img, name, description, id }) {
+function Cards({ img, name, description, slug }) {
   return (
     <div className="flex items-end justify-center p-4">
       <motion.div
@@ -161,7 +161,7 @@ function Cards({ img, name, description, id }) {
         <div className="mt-auto relative z-10 text content">
           <h1 className="font-bold text-xl md:text-2xl text-gray-50">{name || "invalid name"}</h1>
           <p className="font-normal text-sm text-gray-50 my-4">{description || "did not receive description"}</p>
-          <Link href={`events/${id}`} className="flex underline items-center gap-1">
+          <Link href={`/sports/indoor/${slug}`} className="flex underline items-center gap-1">
             Click here for Details <ArrowRightIcon />
           </Link>
         </div>
