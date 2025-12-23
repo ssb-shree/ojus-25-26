@@ -24,7 +24,7 @@ const EventDetailsPage = ({ params }) => {
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-  //   const [liveParticipantCount, setLiveParticipantCount] = useState(event ? event.participants : 0);
+  const [liveParticipantCount, setLiveParticipantCount] = useState(event ? event.participants : 0);
   const { user, isAuthenticated, loading: authLoading } = useAuth();
   const [isRegistered, setIsRegistered] = useState(false);
   const [showCreateTeam, setShowCreateTeam] = useState(false);
