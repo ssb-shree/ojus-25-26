@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useParams } from "next/navigation";
@@ -16,6 +17,7 @@ const EventDetailsPage = ({ params }) => {
       setOutdoorSlug(slug);
     };
     getSlug();
+    
   }, [params]);
 
   const allEvents = Object.values(outdoor).flat();
@@ -40,6 +42,7 @@ const EventDetailsPage = ({ params }) => {
         if (match) setLiveParticipantCount(match.participants_count);
       })
       .catch(() => {});
+      
   }, [event]);
 
   useEffect(() => {
@@ -121,11 +124,11 @@ const EventDetailsPage = ({ params }) => {
 
                 <div className="stats stats-vertical sm:stats-horizontal flex sm:gap-7 sm:flex-row flex-row shadow mb-10 w-full">
                   <div className="stat sm:p-5 p-3 bg-base-300 rounded-2xl">
-                    <div className="stat-title">Date</div>
+                    <div className="stat-title text-[10px] sm:text-lg ">Date</div>
                     <div className="stat-value sm:text-lg text-[10px]">{event.day}</div>
                   </div>
                   <div className="stat bg-base-300 sm:p-5 p-3 rounded-2xl">
-                    <div className="stat-title">Venue</div>
+                    <div className="stat-title text-[10px] sm:text-lg">Venue</div>
                     <div className="stat-value sm:text-lg text-[10px]">{event.venue}</div>
                   </div>
                 </div>
@@ -140,9 +143,9 @@ const EventDetailsPage = ({ params }) => {
 
                   <div className="card bg-base-300 shadow">
                     <div className="card-body rounded-2xl sm:p-5 p-3">
-                      <h2 className="card-title sm: text-[10px]">Coordinator</h2>
-                      <p className="font-semibold text-[10px] sm:text-lg ">{event["co-ordinators"][0]}</p>
-                      <p className=" text-gray-400 text-[10px] sm:text-lg ">{event["co-ordinators"][2]}</p>
+                      <h2 className="card-title sm:text-lg text-[10px]">Coordinator</h2>
+                     <p className="text-gray-300 text-[10px] sm:text-lg ">{event["co-ordinators"][0][0]} - {event["co-ordinators"][0][2]}</p>
+                      <p className=" text-gray-300 text-[10px] sm:text-lg ">{event["co-ordinators"][2][0]} - {event["co-ordinators"][2][2]}</p>
                     </div>
                   </div>
                 </div>
