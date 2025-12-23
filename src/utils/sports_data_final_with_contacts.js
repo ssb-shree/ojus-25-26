@@ -221,7 +221,7 @@ const data = {
         teamLimit: 0,
         venue: "",
         is_finalized: false,
-        img_url: "",
+        img_url: "https://res.cloudinary.com/dcpajpted/image/upload/v1766505211/tableboyssingles_ld2qca.png",
         day: "27-12-2025",
         category: "indoor",
         "co-ordinators": [
@@ -241,7 +241,7 @@ const data = {
         teamLimit: 0,
         venue: "",
         is_finalized: false,
-        img_url: "",
+        img_url: "https://res.cloudinary.com/dcpajpted/image/upload/v1766505196/tablegirlssingle_fuo09f.png",
         day: "27-12-2025",
         category: "indoor",
         "co-ordinators": [
@@ -261,7 +261,7 @@ const data = {
         teamLimit: 2,
         venue: "",
         is_finalized: false,
-        img_url: "",
+        img_url: "https://res.cloudinary.com/dcpajpted/image/upload/v1766505163/tabledoubleboys_qy03t9.png",
         day: "27-12-2025",
         category: "indoor",
         "co-ordinators": [
@@ -281,7 +281,7 @@ const data = {
         teamLimit: 2,
         venue: "",
         is_finalized: false,
-        img_url: "",
+        img_url: "https://res.cloudinary.com/dcpajpted/image/upload/v1766505145/tablegirlsdouble_aiwull.png",
         day: "27-12-2025",
         category: "indoor",
         "co-ordinators": [
@@ -343,7 +343,7 @@ const data = {
         teamLimit: 6,
         venue: "",
         is_finalized: false,
-        img_url: "",
+        img_url: "https://res.cloudinary.com/dcpajpted/image/upload/v1766510457/dogeball_girls_kv855g.jpg",
         day: "27-12-2025",
         category: "outdoor",
         "co-ordinators": [
@@ -364,7 +364,7 @@ const data = {
         teamLimit: 11,
         venue: "",
         is_finalized: false,
-        img_url: "",
+        img_url: "https://res.cloudinary.com/dcpajpted/image/upload/v1766511185/cricket_tbnpnq.jpg",
         day: "29-12-2025",
         category: "outdoor",
         "co-ordinators": [
@@ -383,7 +383,7 @@ const data = {
         teamLimit: 8,
         venue: "",
         is_finalized: false,
-        img_url: "",
+        img_url: "https://res.cloudinary.com/dcpajpted/image/upload/v1766511252/tugofwarboys_wdcdhs.jpg",
         day: "29-12-2025",
         category: "outdoor",
         "co-ordinators": [
@@ -403,7 +403,7 @@ const data = {
         teamLimit: 7,
         venue: "",
         is_finalized: false,
-        img_url: "",
+        img_url: "https://res.cloudinary.com/dcpajpted/image/upload/v1766510608/kabaddi_boys_z6cval.jpg",
         day: "30-12-2025",
         category: "outdoor",
         "co-ordinators": [
@@ -421,7 +421,7 @@ const data = {
         teamLimit: 7,
         venue: "",
         is_finalized: false,
-        img_url: "",
+        img_url: "https://res.cloudinary.com/dcpajpted/image/upload/v1766510680/kabaddi_girls_oe4d8o.jpg",
         day: "30-12-2025",
         category: "outdoor",
         "co-ordinators": [

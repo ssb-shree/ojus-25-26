@@ -39,8 +39,8 @@ const EventDetailsPage = ({ params }) => {
         const match = res.data.find((s) => s.name.trim() === event.name.trim());
         if (match) setLiveParticipantCount(match.participants_count);
       })
-      .catch(() => {});
-      console.log(allEvents)
+      .catch(() => { });
+    console.log(allEvents)
   }, [event]);
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const EventDetailsPage = ({ params }) => {
         const found = res.data.registrations?.find((r) => r.sport?.slug === event.slug);
         setIsRegistered(Boolean(found));
       })
-      .catch(() => {});
+      .catch(() => { });
   }, [event]);
 
   useEffect(() => {
@@ -59,7 +59,7 @@ const EventDetailsPage = ({ params }) => {
     api
       .get(`api/sports/${event.slug}/user-team/`)
       .then((res) => setUserTeam(res.data))
-      .catch(() => {});
+      .catch(() => { });
   }, [isRegistered, event]);
 
   const handleRegister = async () => {
@@ -142,8 +142,11 @@ const EventDetailsPage = ({ params }) => {
                   <div className="card bg-base-300 shadow">
                     <div className="card-body rounded-2xl sm:p-5 p-3">
                       <h2 className="card-title sm:text-lg text-[10px]">Coordinator</h2>
-                      <p className="text-gray-300 text-[10px] sm:text-lg ">{event["co-ordinators"][0][0]} - {event["co-ordinators"][0][2]}</p>
-                      <p className=" text-gray-300 text-[10px] sm:text-lg ">{event["co-ordinators"][2][0]} - {event["co-ordinators"][2][2]}</p>
+                      {event["co-ordinators"].map((value, index) => (
+                        <p key={index} className="text-gray-300 text-[10px] sm:text-lg">
+                          {event["co-ordinators"][index][0]} - {event["co-ordinators"][index][2]}
+                        </p>
+                      ))}
                     </div>
                   </div>
                 </div>
