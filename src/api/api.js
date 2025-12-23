@@ -1,7 +1,7 @@
 import axios from "axios";
-const baseURL = ["https://ojus-sport26.onrender.com/", "http://127.0.0.1:8000/"];
+const baseURL = ["https://ojus-sport26.onrender.com/", "http://127.0.0.1:8000/", "http://34.180.73.149/"];
 const axiosInstance = axios.create({
-  baseURL: baseURL[0],
+  baseURL: baseURL[2],
   headers: {
     "Content-Type": "application/json",
   },
