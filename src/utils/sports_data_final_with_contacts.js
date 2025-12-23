@@ -303,7 +303,7 @@ const data = {
         teamLimit: 6,
         venue: "",
         is_finalized: false,
-        img_url: "",
+        img_url: "https://res.cloudinary.com/dcpajpted/image/upload/v1766511185/cricket_tbnpnq.jpg",
         day: "30-12-2025",
         category: "indoor",
         "co-ordinators": [
@@ -321,7 +321,7 @@ const data = {
         teamLimit: 6,
         venue: "",
         is_finalized: false,
-        img_url: "",
+        img_url: "https://i.pinimg.com/originals/b7/10/8d/b7108d38ed25d974807f835c6e8d68b4.gif",
         day: "30-12-2025",
         category: "indoor",
         "co-ordinators": [
@@ -364,7 +364,7 @@ const data = {
         teamLimit: 11,
         venue: "",
         is_finalized: false,
-        img_url: "https://res.cloudinary.com/dcpajpted/image/upload/v1766511185/cricket_tbnpnq.jpg",
+        img_url: "https://i.pinimg.com/originals/ae/ac/7d/aeac7d920f81b2584e9ac657685ced30.gif",
         day: "29-12-2025",
         category: "outdoor",
         "co-ordinators": [
@@ -441,7 +441,7 @@ const data = {
         teamLimit: 6,
         venue: "",
         is_finalized: false,
-        img_url: "",
+        img_url: "https://i.pinimg.com/originals/7e/b3/28/7eb328cb7650f951ee7edd853a559eb1.gif",
         day: "31-12-2025",
         category: "outdoor",
         "co-ordinators": [
@@ -459,7 +459,7 @@ const data = {
         teamLimit: 7,
         venue: "",
         is_finalized: false,
-        img_url: "",
+        img_url: "https://i.pinimg.com/originals/6e/fa/c6/6efac6f998fa0f398e4959bfe3342895.gif",
         day: "31-12-2025",
         category: "outdoor",
         "co-ordinators": [
@@ -477,7 +477,7 @@ const data = {
         teamLimit: 9,
         venue: "",
         is_finalized: false,
-        img_url: "",
+        img_url: "https://i.pinimg.com/1200x/c3/e0/cf/c3e0cf94c8025eea9dd6f7b03efccd83.jpg",
         day: "31-12-2025",
         category: "outdoor",
         "co-ordinators": [
@@ -495,7 +495,7 @@ const data = {
         teamLimit: 11,
         venue: "",
         is_finalized: false,
-        img_url: "",
+        img_url: "https://i.pinimg.com/originals/08/ab/27/08ab277f1ba97c0d752044e16c87208f.gif",
         day: "31-12-2025",
         category: "outdoor",
         "co-ordinators": [
