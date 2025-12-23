@@ -62,7 +62,7 @@ export default function TeamDetails() {
       setRequests(res.data);
     } catch (err) {
       // if not authorized, just clear requests
-      console.warn("Could not fetch requests", err);
+      toast.error("Could not fetch requests");
       setRequests([]);
     } finally {
       setLoadingRequests(false);
@@ -393,7 +393,7 @@ export default function TeamDetails() {
                     <button
                       onClick={handleLeave}
                       disabled={actionLoading}
-                      className="w-full flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 py-4 rounded-xl font-semibold transition-all hover:scale-[1.02]"
+                      className="w-full hidden items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 py-4 rounded-xl font-semibold transition-all hover:scale-[1.02]"
                     >
                       {actionLoading ? <span className="animate-spin">⌛</span> : <LogOut className="w-5 h-5" />}
                       Leave Team
@@ -446,9 +446,13 @@ export default function TeamDetails() {
                   )}
                   <div className="space-y-3">
                     {requests.map((r) => (
-                      <div key={r.id} className="flex items-center justify-between bg-slate-800/30 p-3 rounded">
+                      <div
+                        key={r.id}
+                        className="flex md:flex-col gap-y-2 items-center justify-between bg-slate-800/30 p-3 rounded"
+                      >
                         <div>
                           <div className="font-medium text-white">
+                            {console.log(r.student)}
                             {r.student?.first_name
                               ? `${r.student.first_name} ${r.student.last_name || ""}`
                               : r.student?.username}
@@ -457,8 +461,14 @@ export default function TeamDetails() {
                         </div>
                         <div className="flex items-center gap-2">
                           <button
-                            disabled={reqActionLoading}
-                            onClick={() => respondToRequest(r.id, "accept")}
+                            onClick={() => {
+                              if (team.sport.teamSize === team.members.length) {
+                                toast.error("Team limit has been reached");
+                                return;
+                              }
+
+                              respondToRequest(r.id, "accept");
+                            }}
                             className="px-3 py-1 bg-emerald-500 text-white rounded"
                           >
                             Accept

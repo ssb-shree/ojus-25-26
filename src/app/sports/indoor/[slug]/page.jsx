@@ -187,7 +187,7 @@ const EventDetailsPage = ({ params }) => {
             </div>
           </div>
         </div>
-      </main> 
+      </main>
     )
   );
 };
@@ -343,7 +343,14 @@ function JoinTeamModal({ open, onClose, event }) {
             value={teamId}
             onChange={(e) => setTeamId(e.target.value)}
             required
-            style={{ width: "100%", padding: 8, borderRadius: 6 }}
+            style={{
+              width: "100%",
+              padding: 8,
+              background: "#111827",
+              color: "#fff",
+              border: "1px solid #374151",
+              borderRadius: 6,
+            }}
           />
         </div>
         <div style={{ display: "flex", gap: 8, justifyContent: "flex-end" }}>
