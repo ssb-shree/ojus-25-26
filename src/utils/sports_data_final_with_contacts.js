@@ -11,7 +11,7 @@ const data = {
         teamLimit: 0,
         venue: "",
         is_finalized: false,
-        img_url: "https://i.pinimg.com/originals/9a/a3/57/9aa35762cee0b5bf787568bbbb65f672.gif",
+        img_url: "https://res.cloudinary.com/dcpajpted/image/upload/v1766493276/boys_badmintonpng_uwdc8u.png",
         day: "26-12-2025",
         category: "indoor",
         "co-ordinators": [
@@ -33,7 +33,7 @@ const data = {
         teamLimit: 0,
         venue: "",
         is_finalized: false,
-        img_url: "",
+        img_url: "https://i.pinimg.com/originals/9a/a3/57/9aa35762cee0b5bf787568bbbb65f672.gif",
         day: "26-12-2025",
         category: "indoor",
         "co-ordinators": [
@@ -55,7 +55,7 @@ const data = {
         teamLimit: 2,
         venue: "",
         is_finalized: false,
-        img_url: "",
+        img_url: "https://res.cloudinary.com/dcpajpted/image/upload/v1766494278/badminton-double_mwenem.png",
         day: "26-12-2025",
         category: "indoor",
         "co-ordinators": [
@@ -77,7 +77,7 @@ const data = {
         teamLimit: 2,
         venue: "",
         is_finalized: false,
-        img_url: "",
+        img_url: "https://res.cloudinary.com/dcpajpted/image/upload/v1766494570/badminton_girls_double_chf8tb.png",
         day: "26-12-2025",
         category: "indoor",
         "co-ordinators": [
@@ -99,7 +99,7 @@ const data = {
         teamLimit: 0,
         venue: "",
         is_finalized: false,
-        img_url: "",
+        img_url: "https://res.cloudinary.com/dcpajpted/image/upload/v1766490727/a0210b22-3a40-43ca-a2fa-dcc9e7812ecc_coxil9.gif",
         day: "26-12-2025",
         category: "indoor",
         "co-ordinators": [
@@ -119,7 +119,7 @@ const data = {
         teamLimit: 0,
         venue: "",
         is_finalized: false,
-        img_url: "",
+        img_url: "https://res.cloudinary.com/dcpajpted/image/upload/v1766491354/47cd4552-d319-478a-8c23-32feb7a66710_jt53ua.gif",
         day: "26-12-2025",
         category: "indoor",
         "co-ordinators": [
@@ -139,7 +139,7 @@ const data = {
         teamLimit: 2,
         venue: "",
         is_finalized: false,
-        img_url: "",
+        img_url: "https://res.cloudinary.com/dcpajpted/image/upload/v1766495593/boyscarromdouble_tzjtoh.png",
         day: "26-12-2025",
         category: "indoor",
         "co-ordinators": [
@@ -159,7 +159,7 @@ const data = {
         teamLimit: 2,
         venue: "",
         is_finalized: false,
-        img_url: "",
+        img_url: "https://res.cloudinary.com/dcpajpted/image/upload/v1766495862/carrom_girlls_doublepng_smdfnt.png",
         day: "26-12-2025",
         category: "indoor",
         "co-ordinators": [
@@ -179,7 +179,7 @@ const data = {
         teamLimit: 0,
         venue: "",
         is_finalized: false,
-        img_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDfrAdwcvsH1NkUERAkE9jd7EnC46iDkyjfQ&s",
+        img_url: "https://res.cloudinary.com/dcpajpted/image/upload/v1766492603/two_boys_chess_q5tbkt.png",
         day: "26-12-2025",
         category: "indoor",
         "co-ordinators": [
@@ -199,7 +199,7 @@ const data = {
         teamLimit: 0,
         venue: "",
         is_finalized: false,
-        img_url: "",
+        img_url: "https://res.cloudinary.com/dcpajpted/image/upload/v1766492591/two_girls_chess_mvjnc6.png",
         day: "26-12-2025",
         category: "indoor",
         "co-ordinators": [

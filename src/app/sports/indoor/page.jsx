@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import {useAuth} from "@/context/AuthContext";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -30,7 +31,7 @@ const tabs = [
 export default function IndoorSportsPage() {
   const [activeTab, setActiveTab] = useState(tabs[0].key);
   const [searchInput, setSearchInput] = useState("");
-
+  const { user } = useAuth();
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut" } },
@@ -57,7 +58,7 @@ export default function IndoorSportsPage() {
         variants={heroVariants}
       >
         <div className="w-full flex flex-col items-start justify-center md:w-2/3 text-center md:text-left py-2">
-          <h1 className={`${pressStart2P.className} text-xl md:text-4xl ${styles.title}`}>Welcome, {"Username"}</h1>
+          <h1 className={`${pressStart2P.className} text-xl md:text-4xl ${styles.title}`}>Welcome, {user?.first_name || "Guest"}</h1>
           <Link href="outdoor" className="hidden md:flex underline text-sm md:text-xl text-slate-300 mt-5">
             Caught up with indoor sports? Check out the outdoor events next!
           </Link>

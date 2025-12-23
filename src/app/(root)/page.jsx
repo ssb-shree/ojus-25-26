@@ -93,7 +93,7 @@ function NavbarAuth() {
         className="cursor-none font-bold text-lg sm:text-xl bg-purple-500 text-white px-3 sm:px-4 py-1 rounded-lg"
         aria-label="Go to dashboard"
       >
-        {user.name || user.username || "Dashboard"}
+        {user.first_name || user.username || "Dashboard"}
       </button>
     );
   }
