@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import {useAuth} from "@/context/AuthContext";
+import { useAuth } from "@/context/AuthContext";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -57,7 +57,9 @@ export default function IndoorSportsPage() {
         variants={heroVariants}
       >
         <div className="w-full flex flex-col items-start justify-center md:w-2/3 text-center md:text-left py-2">
-          <h1 className={`${pressStart2P.className} text-xl md:text-4xl ${styles.title}`}>Welcome, {user?.first_name || "Guest"}</h1>
+          <h1 className={`${pressStart2P.className} text-xl md:text-4xl ${styles.title}`}>
+            Welcome, {user?.first_name || "Guest"}
+          </h1>
           <Link href="outdoor" className="hidden md:flex underline text-sm md:text-xl text-slate-300 mt-5">
             Caught up with indoor sports? Check out the outdoor events next!
           </Link>
@@ -143,7 +145,7 @@ export default function IndoorSportsPage() {
 
 function Cards({ img, name, description, slug }) {
   return (
-    <div className="flex items-end justify-center p-4">
+    <Link href={`/sports/indoor/${slug}`} className="flex items-end justify-center p-4">
       <motion.div
         className="cursor-pointer overflow-hidden relative size-72 rounded-md shadow-xl flex flex-col p-4"
         whileHover={{ scale: 1.02, boxShadow: "0px 15px 35px rgba(0,0,0,0.4)" }}
@@ -155,17 +157,19 @@ function Cards({ img, name, description, slug }) {
         }}
       >
         {/* Overlay */}
-        <div className="absolute inset-0 bg-black/40 bg-opacity-50"></div>
+        <div className="absolute inset-0 bg-black/70 bg-opacity-50"></div>
 
         {/* Text */}
         <div className="mt-auto relative z-10 text content">
-          <h1 className="font-bold text-xl md:text-2xl text-gray-50">{name || "invalid name"}</h1>
-          <p className="font-normal text-sm text-gray-50 my-4">{description || "did not receive description"}</p>
-          <Link href={`/sports/indoor/${slug}`} className="flex underline items-center gap-1">
+          <h1 className=" font-extrabold text-4xl md:text-3xl tracking-tight text-gray-50  text-ellipsis">
+            {name || "Invalid Name"}
+          </h1>
+          <p className="font-semibold text-sm text-gray-50 my-4">{description || "did not receive description"}</p>
+          <button className="flex underline items-center gap-1">
             Click here for Details <ArrowRightIcon />
-          </Link>
+          </button>
         </div>
       </motion.div>
-    </div>
+    </Link>
   );
 }

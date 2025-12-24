@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { useAuth } from "@/context/AuthContext"; 
+import { useAuth } from "@/context/AuthContext";
 import styles from "./outdoor.module.css";
 import { outdoor } from "@/utils/sports_data_final_with_contacts";
 
@@ -28,7 +28,7 @@ const tabs = [
 export default function OutdoorSportsPage() {
   const [activeTab, setActiveTab] = useState(tabs[0].key);
   const [searchInput, setSearchInput] = useState("");
-  const {user} = useAuth();
+  const { user } = useAuth();
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut" } },
@@ -55,7 +55,9 @@ export default function OutdoorSportsPage() {
         variants={heroVariants}
       >
         <div className="w-full flex flex-col items-start justify-center md:w-2/3 text-center md:text-left py-2">
-          <h1 className={`${pressStart2P.className} text-xl md:text-4xl ${styles.title}`}>Welcome, {user?.first_name || "Guest"}</h1>
+          <h1 className={`${pressStart2P.className} text-xl md:text-4xl ${styles.title}`}>
+            Welcome, {user?.first_name || "Guest"}
+          </h1>
           <Link href="indoor" className="hidden md:flex underline text-sm md:text-xl text-white mt-5">
             Caught up with outdoor sports? Check out the indoor events next!
           </Link>
@@ -153,12 +155,12 @@ function Cards({ img, name, description, slug }) {
         }}
       >
         {/* Overlay */}
-        <div className="absolute inset-0 bg-black/40 bg-opacity-50"></div>
+        <div className="absolute inset-0 bg-black/70 bg-opacity-50"></div>
 
         {/* Text */}
         <div className="mt-auto relative z-10 text content">
-          <h1 className="font-bold text-xl md:text-2xl text-gray-50">{name || "invalid name"}</h1>
-          <p className="font-normal text-sm text-gray-50 my-4">{description || "did not receive description"}</p>
+          <h1 className=" font-bold text-xl md:text-2xl text-gray-50">{name || "invalid name"}</h1>
+          <p className=" font-normal text-sm text-gray-50 my-4">{description || "did not receive description"}</p>
           <Link href={`/sports/outdoor/${slug}`} className="flex underline items-center gap-1">
             Click here for Details <ArrowRightIcon />
           </Link>
