@@ -99,7 +99,7 @@ const EventDetailsPage = ({ params }) => {
 
   return (
     event && (
-      <main className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white pt-8">
+      <main data-theme="dark" className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white pt-8">
         <div className="container mx-auto px-4 pb-16 flex justify-center items-center flex-col">
           <Link href={"/sports/outdoor"} className="btn btn-ghost mb-6 text-gray-300 self-start">
             ← Back to Outdoor Events
