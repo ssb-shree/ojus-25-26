@@ -168,7 +168,9 @@ const EventDetailsPage = ({ params }) => {
                       View Team: {userTeam.team.name}
                     </Link>
                   ) : (
-                    <div className="flex gap-3">
+                    <div
+                      className={` ${event.teamLimit === 0 ? "hidden" : "flex gap-3"} }`}
+                    >
                       <button onClick={() => setShowCreateTeam(true)} className="btn btn-info flex-1">
                         Create Team
                       </button>
