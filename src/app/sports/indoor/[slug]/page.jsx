@@ -105,7 +105,7 @@ const EventDetailsPage = ({ params }) => {
 
   return (
     event && (
-      <main className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white pt-16">
+      <main className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white pt-8">
         <div className="container mx-auto px-4 pb-12 flex justify-center items-center flex-col">
           <Link href="/sports/indoor" className="btn btn-ghost mb-4 text-gray-400 self-start text-sm">
             ← Back to Indoor Events
@@ -168,7 +168,7 @@ const EventDetailsPage = ({ params }) => {
                       View Team: {userTeam.team.name}
                     </Link>
                   ) : (
-                    <div className="flex gap-3">
+                    <div className={` ${event.teamLimit === 0 ? "hidden" : "flex gap-3"} }`}>
                       <button onClick={() => setShowCreateTeam(true)} className="btn btn-info flex-1">
                         Create Team
                       </button>

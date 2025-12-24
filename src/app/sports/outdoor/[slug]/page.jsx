@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useParams } from "next/navigation";
@@ -17,7 +16,6 @@ const EventDetailsPage = ({ params }) => {
       setOutdoorSlug(slug);
     };
     getSlug();
-
   }, [params]);
 
   const allEvents = Object.values(outdoor).flat();
@@ -41,8 +39,7 @@ const EventDetailsPage = ({ params }) => {
         const match = res.data.find((s) => s.name.trim() === event.name.trim());
         if (match) setLiveParticipantCount(match.participants_count);
       })
-      .catch(() => { });
-
+      .catch(() => {});
   }, [event]);
 
   useEffect(() => {
@@ -53,7 +50,7 @@ const EventDetailsPage = ({ params }) => {
         const found = res.data.registrations?.find((r) => r.sport?.slug === event.slug);
         setIsRegistered(Boolean(found));
       })
-      .catch(() => { });
+      .catch(() => {});
   }, [event]);
 
   useEffect(() => {
@@ -61,7 +58,7 @@ const EventDetailsPage = ({ params }) => {
     api
       .get(`api/sports/${event.slug}/user-team/`)
       .then((res) => setUserTeam(res.data))
-      .catch(() => { });
+      .catch(() => {});
   }, [isRegistered, event]);
 
   const handleRegister = async () => {
@@ -102,7 +99,7 @@ const EventDetailsPage = ({ params }) => {
 
   return (
     event && (
-      <main className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white pt-20">
+      <main className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white pt-8">
         <div className="container mx-auto px-4 pb-16 flex justify-center items-center flex-col">
           <Link href={"/sports/outdoor"} className="btn btn-ghost mb-6 text-gray-300 self-start">
             ← Back to Outdoor Events
