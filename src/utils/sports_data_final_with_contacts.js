@@ -496,7 +496,7 @@ const data = {
         teamLimit: 11,
         venue: "",
         is_finalized: false,
-        img_url: "https://i.pinimg.com/originals/08/ab/27/08ab277f1ba97c0d752044e16c87208f.gif",
+        img_url: "https://i.pinimg.com/originals/7a/88/e9/7a88e99555064fc22335e0794563754c.gif",
         day: "31-12-2025",
         category: "outdoor",
         "co-ordinators": [
