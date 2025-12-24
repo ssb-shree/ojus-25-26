@@ -150,7 +150,7 @@ const EventDetailsPage = ({ params }) => {
                   </div>
                 </div>
 
-                <div className="sm:mt-10 mt-3">
+                {/* <div className="sm:mt-10 mt-3">
                   {!isRegistered ? (
                     <button
                       onClick={handleRegister}
@@ -175,7 +175,7 @@ const EventDetailsPage = ({ params }) => {
                   )}
 
                   {message && <p className="text-center mt-4 text-sm text-gray-300">{message}</p>}
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
