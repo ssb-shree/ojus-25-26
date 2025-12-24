@@ -21,10 +21,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 const tabs = [
-  { key: "day1", displayValue: "Day 1" },
-  { key: "day2", displayValue: "Day 2" },
   { key: "day3", displayValue: "Day 3" },
-  { key: "day4", displayValue: "Day 4" },
   { key: "day5", displayValue: "Day 5" },
 ];
 
