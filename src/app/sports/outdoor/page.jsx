@@ -59,10 +59,10 @@ export default function OutdoorSportsPage() {
             Welcome, {user?.first_name || "Guest"}
           </h1>
           <Link href="indoor" className="hidden md:flex underline text-sm md:text-xl text-white mt-5">
-            Caught up with outdoor sports? Check out the indoor events next!
+            Caught up with outdoor sports? Click here for indoor events next!
           </Link>
           <Link href="indoor" className="md:hidden underline text-sm md:text-xl text-white mt-2">
-            Check out the indoor events next!
+            Click here for indoor events next!
           </Link>
         </div>
 

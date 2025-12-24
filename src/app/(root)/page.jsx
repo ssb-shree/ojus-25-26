@@ -9,6 +9,15 @@ import DomeGallery from "@/components/DomeGallery";
 import { AuthProvider, useAuth } from "@/context/AuthContext";
 import ImageMouseTrail from "@/components/mousetrail";
 import { FaFacebook, FaInstagram, FaXTwitter, FaYoutube, FaCode } from "react-icons/fa6";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import MeetTheDevs from "@/utils/dev_data";
 
 const nova = Nova_Square({
   weight: "400",
@@ -360,9 +369,14 @@ const OjusCommonPage = () => {
                   </Link>
                 </motion.div>
               ))}
-              <div>
-                <FaCode className="size-6 hover:text-green-500 hover:scale-110 transition-transform duration-200" />
-              </div>
+              <Dialog>
+                <DialogTrigger>
+                  <FaCode className="size-6 hover:text-green-500 hover:scale-110 transition-transform duration-200" />
+                </DialogTrigger>
+                <DialogContent className="p-0 border-none">
+                  <MeetTheDevs />
+                </DialogContent>
+              </Dialog>
             </div>
           </nav>
         </footer>

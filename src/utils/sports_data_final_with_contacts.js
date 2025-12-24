@@ -15,7 +15,7 @@ const data = {
         day: "26-12-2025",
         category: "indoor",
         "co-ordinators": [
-          ["Sandesh Sarode", "", "8850409126"],
+          ["Nishant rathod", "", "9021677152"],
           ["Krish shirpat", "", "9987445344"],
           ["Ritesh Pandey", "23106058", "9960435308"],
           ["Rohit Prajapati", "", "8928043313"],
@@ -37,7 +37,7 @@ const data = {
         day: "26-12-2025",
         category: "indoor",
         "co-ordinators": [
-          ["Sandesh Sarode", "", "8850409126"],
+          ["Nishant rathod", "", "9021677152"],
           ["Krish shirpat", "", "9987445344"],
           ["Ritesh Pandey", "23106058", "9960435308"],
           ["Rohit Prajapati", "", "8928043313"],
@@ -265,7 +265,7 @@ const data = {
         day: "26-12-2025",
         category: "indoor",
         "co-ordinators": [
-          ["Sandesh Sarode", "", "8850409126"],
+          ["Nishant rathod", "", "9021677152"],
           ["Krish shirpat", "", "9987445344"],
           ["Ritesh Pandey", "23106058", "9960435308"],
           ["Rohit Prajapati", "", "8928043313"],
@@ -287,7 +287,7 @@ const data = {
         day: "26-12-2025",
         category: "indoor",
         "co-ordinators": [
-          ["Sandesh Sarode", "", "8850409126"],
+          ["Nishant rathod", "", "9021677152"],
           ["Krish shirpat", "", "9987445344"],
           ["Ritesh Pandey", "23106058", "9960435308"],
           ["Rohit Prajapati", "", "8928043313"],
