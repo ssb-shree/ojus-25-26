@@ -284,7 +284,7 @@ export default function Dashboard() {
                             <div className="flex gap-2 text-xs text-slate-400 mt-0.5">
                               <span className="truncate">{reg.branch}</span>
                               <span className="w-1 h-1 bg-slate-600 rounded-full self-center flex-shrink-0"></span>
-                              <span className="flex-shrink-0">Year {reg.year}</span>
+                              {/* <span className="flex-shrink-0">Year {reg.year}</span> */}
                             </div>
                           </div>
                         </div>
