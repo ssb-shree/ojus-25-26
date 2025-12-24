@@ -9,6 +9,7 @@ import { useAuth } from "@/context/AuthContext";
 import toast from "react-hot-toast";
 
 import { indoor } from "@/utils/sports_data_final_with_contacts";
+import { ArrowLeftRightIcon, ArrowRight } from "lucide-react";
 
 const EventDetailsPage = ({ params }) => {
   const [indoorSlug, setIndoorSlug] = useState("");
@@ -176,6 +177,15 @@ const EventDetailsPage = ({ params }) => {
                         Join Team
                       </button>
                     </div>
+                  )}
+
+                  {isAuthenticated || (
+                    <Link
+                      href={"/auth/login"}
+                      className="text-center capitalize flex flex-row justify-center items-center underline mt-3 text-xs text-gray-300"
+                    >
+                      <span>Click here to log into your account</span>
+                    </Link>
                   )}
 
                   {message && <p className="text-center mt-3 text-xs text-gray-300">{message}</p>}
