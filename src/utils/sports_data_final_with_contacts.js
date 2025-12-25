@@ -493,7 +493,7 @@ const data = {
         description:
           "Team football tournament for boys. Standard 11-a-side soccer matches with teams competing to score goals through passing, dribbling, and teamwork.",
         isTeamBased: true,
-        teamLimit: 11,
+        teamLimit: 7,
         venue: "City Turf",
         is_finalized: false,
         img_url: "https://i.pinimg.com/originals/7a/88/e9/7a88e99555064fc22335e0794563754c.gif",
