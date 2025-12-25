@@ -7,7 +7,7 @@ const devs = [
     description: "Led the frontend team for OJUS 2026",
     github: "https://github.com/ssb-shree",
     linkedin: "https://www.linkedin.com/in/shree-bavachikar-a16493375/",
-    website: "https://ssb.is-a.dev/",
+    website: "#",
   },
   {
     name: "Mahipal",
