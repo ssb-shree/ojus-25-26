@@ -136,6 +136,10 @@ export default function OutdoorSportsPage() {
             )) || <p className="text-gray-400">No Sports to display...</p>}
           </AnimatePresence>
         </motion.div>
+
+        <Link href={"/"} className="flex justify-center items-center text-center my-4 underline">
+          <span>Click here to go back to home</span>
+        </Link>
       </div>
     </section>
   );

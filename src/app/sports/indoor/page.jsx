@@ -9,7 +9,7 @@ import styles from "./indoor.module.css";
 import { indoor } from "@/utils/sports_data_final_with_contacts";
 
 import { Press_Start_2P, Space_Grotesk } from "next/font/google";
-import { SearchIcon, ArrowRightIcon } from "lucide-react";
+import { SearchIcon, ArrowRightIcon, ArrowLeft, ArrowLeftFromLine } from "lucide-react";
 
 const pressStart2P = Press_Start_2P({
   weight: "400",
@@ -138,6 +138,10 @@ export default function IndoorSportsPage() {
             )) || <p className="text-gray-400">No Sports to display...</p>}
           </AnimatePresence>
         </motion.div>
+
+        <Link href={"/"} className="flex justify-center items-center text-center my-4 underline">
+          <span>Click here to go back to home</span>
+        </Link>
       </div>
     </section>
   );
