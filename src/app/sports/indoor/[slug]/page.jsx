@@ -155,7 +155,19 @@ const EventDetailsPage = ({ params }) => {
                   </div>
                 </div>
 
-                <div className="mt-6">
+                <div
+                  className={`${
+                    [
+                      "dodgeball-girls",
+                      "box-cricket-boys",
+                      "box-cricket-girls",
+                      "kabbadi-boys",
+                      "kabbadi-girls",
+                    ].includes(event.slug)
+                      ? "hidden"
+                      : "mt-6"
+                  }`}
+                >
                   {!isRegistered ? (
                     <button
                       onClick={handleRegister}
