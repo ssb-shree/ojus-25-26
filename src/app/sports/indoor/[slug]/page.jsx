@@ -161,8 +161,8 @@ const EventDetailsPage = ({ params }) => {
                       "dodgeball-girls",
                       "box-cricket-boys",
                       "box-cricket-girls",
-                      "kabbadi-boys",
-                      "kabbadi-girls",
+                      "kabaddi-boys",
+                      "kabaddi-girls",
                     ].includes(event.slug)
                       ? "hidden"
                       : "mt-6"
