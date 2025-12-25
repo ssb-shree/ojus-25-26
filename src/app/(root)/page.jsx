@@ -323,10 +323,10 @@ const OjusCommonPage = () => {
               whileTap={{ scale: 0.9 }}
             >
               <motion.img
-                key={footerClicked ? "color" : "bw"}
-                src={footerClicked ? "/apsit-logo-color.png" : "/logo.jpg"}
+                key={!footerClicked ? "color" : "bw"}
+                src={!footerClicked ? "/apsit-logo-color.png" : "/logo.jpg"}
                 alt="apsit logo"
-                className={`object-contain scale-75 w-full ${footerClicked ? "" : "rounded-full"}`}
+                className={`object-contain scale-75 w-full ${!footerClicked ? "" : "rounded-full"}`}
                 initial={{ opacity: 0, scale: 0.7, rotate: -10 }}
                 animate={{ opacity: 1, scale: 1, rotate: 0 }}
                 exit={{ opacity: 0, scale: 0.7, rotate: 10 }}
@@ -338,13 +338,13 @@ const OjusCommonPage = () => {
             <div className="flex flex-col justify-start items-center md:w-70">
               <AnimatePresence mode="wait">
                 <motion.p
-                  key={footerClicked ? "apsit" : "ojus"}
+                  key={!footerClicked ? "apsit" : "ojus"}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.25 }}
                 >
-                  {footerClicked ? "A.P. Shah Institue Of Technology" : "OJUS - Reveric Etheria"}
+                  {!footerClicked ? "A.P. Shah Institue Of Technology" : "OJUS - Reveric Etheria"}
                   <br />
                   Thane, Maharashtra
                 </motion.p>
