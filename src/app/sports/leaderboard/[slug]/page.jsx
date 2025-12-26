@@ -119,7 +119,7 @@ export default function SportLeaderboardPage() {
   const isAdmin = user && (
     user.is_staff ||
     user.is_superuser ||
-    user.is_manager ||
+    user.is_managing ||
     user.role === 'manager'
   );
 
