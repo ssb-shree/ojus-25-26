@@ -96,7 +96,7 @@ export default function DepartmentLeaderboardPage() {
             animate={{ opacity: 1, y: 0 }}
             className="lb-title"
           >
-            CHAMPIONSHIP
+            <h1 className="text-3xl sm:text-5xl">CHAMPIONSHIP</h1>
           </motion.h1>
           <p className="lb-subtitle">Department Standings 2025-26</p>
         </div>
@@ -176,12 +176,12 @@ export default function DepartmentLeaderboardPage() {
                   </p>
                 </div>
                 <div className="lb-col-points">
-                  <span className={`lb-pts-val ${
+                  <div className="-ml-5 sm:-ml-0"><span className={`lb-pts-val ${
                       index === 0 ? 'lb-pts-gold' : 'lb-pts-white'
                   }`}>
                     {dept.total_points}
                   </span>
-                  <span className="lb-pts-label">PTS</span>
+                  <span className="lb-pts-label">PTS</span></div>
                 </div>
               </motion.div>
             ))}
