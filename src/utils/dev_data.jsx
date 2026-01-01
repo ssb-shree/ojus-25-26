@@ -11,10 +11,11 @@ const devs = [
   },
   {
     name: "Soham",
-    Role: "Volunteer",
-    Descp: "Frontend Dev",
-    GitHub: "https://github.com/SohamGorekar",
-    Linkedin: "https://www.linkedin.com/in/soham-gorekar-2387bb290/",
+    role: "Volunteer",
+    description: "Helped with frontend development",
+    github: "https://github.com/SohamGorekar",
+    linkedin: "https://www.linkedin.com/in/soham-gorekar-2387bb290/",
+    website: null,
   },
   {
     name: "Mahipal Singh",
@@ -33,19 +34,20 @@ const devs = [
     website: null,
   },
   {
+    name: "Lucky",
+    role: "Head",
+    description: "Helped with backend development",
+    github: "https://github.com/itslucky07",
+    linkedin: "https://www.linkedin.com/in/lucky-sharma-/",
+    website: null,
+  },
+  {
     name: "Jamil Khan",
     role: "Volunteer",
     description: "Helped with backend development",
     github: "https://github.com/Viverun",
     linkedin: "https://www.linkedin.com/in/jamil-khan-55a621346/",
     website: null,
-  },
-  {
-    name: "Lucky",
-    Role: "Head",
-    Descp: "Full stack",
-    GitHub: "https://github.com/itslucky07",
-    Linkedin: "https://www.linkedin.com/in/lucky-sharma-/",
   },
 ];
 
@@ -103,16 +105,6 @@ export default function MeetTheDevs() {
         <h2 className="text-lg font-semibold">Backend Team</h2>
         <div className="flex flex-wrap gap-3 justify-center">
           {backendTeam.map((dev) => (
-            <DevCard key={dev.github} dev={dev} />
-          ))}
-        </div>
-      </div>
-
-      {/* Full Stack Team */}
-      <div className="flex flex-col items-center gap-4">
-        <h2 className="text-lg font-semibold">Full Stack Team</h2>
-        <div className="flex flex-wrap gap-3 justify-center">
-          {devs[-1].map((dev) => (
             <DevCard key={dev.github} dev={dev} />
           ))}
         </div>
