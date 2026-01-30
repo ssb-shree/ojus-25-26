@@ -1,7 +1,7 @@
 import axios from "axios";
 const baseURL = ["https://ojus-sport26.onrender.com/", "http://127.0.0.1:8000/", "https://34.180.73.149/", "https://publication-factor-relax-advertiser.trycloudflare.com"];
 const axiosInstance = axios.create({
-  baseURL: baseURL[3],
+  baseURL: baseURL[1],
   headers: {
     "Content-Type": "application/json",
   },
