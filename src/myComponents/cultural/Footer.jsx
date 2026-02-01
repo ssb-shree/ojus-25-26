@@ -21,14 +21,13 @@ const Footer = () => {
         </div>
 
         {/* Quick Links */}
-        <div className="flex flex-col space-y-4">
+        <div className='flex flex-row justify-between items-start'><div className="flex flex-col space-y-4">
           <h3 className="text-lg font-semibold">Quick Links</h3>
           <nav className="flex flex-col space-y-2 text-sm text-neutral-400">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <Link href="/floor-1" className="hover:text-white transition-colors">Floor 1</Link>
-            <Link href="/floor-2" className="hover:text-white transition-colors">Floor 2</Link>
-            <Link href="/floor-3" className="hover:text-white transition-colors">Floor 3</Link>
-            <Link href="/floor-4" className="hover:text-white transition-colors">Floor 4</Link>
+            <Link href="cultural/1" className="hover:text-white transition-colors">Day 1</Link>
+            <Link href="cultural/2" className="hover:text-white transition-colors">Day 2</Link>
+            <Link href="cultural/3" className="hover:text-white transition-colors">Day 3</Link>
           </nav>
         </div>
 
@@ -40,7 +39,7 @@ const Footer = () => {
             <p>Phone: <span className="text-neutral-300">+91 98765 43210</span></p>
             <p>Location: <span className="text-neutral-300">College Campus</span></p>
           </div>
-        </div>
+        </div></div>
       </div>
 
       {/* Copyright Bottom Bar */}
