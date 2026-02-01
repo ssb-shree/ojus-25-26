@@ -49,5 +49,7 @@ export const useEventStore = create((set) => ({
   allEventData : data,
   eventData: defaultEventData,
   updateEventData: (data) => set(() => ({ eventData: data })),
-  setDefaultEventData : ()=> set(()=>({eventData : defaultEventData})),
+  setDefaultEventData : ()=> {
+    set(()=>({eventData : defaultEventData}))
+  },
 }));

@@ -84,19 +84,19 @@
 //       </div>
 
 //       {/* Normal marquee for mobile */}
-//       <div className="w-screen flex md:hidden flex-col overflow-hidden">
-//         <Marquee>
-//           {eventsForDay.map((event, index) => (
-//             <div
-//               key={index}
-//               onMouseEnter={() => updateEventData(event)}
-//               onMouseLeave={setDefaultEventData}
-//             >
-//               <Card {...event} />
-//             </div>
-//           ))}
-//         </Marquee>
-//       </div>
+      // <div className="w-screen flex md:hidden flex-col overflow-hidden">
+      //   <Marquee>
+      //     {eventsForDay.map((event, index) => (
+      //       <div
+      //         key={index}
+      //         onMouseEnter={() => updateEventData(event)}
+      //         onMouseLeave={setDefaultEventData}
+      //       >
+      //         <Card {...event} />
+      //       </div>
+      //     ))}
+      //   </Marquee>
+      // </div>
 
 //       {/* Description */}
 //       <AnimatePresence mode="wait">
@@ -196,6 +196,7 @@ const Sections = ({
   const { eventData, allEventData, setDefaultEventData } = useEventStore();
   const [randomEvents, setRandomEvents] = useState([]);
   const [refreshKey, setRefreshKey] = useState(0);
+  const [pauseMobileMarquee, setPauseMobileMarquee] = useState(false);
 
   // Get random events
   const getRandomEvents = (events, count) => {
@@ -229,7 +230,7 @@ const Sections = ({
   const currentEventData = eventData || defaultEvent;
 
   const updateEventData = (event) => {
-    useEventStore.getState().setEventData(event);
+    useEventStore.getState().updateEventData(event);
   };
 
   // Function to refresh random events
@@ -290,9 +291,26 @@ const Sections = ({
           data={eventsForDisplay}
           curveAmount={-400}
           onEventHover={updateEventData}
-          onEventLeave={setDefaultEventData}
+          onEventLeave={updateEventData}
         />
       </div>
+      {/* Mobile view */}
+      <div className="w-screen flex md:hidden flex-col overflow-hidden">
+        <Marquee paused={pauseMobileMarquee} speed={40}>
+          {eventsForDisplay.map((event, index) => (
+            <div
+              key={index}
+              className=""
+              onClick={() => {updateEventData(event);
+                setPauseMobileMarquee(true);
+              }}
+            >
+              <Card {...event} />
+            </div>
+          ))}
+        </Marquee>
+      </div>
+
 
       {/* Description */}
       <AnimatePresence mode="wait">
