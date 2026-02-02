@@ -10,6 +10,7 @@ export const culturalEventsData = {
   events: [
     {
       id: 1,
+      slug: "paintball",
       name: "Paintball",
       category: "Sports",
       time: "11AM-4PM",
@@ -112,6 +113,7 @@ export const culturalEventsData = {
     },
     {
       id: 7,
+      slug: "mrnmrs",
       name: "MR & MRS APSIT",
       category: "Personality",
       time: "2PM-4PM",
@@ -871,6 +873,7 @@ export const culturalEventsData = {
     },
     {
       id: 54,
+      slug: "valorant",
       name: "Valorant",
       category: "Esports",
       time: "11AM-4PM",
@@ -887,6 +890,7 @@ export const culturalEventsData = {
     },
     {
       id: 55,
+      slug: "fifa",
       name: "FIFA",
       category: "Esports",
       time: "11AM-4PM",

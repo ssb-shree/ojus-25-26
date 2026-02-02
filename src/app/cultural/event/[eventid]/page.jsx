@@ -5,6 +5,9 @@ import { ArrowLeft, Calendar, Clock, MapPin, Users, Trophy, Tag } from "lucide-r
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { culturalEventsData } from "@/lib/culturalData";
+import api from "@/api/api";
+
+import {toast} from "react-hot-toast"
 
 // Helper function to find event by ID across all days
 function findEventById(eventId) {
@@ -27,13 +30,60 @@ function findEventById(eventId) {
   return null;
 }
 
+
+
 export default function EventDetailsPage() {
   const params = useParams();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [eventInfo, setEventInfo] = useState(null);
-
+  const [user, setUser] = useState(null)
+  const [registeredEvents, setRegisteredEvents] = useState([])
   const eventId = String(params?.eventid || params?.eventId || '');
+
+  const handleRegister = async (event_slug)=>{
+
+  if(event_slug === undefined) {
+    toast.error("registration is not available")
+    return
+  }
+
+  try {
+    const res = await api.get("auth/me/");
+    if (res.status !== 200) {
+      toast.error("Login before registering")
+      return
+    }
+
+    setUser(res.data);
+
+    const regRes = await api.post("cultural/register/", {
+      event_slug: event_slug,
+    })
+
+    if (regRes.status === 200) {
+      toast.success("Registered successfully")
+      // mark locally as registered by slug
+      setRegisteredEvents(prev => Array.from(new Set([...prev, event_slug])))
+    } else {
+      toast.error("Registration failed")
+    }
+  } catch (error) {
+    // Prefer backend error messages when available
+    const serverMsg = error?.response?.data || error?.message || "Something went wrong"
+    if (typeof serverMsg === 'string') {
+      toast.error(serverMsg)
+    } else if (serverMsg?.error) {
+      toast.error(serverMsg.error)
+    } else {
+      // validation errors like { student: ['This field is required.'] }
+      const firstField = serverMsg && typeof serverMsg === 'object' && Object.keys(serverMsg)[0]
+      const firstMsg = firstField ? serverMsg[firstField][0] : null
+      toast.error(firstMsg || 'Registration failed')
+    }
+    console.log(error)
+  }
+} 
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -45,6 +95,27 @@ export default function EventDetailsPage() {
     return () => clearTimeout(timer);
   }, [eventId]);
 
+  // Fetch user's registrations if authenticated
+  useEffect(() => {
+    const fetchRegistrations = async () => {
+      try {
+        const me = await api.get('auth/me/')
+        if (me.status === 200) {
+          setUser(me.data)
+          const regs = await api.get('cultural/registrations/')
+          if (regs.status === 200) {
+            // backend now exposes event_slug on registration
+            setRegisteredEvents(regs.data.map(r => r.event_slug || r.event))
+          }
+        }
+      } catch (err) {
+        // ignore unauthenticated / network errors here
+      }
+    }
+
+    fetchRegistrations()
+  }, [])
+  
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-gray-950 to-black text-white flex items-center justify-center">
@@ -238,12 +309,21 @@ export default function EventDetailsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.4 }}
                 >
-                  <button
-                    onClick={() => window.open(event.registrationLink, '_blank')}
-                    className="w-full py-4 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
-                  >
-                    Register Now
-                  </button>
+                  {registeredEvents.includes(event.slug) ? (
+                    <button
+                      disabled
+                      className="w-full py-4 bg-gray-700 text-gray-300 rounded-xl font-bold text-lg transition-all duration-200"
+                    >
+                      Registered
+                    </button>
+                  ) : (
+                    <button
+                      onClick={()=> handleRegister(event.slug)}
+                      className="w-full py-4 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                    >
+                      Register Now
+                    </button>
+                  )}
                 </motion.div>
               )}
             </div>

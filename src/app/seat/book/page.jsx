@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import api from "@/api/api";
 
-const TOTAL_CAPACITY = 1200;
+const TOTAL_CAPACITY = 5;
 const WS_URL = 'ws://localhost:8000/ws/bookings/';
 const MAX_RECONNECT_ATTEMPTS = 5;
 const RECONNECT_DELAY = 3000; // 3 seconds
@@ -141,6 +141,10 @@ export default function Book() {
   };
 
   const bookedSeats = TOTAL_CAPACITY - (remaining ?? 0);
+  const availablePercent = remaining !== null ? Math.max(0, Math.min(100, Math.round((remaining / TOTAL_CAPACITY) * 100))) : 0;
+  // color and text color based on availability thresholds
+  const progressColor = availablePercent <= 25 ? 'bg-red-500' : availablePercent <= 50 ? 'bg-yellow-400' : 'bg-green-500';
+  const progressTextColor = availablePercent <= 25 ? 'text-red-600' : availablePercent <= 50 ? 'text-yellow-600' : 'text-green-700';
 
   if (loading) {
     return (
@@ -203,6 +207,24 @@ export default function Book() {
               <p className="text-2xl font-bold text-green-600 mt-2">
                 {remaining ?? '—'}
               </p>
+            </div>
+          </div>
+
+          {/* Progress Bar */}
+          <div className="mt-4">
+            <div className="flex items-center justify-between mb-2 text-sm text-gray-600">
+              <span>Availability</span>
+              <span className={`font-semibold ${progressTextColor}`}>{availablePercent}% ({remaining ?? '—'} / {TOTAL_CAPACITY})</span>
+            </div>
+            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
+              <div
+                className={`h-3 ${progressColor} rounded-full transition-all duration-500 ease-out`}
+                style={{ width: `${availablePercent}%` }}
+                role="progressbar"
+                aria-valuenow={availablePercent}
+                aria-valuemin="0"
+                aria-valuemax="100"
+              />
             </div>
           </div>
 
