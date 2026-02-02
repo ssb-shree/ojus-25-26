@@ -128,7 +128,7 @@ export default function Book() {
         // Update remaining count
         setRemaining(response.data.remaining);
         // Redirect to ticket page
-        setTimeout(() => router.push('/ticket'), 500);
+        setTimeout(() => router.push('/seat/ticket'), 500);
       }
     } catch (err) {
       const errorMessage =
