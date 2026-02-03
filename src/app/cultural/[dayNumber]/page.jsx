@@ -268,34 +268,7 @@ export default function DayEventsPage() {
         </div>
       </section>
 
-      {/* Day Navigation */}
-      <div className="px-4 pb-8">
-        <div className="container mx-auto max-w-6xl">
-          <div className="p-4 bg-gray-900/30 rounded-xl border border-gray-800/30">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <div className="text-center md:text-left">
-                <h3 className="text-sm text-gray-400 font-medium mb-1">Explore Other Days</h3>
-                <p className="text-xs text-gray-500">Check out events from different days</p>
-              </div>
-              <div className="flex items-center gap-2">
-                {["1", "2", "3"].map((day) => (
-                  <button
-                    key={day}
-                    onClick={() => router.push(`/cultural/${day}`)}
-                    className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 ${
-                      day === dayNumber
-                        ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white scale-105 shadow-lg shadow-orange-500/20'
-                        : 'bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white'
-                    }`}
-                  >
-                    Day {day}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      
 
       {/* Back to Home Button */}
       <div className="px-4 pb-12">
@@ -315,7 +288,7 @@ export default function DayEventsPage() {
         <div className="container mx-auto max-w-6xl">
           <div className="text-center">
             <p className="text-gray-500 text-xs">
-              © 2024 Ojus Cultural Fest
+              © 2026 Ojus Cultural Fest
             </p>
           </div>
         </div>

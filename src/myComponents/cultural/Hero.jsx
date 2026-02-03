@@ -11,7 +11,6 @@ const Hero = () => {
           <p className='text-wrap w-85 md:text-lg sm:text-sm sm:w-125 text-[10px] p-2 sm:-mt-10 md:w-250 text-center text-gray-300'>Step into a realm where imagination transcends boundaries. Experience three days of cultural brilliance,
             where art, music, and performance converge in a dreamlike celebration of creativity and talent.</p>
             <div className='flex md:flex-row flex-col gap-3 md:gap-10 sm:flex-row justify-center items-center pt-5 md:pt-5'>
-              <button className='rounded-4xl md:text-[16.5px] text-[14px] md:pt-2 md:pb-2 md:pl-3 p-2 md:pr-3 border-2 md:border-3 hover:bg-black/50 transition duration-300 ease-out cursor-pointer hover:text-gray-300 hover:scale-105'>Dive into the fun</button>
               <button className='rounded-4xl bg-white md:text-[16.5px] text-black md:pt-2 md:pb-2 md:pl-3 text-[14px] p-2 md:pr-3 border-2 md:border-3 hover:bg-gray-200 transition duration-300 ease-out cursor-pointer hover:text-black hover:scale-105'>Book your seats</button>
             </div>
         </div>

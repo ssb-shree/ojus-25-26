@@ -41,7 +41,7 @@ const CulturalPage = () => {
         dayEvents={culturalEventsData["3"].events}
         defaultEvent={culturalEventsData["3"].events[0]}
         buttonText="Explore all Day 3 events"
-        color={"bg-[#DE1A58]"}
+        color={"bg-[url(/suits_saree.png)]"}
       />
       
       <Footer />
