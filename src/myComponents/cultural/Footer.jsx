@@ -35,8 +35,8 @@ const Footer = () => {
         <div className="flex flex-col space-y-4">
           <h3 className="text-lg font-semibold">Contact</h3>
           <div className="flex flex-col space-y-2 text-sm text-neutral-400">
-            <p>Email: <span className="text-neutral-300">info@reverieetheria.edu</span></p>
-            <p>Phone: <span className="text-neutral-300">+91 98765 43210</span></p>
+            <p>Email: <span className="text-neutral-300">apsit.edu.in</span></p>
+            <p>Phone: <span className="text-neutral-300">022-25973737</span></p>
             <p>Location: <span className="text-neutral-300">College Campus</span></p>
           </div>
         </div></div>
