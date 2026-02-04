@@ -12,7 +12,7 @@ const Footer = () => {
         {/* Brand Section */}
         <div className="space-y-4">
           <div className="flex items-center gap-2">
-            <Sparkles className="size-6 text-white" />
+            <img className='h-6 w-6 rounded-4xl' src="/logo.jpg" alt="ojus" />
             <h2 className="text-2xl font-bold tracking-tighter italic uppercase">Ojus</h2>
           </div>
           <p className="text-neutral-400 text-sm leading-relaxed max-w-xs">
@@ -21,14 +21,13 @@ const Footer = () => {
         </div>
 
         {/* Quick Links */}
-        <div className="flex flex-col space-y-4">
+        <div className='flex flex-row justify-between items-start'><div className="flex flex-col space-y-4">
           <h3 className="text-lg font-semibold">Quick Links</h3>
           <nav className="flex flex-col space-y-2 text-sm text-neutral-400">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <Link href="/floor-1" className="hover:text-white transition-colors">Floor 1</Link>
-            <Link href="/floor-2" className="hover:text-white transition-colors">Floor 2</Link>
-            <Link href="/floor-3" className="hover:text-white transition-colors">Floor 3</Link>
-            <Link href="/floor-4" className="hover:text-white transition-colors">Floor 4</Link>
+            <Link href="cultural/1" className="hover:text-white transition-colors">Day 1</Link>
+            <Link href="cultural/2" className="hover:text-white transition-colors">Day 2</Link>
+            <Link href="cultural/3" className="hover:text-white transition-colors">Day 3</Link>
           </nav>
         </div>
 
@@ -36,11 +35,11 @@ const Footer = () => {
         <div className="flex flex-col space-y-4">
           <h3 className="text-lg font-semibold">Contact</h3>
           <div className="flex flex-col space-y-2 text-sm text-neutral-400">
-            <p>Email: <span className="text-neutral-300">info@reverieetheria.edu</span></p>
-            <p>Phone: <span className="text-neutral-300">+91 98765 43210</span></p>
+            <p>Email: <span className="text-neutral-300">apsit.edu.in</span></p>
+            <p>Phone: <span className="text-neutral-300">022-25973737</span></p>
             <p>Location: <span className="text-neutral-300">College Campus</span></p>
           </div>
-        </div>
+        </div></div>
       </div>
 
       {/* Copyright Bottom Bar */}

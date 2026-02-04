@@ -84,19 +84,19 @@
 //       </div>
 
 //       {/* Normal marquee for mobile */}
-//       <div className="w-screen flex md:hidden flex-col overflow-hidden">
-//         <Marquee>
-//           {eventsForDay.map((event, index) => (
-//             <div
-//               key={index}
-//               onMouseEnter={() => updateEventData(event)}
-//               onMouseLeave={setDefaultEventData}
-//             >
-//               <Card {...event} />
-//             </div>
-//           ))}
-//         </Marquee>
-//       </div>
+      // <div className="w-screen flex md:hidden flex-col overflow-hidden">
+      //   <Marquee>
+      //     {eventsForDay.map((event, index) => (
+      //       <div
+      //         key={index}
+      //         onMouseEnter={() => updateEventData(event)}
+      //         onMouseLeave={setDefaultEventData}
+      //       >
+      //         <Card {...event} />
+      //       </div>
+      //     ))}
+      //   </Marquee>
+      // </div>
 
 //       {/* Description */}
 //       <AnimatePresence mode="wait">
@@ -189,6 +189,7 @@ const Sections = ({
   description = "lorem34",
   dayNumber = 1,
   dayEvents = [],
+  color="white",
   defaultEvent = null,
   buttonText = "Explore all Day 1 events",
   randomEventCount = 6, // Number of random events to show
@@ -196,6 +197,7 @@ const Sections = ({
   const { eventData, allEventData, setDefaultEventData } = useEventStore();
   const [randomEvents, setRandomEvents] = useState([]);
   const [refreshKey, setRefreshKey] = useState(0);
+  const [pauseMobileMarquee, setPauseMobileMarquee] = useState(false);
 
   // Get random events
   const getRandomEvents = (events, count) => {
@@ -229,7 +231,7 @@ const Sections = ({
   const currentEventData = eventData || defaultEvent;
 
   const updateEventData = (event) => {
-    useEventStore.getState().setEventData(event);
+    useEventStore.getState().updateEventData(event);
   };
 
   // Function to refresh random events
@@ -238,7 +240,7 @@ const Sections = ({
   };
 
   return (
-    <div className="h-screen w-screen flex flex-col justify-between pt-14 items-center bg-[#682020] text-neutral-100 overflow-hidden relative">
+    <div className={`h-screen w-screen flex flex-col pb-5 justify-between pt-14 items-center ${color} text-neutral-100 overflow-hidden relative`}>
       {/* Event meta */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -273,7 +275,7 @@ const Sections = ({
       </AnimatePresence>
 
       {/* Random refresh button (small and subtle) */}
-      <motion.button
+      {/* <motion.button
         onClick={refreshRandomEvents}
         className="absolute top-20 right-4 md:right-6 text-xs px-3 py-1 rounded-full bg-orange-500/20 hover:bg-orange-500/30 border border-orange-400/30 text-orange-200 transition-all z-10"
         whileHover={{ scale: 1.05 }}
@@ -281,7 +283,7 @@ const Sections = ({
         title="Show different events"
       >
         Refresh Events
-      </motion.button>
+      </motion.button> */}
 
       {/* Curved marquee with random events */}
       <div className="hidden h-[45vh] md:flex">
@@ -290,15 +292,32 @@ const Sections = ({
           data={eventsForDisplay}
           curveAmount={-400}
           onEventHover={updateEventData}
-          onEventLeave={setDefaultEventData}
+          onEventLeave={updateEventData}
         />
       </div>
+      {/* Mobile view */}
+      <div className="w-screen flex md:hidden flex-col overflow-hidden">
+        <Marquee paused={pauseMobileMarquee} speed={40}>
+          {eventsForDisplay.map((event, index) => (
+            <div
+              key={index}
+              className=""
+              onClick={() => {updateEventData(event);
+                setPauseMobileMarquee(true);
+              }}
+            >
+              <Card {...event} />
+            </div>
+          ))}
+        </Marquee>
+      </div>
+
 
       {/* Description */}
       <AnimatePresence mode="wait">
         <motion.p
           key={currentEventData?.descp || "description"}
-          className="max-w-2xl text-center text-base sm:text-lg leading-relaxed text-neutral-300 px-6"
+          className="max-w-2xl text-center text-base sm:text-lg  leading-relaxed text-neutral-300 px-6"
           variants={fadeUp}
           initial="hidden"
           animate="visible"
@@ -308,6 +327,23 @@ const Sections = ({
           {currentEventData?.descp || description}
         </motion.p>
       </AnimatePresence>
+
+
+      <div className="w-screen flex md:hidden flex-col overflow-hidden">
+        <Marquee paused={pauseMobileMarquee} speed={40} reverse={true}>
+          {eventsForDisplay.map((event, index) => (
+            <div
+              key={index}
+              className=""
+              onClick={() => {updateEventData(event);
+                setPauseMobileMarquee(true);
+              }}
+            >
+              <Card {...event} />
+            </div>
+          ))}
+        </Marquee>
+      </div>
 
       {/* Counter showing random selection */}
       <div className="text-sm text-neutral-400 text-center mt-2">

@@ -8,7 +8,7 @@ const CurvedLoop = ({ data = [], speed = 2, curveAmount = 400, direction = "left
   const itemRefs = useRef([]);
   const offsetRef = useRef(0);
   const spacingRef = useRef(0);
-
+  const pausedRef=useRef(false);
   const dragRef = useRef(false);
   const lastXRef = useRef(0);
   const velRef = useRef(0);
@@ -36,7 +36,7 @@ const CurvedLoop = ({ data = [], speed = 2, curveAmount = 400, direction = "left
     let raf;
 
     const animate = () => {
-      if (!dragRef.current) {
+      if (!dragRef.current&& !pausedRef.current) {
         offsetRef.current += dirRef.current === "right" ? speed : -speed;
       }
 
@@ -106,8 +106,12 @@ const CurvedLoop = ({ data = [], speed = 2, curveAmount = 400, direction = "left
             <foreignObject width="300" height="300">
               <div
                 xmlns="http://www.w3.org/1999/xhtml"
-                onMouseEnter={() => updateEventData(item)}
-                onMouseLeave={setDefaultEventData}
+                onMouseEnter={() => {pausedRef.current = true;
+                  updateEventData(item)
+                }}
+                onMouseLeave={()=>{pausedRef.current = false;
+                  setDefaultEventData()
+                }}
               >
                 <Card {...item} />
               </div>

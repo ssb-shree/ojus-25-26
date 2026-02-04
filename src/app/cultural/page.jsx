@@ -18,6 +18,7 @@ const CulturalPage = () => {
         dayEvents={culturalEventsData["1"].events}
         defaultEvent={culturalEventsData["1"].events[0]}
         buttonText="Explore all Day 1 events"
+      color={"bg-[url(https://wallpapercave.com/wp/wp1989195.jpg)] bg-cover "}
       />
       
       {/* Day 2 Section */}
@@ -29,7 +30,7 @@ const CulturalPage = () => {
         dayEvents={culturalEventsData["2"].events}
         defaultEvent={culturalEventsData["2"].events[0]}
         buttonText="Explore all Day 2 events"
-      />
+     color={"bg-[url(https://tripxl.com/blog/wp-content/uploads/2025/01/New-Year-Party-In-Agra-Cover-Photo-1.jpg)] bg-cover "} />
       
       {/* Day 3 Section */}
       <Sections 
@@ -40,6 +41,7 @@ const CulturalPage = () => {
         dayEvents={culturalEventsData["3"].events}
         defaultEvent={culturalEventsData["3"].events[0]}
         buttonText="Explore all Day 3 events"
+        color={"bg-[url(/suits_saree.png)]"}
       />
       
       <Footer />
