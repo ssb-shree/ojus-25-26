@@ -39,6 +39,12 @@ export default function EventDetailsPage() {
   const [eventInfo, setEventInfo] = useState(null);
   const [user, setUser] = useState(null)
   const [registeredEvents, setRegisteredEvents] = useState([])
+  const [userTeams, setUserTeams] = useState([])
+  const [eventTeams, setEventTeams] = useState([])
+  const [teamName, setTeamName] = useState('')
+  const [memberIdsInput, setMemberIdsInput] = useState('')
+  const [teamSecondary, setTeamSecondary] = useState('')
+  const [teamCreating, setTeamCreating] = useState(false)
   const [showPhoneModal, setShowPhoneModal] = useState(false)
   const [phoneNumberInput, setPhoneNumberInput] = useState("")
   const [phoneSaving, setPhoneSaving] = useState(false)
@@ -152,6 +158,16 @@ export default function EventDetailsPage() {
             // backend now exposes event_slug on registration; normalize to strings
             setRegisteredEvents(regs.data.map(r => (r.event_slug ? String(r.event_slug) : String(r.event))))
           }
+
+          // fetch teams for authenticated user
+          try {
+            const t = await api.get('cultural/teams/my/')
+            if (t.status === 200) {
+              setUserTeams(t.data)
+            }
+          } catch (err) {
+            // ignore
+          }
         }
       } catch (err) {
         // ignore unauthenticated / network errors here
@@ -160,6 +176,67 @@ export default function EventDetailsPage() {
 
     fetchRegistrations()
   }, [])
+  
+  // Fetch teams for this event (public)
+  const fetchEventTeams = async () => {
+    try {
+      if (!event?.slug) return
+      const res = await api.get(`cultural/teams/event/${event.slug}/`)
+      if (res.status === 200) {
+        setEventTeams(res.data)
+      }
+    } catch (err) {
+      // ignore
+    }
+  }
+
+  // Submit create team
+  const submitTeam = async () => {
+    if (!event?.slug) {
+      toast.error('Event slug missing')
+      return
+    }
+    const name = (teamName || '').trim()
+    if (!name) {
+      toast.error('Please enter team name')
+      return
+    }
+
+    // parse member ids
+    const raw = (memberIdsInput || '').trim()
+    const ids = raw ? raw.split(/[,\s]+/).map(s => parseInt(s, 10)).filter(n => !isNaN(n)) : []
+
+    setTeamCreating(true)
+    try {
+      const payload = {
+        event_slug: event.slug,
+        name,
+        member_moodle_ids: ids,
+        secondary_contact_number: teamSecondary,
+      }
+      const res = await api.post('cultural/teams/create/', payload)
+      if (res.status === 201) {
+        toast.success('Team created')
+        // add to user teams and event teams
+        setUserTeams(prev => [res.data, ...prev])
+        setEventTeams(prev => [res.data, ...prev])
+        setTeamName('')
+        setMemberIdsInput('')
+        setTeamSecondary('')
+      } else {
+        toast.error('Failed to create team')
+      }
+    } catch (err) {
+      const serverMsg = err?.response?.data || err?.message || 'Something went wrong'
+      if (typeof serverMsg === 'string') toast.error(serverMsg)
+      else if (serverMsg?.member_moodle_ids) toast.error(serverMsg.member_moodle_ids[0])
+      else if (serverMsg?.non_field_errors) toast.error(serverMsg.non_field_errors[0] || serverMsg.non_field_errors)
+      else toast.error('Could not create team')
+      console.log(err)
+    } finally {
+      setTeamCreating(false)
+    }
+  }
   
   const isRegistered = eventInfo && (registeredEvents.includes(String(eventInfo.event?.slug)) || registeredEvents.includes(String(eventInfo.event?.id)))
 
@@ -365,7 +442,7 @@ export default function EventDetailsPage() {
                   className="bg-gray-900/30 rounded-xl p-6 border border-gray-800/50"
                 >
                   <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-                    <div className="w-1 h-5 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full"></div>
+                    <div className="w-1 h-5 bg-gradient-to-git b from-blue-500 to-purple-500 rounded-full"></div>
                     Event Heads
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -381,27 +458,122 @@ export default function EventDetailsPage() {
                 </motion.div>
               )}
 
-              {/* Registration Button - Only if registrationLink exists */}
+              {/* Registration / Team Section - Only if registrationLink exists */}
               {event.registrationLink && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.4 }}
                 >
-                  {isRegistered ? (
-                    <button
-                      disabled
-                      className="w-full py-4 bg-gray-700 text-gray-300 rounded-xl font-bold text-lg transition-all duration-200"
-                    >
-                      Registered
-                    </button>
+                  {/* Team events show team UI instead of individual registration */}
+                  {['valorant','paintball'].includes(String(event.slug)) ? (
+                    // Team flow
+                    <div>
+                      {/* If user is part of a team for this event */}
+                      {user && (userTeams || []).some(t => t.event_slug === String(event.slug) && (t.leader === user.moodleID || (t.members || []).includes(user.moodleID))) ? (
+                        <div className="w-full py-4 bg-gray-700 text-gray-200 rounded-xl font-bold text-lg text-center">
+                          You are part of a team for this event.
+                        </div>
+                      ) : (
+                        // show team creation form for authenticated users
+                        <div>
+                          {user ? (
+                            <div className="space-y-3">
+                              <input
+                                type="text"
+                                value={teamName}
+                                onChange={(e) => setTeamName(e.target.value)}
+                                placeholder="Team name"
+                                className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white"
+                              />
+
+                              <input
+                                type="text"
+                                value={memberIdsInput}
+                                onChange={(e) => setMemberIdsInput(e.target.value)}
+                                placeholder="Member Moodle IDs (comma separated, exclude leader)"
+                                className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white"
+                              />
+
+                              <input
+                                type="tel"
+                                value={teamSecondary}
+                                onChange={(e) => setTeamSecondary(e.target.value)}
+                                placeholder="Secondary contact number (optional)"
+                                className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white"
+                              />
+
+                              <div className="flex gap-3">
+                                <button
+                                  disabled={teamCreating}
+                                  onClick={submitTeam}
+                                  className="flex-1 py-3 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 rounded-xl font-bold text-lg transition-all duration-300"
+                                >
+                                  {teamCreating ? 'Creating...' : 'Create Team'}
+                                </button>
+                                <button
+                                  onClick={() => {
+                                    setTeamName('');
+                                    setMemberIdsInput('');
+                                    setTeamSecondary('');
+                                  }}
+                                  className="py-3 px-4 bg-gray-800 rounded-xl font-medium"
+                                >
+                                  Reset
+                                </button>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="w-full py-4 bg-gray-700 text-gray-200 rounded-xl font-bold text-lg text-center">
+                              Login to create a team
+                            </div>
+                          )}
+                        </div>
+                      )}
+
+                      {/* show event teams list (optional) */}
+                      <div className="mt-4 text-sm text-gray-400">
+                        <button
+                          onClick={fetchEventTeams}
+                          className="underline"
+                        >View all teams for this event</button>
+                        {eventTeams && eventTeams.length > 0 && (
+                          <ul className="mt-2 list-disc list-inside text-gray-300">
+                            {eventTeams.map(t => (
+                              <li key={t.id}>{t.name} — Leader: {t.leader}</li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    </div>
                   ) : (
-                    <button
-                      onClick={()=> handleRegister(event.slug)}
-                      className="w-full py-4 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
-                    >
-                      Register Now
-                    </button>
+                    // Individual registration flow (unchanged) but block if user is part of a team
+                    (event.slug && (isRegistered ? (
+                      <button
+                        disabled
+                        className="w-full py-4 bg-gray-700 text-gray-300 rounded-xl font-bold text-lg transition-all duration-200"
+                      >
+                        Registered
+                      </button>
+                    ) : (
+                      // If user is in a team for the event, block
+                      user && (userTeams || []).some(t => t.event_slug === String(event.slug) && (t.leader === user.moodleID || (t.members || []).includes(user.moodleID))) ? (
+                        <div className="w-full py-4 bg-gray-700 text-gray-200 rounded-xl font-bold text-lg text-center">
+                          Cannot register individually while part of a team for this event
+                        </div>
+                      ) : (
+                        <button
+                          onClick={()=> handleRegister(event.slug)}
+                          className="w-full py-4 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                        >
+                          Register Now
+                        </button>
+                      )
+                    ))) || (
+                      <div className="w-full py-4 bg-gray-700 text-gray-300 rounded-xl font-bold text-lg text-center">
+                        On Spot registration only
+                      </div>
+                    )
                   )}
                 </motion.div>
               )}

@@ -16,6 +16,7 @@ import {
   LayoutDashboard,
   Activity,
   ChevronRight,
+  Tag,
 } from "lucide-react";
 
 // -----------------------------------------------------------------------------
@@ -98,6 +99,10 @@ export default function Dashboard() {
   const [registrations, setRegistrations] = useState([]);
   const [regLoading, setRegLoading] = useState(true);
 
+  // Cultural registrations
+  const [culturalRegs, setCulturalRegs] = useState([]);
+  const [cultLoading, setCultLoading] = useState(true);
+
   // Redirect if not authenticated
   useEffect(() => {
     if (!loading && !isAuthenticated) {
@@ -105,21 +110,34 @@ export default function Dashboard() {
     }
   }, [loading, isAuthenticated, router]);
 
-  // Fetch registrations
+  // Fetch registrations (sports + cultural)
   useEffect(() => {
     if (user && isAuthenticated) {
-      const fetchRegistrations = async () => {
+      const fetchAllRegistrations = async () => {
+        // Fetch sports registrations (existing)
         try {
           const res = await api.get("api/user-registration-info/");
           setRegistrations(res.data.registrations || []);
         } catch (err) {
-          console.error("Failed to fetch registrations:", err);
+          console.error("Failed to fetch sport registrations:", err);
           setRegistrations([]);
         } finally {
           setRegLoading(false);
         }
+
+        // Fetch cultural registrations
+        try {
+          const cRes = await api.get("cultural/registrations/");
+          setCulturalRegs(cRes.data || []);
+        } catch (err) {
+          console.error("Failed to fetch cultural registrations:", err);
+          setCulturalRegs([]);
+        } finally {
+          setCultLoading(false);
+        }
       };
-      fetchRegistrations();
+
+      fetchAllRegistrations();
     }
   }, [user, isAuthenticated]);
 
@@ -225,7 +243,46 @@ export default function Dashboard() {
           {/* Registrations Section - 380px Height with Scroll */}
           <div className="lg:col-span-2">
             <div className="bg-slate-900/50 border border-white/10 rounded-3xl p-5 shadow-2xl h-[380px] flex flex-col">
-              <div className="flex justify-between items-center mb-4 flex-shrink-0">
+              {/* Cultural Registrations - displayed above sports */}
+          <div className="flex justify-between items-center mb-4 flex-shrink-0">
+            <h3 className="text-lg font-bold text-white flex items-center gap-2">
+              <div className="w-8 h-8 rounded-xl bg-purple-500/10 flex items-center justify-center">
+                <Tag className="w-4 h-4 text-purple-400" />
+              </div>
+              Cultural Registrations
+            </h3>
+            <span className="px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-300 text-xs font-semibold border border-purple-500/20">
+              {culturalRegs.length} {culturalRegs.length === 1 ? 'Event' : 'Events'}
+            </span>
+          </div>
+
+          {/* Loading */}
+          {cultLoading ? (
+            <div className="space-y-2.5">
+              {[1].map((i) => (
+                <div key={i} className="h-12 bg-slate-800/50 rounded-xl animate-pulse" />
+              ))}
+            </div>
+          ) : culturalRegs.length === 0 ? (
+            <div className="mb-4 p-4 rounded-xl bg-slate-800/30 border border-white/5 text-slate-400 text-sm">
+              You have no cultural registrations. Explore the cultural fest to register for events.
+            </div>
+          ) : (
+            <div className="mb-4 space-y-2.5">
+              {culturalRegs.map((reg) => (
+                <div key={reg.id} className="flex items-center justify-between p-3 rounded-xl bg-slate-800/40 border border-white/5">
+                  <div className="min-w-0">
+                    <h4 className="text-sm font-semibold text-white truncate">{reg.event_name || reg.event_slug_display || 'Event'}</h4>
+                    <p className="text-xs text-slate-400">Registered on {new Date(reg.registered_on).toLocaleDateString()}</p>
+                  </div>
+                  <div className="text-xs text-slate-300 font-medium">Registered</div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Sports Registrations */}
+          <div className="flex justify-between items-center mb-4 flex-shrink-0">
                 <h3 className="text-lg font-bold text-white flex items-center gap-2">
                   <div className="w-8 h-8 rounded-xl bg-purple-500/10 flex items-center justify-center">
                     <Activity className="w-4 h-4 text-purple-400" />
