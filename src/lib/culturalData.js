@@ -111,23 +111,7 @@ export const culturalEventsData = {
       url: "/cultural/event/6",
       heads: []
     },
-    {
-      id: 7,
-      slug: "mrnmrs",
-      name: "MR & MRS APSIT",
-      category: "Personality",
-      time: "2PM-4PM",
-      venue: "Room 008",
-      descp: "Personality-based paired competition.",
-      description: "Personality-based paired competition.",
-      img: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&auto=format&fit=crop",
-      image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&auto=format&fit=crop",
-      registrationLink: "/register/mr-mrs-apsit",
-      participants: "Pairs",
-      prize: "TBA",
-      url: "/cultural/event/7",
-      heads: [{ name: "Shivansh Shukla", contact: "7718992512" }]
-    },
+    
     {
       id: 8,
       name: "Doors of Fortune",
