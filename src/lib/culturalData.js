@@ -1,5 +1,4 @@
-// lib/culturalData.js or data/culturalData.js
-// Centralized event data for all days
+
 
 export const culturalEventsData = {
   "1": {
