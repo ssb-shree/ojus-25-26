@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import api from '../api/api'; // Assume this is configured with auth token
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import api from "@/api/api"; // Assume this is configured with auth token
 
 export default function Ticket() {
   const navigate = useNavigate();
-  
+
   const [booking, setBooking] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -12,15 +14,15 @@ export default function Ticket() {
   useEffect(() => {
     const fetchBooking = async () => {
       try {
-        const response = await api.get('/booking/my-booking/');
+        const response = await api.get("/booking/my-booking/");
         setBooking(response.data);
         setError(null);
       } catch (err) {
         if (err.response?.status === 404) {
           setBooking(null);
         } else {
-          console.error('Error fetching booking:', err);
-          setError('Failed to load booking details.');
+          console.error("Error fetching booking:", err);
+          setError("Failed to load booking details.");
         }
       } finally {
         setLoading(false);
@@ -48,22 +50,18 @@ export default function Ticket() {
           <div className="bg-white rounded-2xl shadow-xl p-8 text-center space-y-6">
             <div>
               <div className="text-6xl mb-4">📋</div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                No Booking Found
-              </h1>
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">No Booking Found</h1>
               <p className="text-gray-600">
                 You haven't booked your spot yet. Please complete your booking to proceed.
               </p>
             </div>
 
             {error && (
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700 text-sm">
-                {error}
-              </div>
+              <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700 text-sm">{error}</div>
             )}
 
             <button
-              onClick={() => navigate('/book')}
+              onClick={() => navigate("/book")}
               className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg transition"
             >
               ← Back to Booking
@@ -75,14 +73,14 @@ export default function Ticket() {
   }
 
   const registeredDate = new Date(booking.registered_on);
-  const formattedDate = registeredDate.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  const formattedDate = registeredDate.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
-  const formattedTime = registeredDate.toLocaleTimeString('en-US', {
-    hour: '2-digit',
-    minute: '2-digit',
+  const formattedTime = registeredDate.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
   });
 
   return (
@@ -110,46 +108,28 @@ export default function Ticket() {
             <div className="space-y-4">
               {/* Username */}
               <div className="border-b pb-4">
-                <p className="text-gray-600 text-xs font-semibold uppercase tracking-wider mb-2">
-                  Student Username
-                </p>
-                <p className="text-xl font-semibold text-gray-900">
-                  {booking.student.username}
-                </p>
+                <p className="text-gray-600 text-xs font-semibold uppercase tracking-wider mb-2">Student Username</p>
+                <p className="text-xl font-semibold text-gray-900">{booking.student.username}</p>
               </div>
 
               {/* Moodle ID */}
               <div className="border-b pb-4">
-                <p className="text-gray-600 text-xs font-semibold uppercase tracking-wider mb-2">
-                  Moodle ID
-                </p>
-                <p className="text-xl font-semibold text-gray-900">
-                  #{booking.student.moodleID}
-                </p>
+                <p className="text-gray-600 text-xs font-semibold uppercase tracking-wider mb-2">Moodle ID</p>
+                <p className="text-xl font-semibold text-gray-900">#{booking.student.moodleID}</p>
               </div>
 
               {/* Year */}
               <div className="border-b pb-4">
-                <p className="text-gray-600 text-xs font-semibold uppercase tracking-wider mb-2">
-                  Year
-                </p>
-                <p className="text-xl font-semibold text-gray-900">
-                  {booking.student.year}
-                </p>
+                <p className="text-gray-600 text-xs font-semibold uppercase tracking-wider mb-2">Year</p>
+                <p className="text-xl font-semibold text-gray-900">{booking.student.year}</p>
               </div>
 
               {/* Registered On */}
               <div>
-                <p className="text-gray-600 text-xs font-semibold uppercase tracking-wider mb-2">
-                  Registered On
-                </p>
+                <p className="text-gray-600 text-xs font-semibold uppercase tracking-wider mb-2">Registered On</p>
                 <div className="bg-gray-50 rounded-lg p-3">
-                  <p className="text-gray-900 font-semibold">
-                    {formattedDate}
-                  </p>
-                  <p className="text-gray-600 text-sm">
-                    {formattedTime}
-                  </p>
+                  <p className="text-gray-900 font-semibold">{formattedDate}</p>
+                  <p className="text-gray-600 text-sm">{formattedTime}</p>
                 </div>
               </div>
             </div>
@@ -167,7 +147,7 @@ export default function Ticket() {
             {/* Action Buttons */}
             <div className="space-y-3">
               <button
-                onClick={() => navigate('/book')}
+                onClick={() => navigate("/book")}
                 className="w-full bg-gray-200 hover:bg-gray-300 text-gray-900 font-semibold py-3 rounded-lg transition"
               >
                 ← Back to Booking Page
