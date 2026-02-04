@@ -216,3 +216,14 @@
 //     </div>
 //   );
 // }
+
+
+import React from 'react'
+
+const ScanTicks = () => {
+  return (
+    <div>ScanTicks</div>
+  )
+}
+
+export default ScanTicks
