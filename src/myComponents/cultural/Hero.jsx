@@ -5,7 +5,7 @@ const Hero = () => {
     <>
     
     <section id="hero" className="relative min-h-screen flex items-center bg-no-repeat bg-center w-full bg-cover justify-center bg-[url(/performers-colorful-stage-background.png)] flex-col overflow-hidden py-20">
-        <div className='h-20 flex justify-center z-10 items-center self-start -mt-185 md:-mt-155 gap-50 md:gap-330 sticky w-full'>
+        <div className='h-20 flex justify-center z-10 items-center self-start -mt-185 md:-mt-155 gap-50 md:gap-330 sticky top-0 w-full'>
           <img className='rounded-full h-15  ' src="/logo.jpg" alt="logo" />
           <img className='rounded-4xl h-full  ' src="/cultural-2026.png" alt="cultural image" />
         </div>    
