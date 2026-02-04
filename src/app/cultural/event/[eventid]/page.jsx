@@ -39,7 +39,37 @@ export default function EventDetailsPage() {
   const [eventInfo, setEventInfo] = useState(null);
   const [user, setUser] = useState(null)
   const [registeredEvents, setRegisteredEvents] = useState([])
+  const [showPhoneModal, setShowPhoneModal] = useState(false)
+  const [phoneNumberInput, setPhoneNumberInput] = useState("")
+  const [phoneSaving, setPhoneSaving] = useState(false)
   const eventId = String(params?.eventid || params?.eventId || '');
+
+  const submitPhoneNumber = async () => {
+    const val = (phoneNumberInput || '').trim()
+    if (!val || val.length < 10) {
+      toast.error('Please enter a valid phone number')
+      return
+    }
+    setPhoneSaving(true)
+    try {
+      const res = await api.put('auth/me/update/', { phone_number: val })
+      if (res.status === 200) {
+        toast.success('Phone number saved')
+        setUser(res.data)
+        setShowPhoneModal(false)
+      } else {
+        toast.error('Failed to save phone number')
+      }
+    } catch (err) {
+      const serverMsg = err?.response?.data || err?.message || 'Something went wrong'
+      if (typeof serverMsg === 'string') toast.error(serverMsg)
+      else if (serverMsg?.phone_number) toast.error(serverMsg.phone_number[0])
+      else toast.error('Could not update phone number')
+      console.log(err)
+    } finally {
+      setPhoneSaving(false)
+    }
+  }
 
   const handleRegister = async (event_slug)=>{
 
@@ -57,14 +87,22 @@ export default function EventDetailsPage() {
 
     setUser(res.data);
 
+    // Require phone number before registering
+    if (res.data?.phone_number === "") {
+      setPhoneNumberInput("")
+      setShowPhoneModal(true)
+      toast.error('Please add your phone number before registering')
+      return
+    }
+
     const regRes = await api.post("cultural/register/", {
       event_slug: event_slug,
     })
 
-    if (regRes.status === 200) {
+    if (regRes.status === 200 || regRes.status === 201) {
       toast.success("Registered successfully")
-      // mark locally as registered by slug
-      setRegisteredEvents(prev => Array.from(new Set([...prev, event_slug])))
+      // mark locally as registered by slug (ensure strings)
+      setRegisteredEvents(prev => Array.from(new Set([...prev.map(String), String(event_slug)])))
     } else {
       toast.error("Registration failed")
     }
@@ -83,7 +121,7 @@ export default function EventDetailsPage() {
     }
     console.log(error)
   }
-} 
+}
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -102,10 +140,17 @@ export default function EventDetailsPage() {
         const me = await api.get('auth/me/')
         if (me.status === 200) {
           setUser(me.data)
+
+          // If phone_number is a blank string, prompt the user
+          if (me.data?.phone_number === "") {
+            setPhoneNumberInput("")
+            setShowPhoneModal(true)
+          }
+
           const regs = await api.get('cultural/registrations/')
           if (regs.status === 200) {
-            // backend now exposes event_slug on registration
-            setRegisteredEvents(regs.data.map(r => r.event_slug || r.event))
+            // backend now exposes event_slug on registration; normalize to strings
+            setRegisteredEvents(regs.data.map(r => (r.event_slug ? String(r.event_slug) : String(r.event))))
           }
         }
       } catch (err) {
@@ -116,6 +161,8 @@ export default function EventDetailsPage() {
     fetchRegistrations()
   }, [])
   
+  const isRegistered = eventInfo && (registeredEvents.includes(String(eventInfo.event?.slug)) || registeredEvents.includes(String(eventInfo.event?.id)))
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-gray-950 to-black text-white flex items-center justify-center">
@@ -155,6 +202,38 @@ export default function EventDetailsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-black text-white">
+
+      {showPhoneModal && (
+        <div className="fixed inset-0 z-60 flex items-center justify-center bg-black/60">
+          <div className="bg-gray-900 rounded-lg p-6 w-full max-w-md border border-gray-800">
+            <h2 className="text-lg font-bold mb-2">Add Phone Number</h2>
+            <p className="text-sm text-gray-400 mb-4">Please provide your phone number to continue.</p>
+            <input
+              type="tel"
+              value={phoneNumberInput}
+              onChange={(e) => setPhoneNumberInput(e.target.value)}
+              className="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white mb-4"
+              placeholder="Enter phone number"
+            />
+            <div className="flex gap-3 justify-end">
+              <button
+                onClick={() => setShowPhoneModal(false)}
+                className="px-4 py-2 bg-gray-700 rounded-lg"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={submitPhoneNumber}
+                disabled={phoneSaving}
+                className="px-4 py-2 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg"
+              >
+                {phoneSaving ? 'Saving...' : 'Save'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Fixed Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-gray-950/95 backdrop-blur-md border-b border-gray-800/50">
         <div className="container mx-auto px-4 py-3">
@@ -309,7 +388,7 @@ export default function EventDetailsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.4 }}
                 >
-                  {registeredEvents.includes(event.slug) ? (
+                  {isRegistered ? (
                     <button
                       disabled
                       className="w-full py-4 bg-gray-700 text-gray-300 rounded-xl font-bold text-lg transition-all duration-200"
