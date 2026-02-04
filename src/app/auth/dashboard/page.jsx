@@ -232,7 +232,7 @@ export default function Dashboard() {
               <div className="mt-3 pt-2.5 border-t border-white/5 flex-shrink-0">
                 <button
                   onClick={handleLogout}
-                  className="w-full flex items-center justify-center gap-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 py-2 rounded-lg transition-all border border-red-500/20 text-sm font-medium"
+                  className="w-full mt-3 flex items-center justify-center gap-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 py-2 rounded-lg transition-all border border-red-500/20 text-sm font-medium"
                 >
                   <LogOut className="w-4 h-4" /> Sign Out
                 </button>
