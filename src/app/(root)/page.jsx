@@ -156,7 +156,7 @@ const OjusCommonPage = () => {
         <section className="relative w-full h-screen flex items-center justify-center overflow-hidden">
           <video className="absolute inset-0 w-full h-full object-cover z-0" autoPlay loop muted>
             <source
-              src="https://res.cloudinary.com/dzcxkso7f/video/upload/f_auto,q_auto:good,vc_auto/v1763203152/VID-20251109-WA0023_jisifq.mp4"
+              src="https://res.cloudinary.com/dkgnaesvl/video/upload/v1770256350/lv_0_20251122163624_1_hlndbm.mp4"
               type="video/mp4"
             />
           </video>

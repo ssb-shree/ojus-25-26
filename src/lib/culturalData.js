@@ -462,6 +462,7 @@ export const culturalEventsData = {
     {
       id: 30,
       name: "Paintball",
+      slug: "paintball",
       category: "Sports",
       time: "11AM-4PM",
       venue: "Nets",
@@ -541,6 +542,7 @@ export const culturalEventsData = {
     },
     {
       id: 35,
+      slug: "mrnmrs",
       name: "MR & MRS APSIT (Round 1)",
       category: "Personality",
       time: "2PM-4PM",
@@ -963,6 +965,7 @@ export const culturalEventsData = {
     },
     {
       id: 63,
+      slug: "mrnmrs",
       name: "MR & MRS APSIT (Round 2)",
       category: "Personality",
       time: "2PM-4PM",
