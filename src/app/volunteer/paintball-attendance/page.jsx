@@ -13,7 +13,6 @@ export default function PaintballAttendancePage() {
   const [teams, setTeams] = useState([]);
   const [leaderMoodleId, setLeaderMoodleId] = useState("");
   const [marking, setMarking] = useState(false);
-  const [marked, setMarked] = useState(new Set());
 
   // Check if user is managing on mount
   useEffect(() => {
@@ -40,24 +39,35 @@ export default function PaintballAttendancePage() {
 
   // Fetch all teams for paintball
   useEffect(() => {
-    if (!user?.is_managing) return;
+    console.log("useEffect triggered. User is managing:", user?.is_managing);
+    if (!user) {
+      console.log("User not set yet, skipping teams fetch");
+      return;
+    }
+    if (!user.is_managing) {
+      console.log("User is not managing, skipping teams fetch");
+      return;
+    }
+    
     const fetchTeams = async () => {
       try {
+        console.log("Fetching teams from cultural/teams/attendance/paintball/");
         const res = await api.get("cultural/teams/attendance/paintball/");
+        console.log("Teams response status:", res.status);
+        console.log("Teams fetched:", res.data);
         if (res.status === 200) {
-          setTeams(res.data);
-          // track which teams are marked as attended
-          const attendedIds = new Set(
-            res.data.filter(t => t.attended).map(t => t.id)
-          );
-          setMarked(attendedIds);
+          setTeams(Array.isArray(res.data) ? res.data : []);
         }
       } catch (err) {
-        console.log(err);
+        console.error("Error fetching teams:", err);
+        console.error("Error response:", err?.response?.data);
+        console.error("Error status:", err?.response?.status);
+        toast.error(`Failed to fetch teams: ${err?.response?.data?.error || err?.message || 'Unknown error'}`);
+        setTeams([]); // Set empty array on error to prevent undefined
       }
     };
     fetchTeams();
-  }, [user?.is_managing]);
+  }, [user]);
 
   const handleMarkAttended = async () => {
     const id = (leaderMoodleId || "").trim();
@@ -76,17 +86,12 @@ export default function PaintballAttendancePage() {
         setLeaderMoodleId("");
         
         // update local teams list (leader is object now)
+        const leaderId = parseInt(id, 10);
         setTeams(prev =>
           prev.map(t =>
-            t.leader && t.leader.moodleID === parseInt(id, 10) ? { ...t, attended: true } : t
+            t.leader && parseInt(String(t.leader.moodleID), 10) === leaderId ? { ...t, attended: true } : t
           )
         );
-
-        // add to marked set
-        const team = teams.find(t => t.leader && t.leader.moodleID === parseInt(id, 10));
-        if (team) {
-          setMarked(prev => new Set([...prev, team.id]));
-        }
       }
     } catch (err) {
       const msg = err?.response?.data?.error || err?.message || "Failed to mark attendance";
@@ -109,7 +114,7 @@ export default function PaintballAttendancePage() {
     return null;
   }
 
-  const attendedCount = teams.filter(t => marked.has(t.id)).length;
+  const attendedCount = teams.filter(t => t.attended === true).length;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-black text-white">
@@ -193,12 +198,11 @@ export default function PaintballAttendancePage() {
             ) : (
               <div className="space-y-3 max-h-96 overflow-y-auto">
                 {teams.map((team) => {
-                  const isAttended = marked.has(team.id);
                   return (
                     <div
                       key={team.id}
                       className={`p-4 rounded-lg border transition-all duration-300 ${
-                        isAttended
+                        team.attended === true
                           ? "bg-green-500/10 border-green-500/30"
                           : "bg-gray-800/30 border-gray-700/50"
                       }`}
@@ -207,7 +211,7 @@ export default function PaintballAttendancePage() {
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-1">
                             <p className="font-bold text-white">{team.name}</p>
-                            {isAttended && (
+                            {team.attended === true && (
                               <CheckCircle className="w-5 h-5 text-green-500" />
                             )}
                           </div>
@@ -217,8 +221,8 @@ export default function PaintballAttendancePage() {
                             <p className="text-sm text-gray-400">Contact: {team.secondary_contact_number}</p>
                           )}
                         </div>
-                        <div className={`text-xs font-semibold px-3 py-1 rounded-full ${isAttended ? "bg-green-500/20 text-green-300" : "bg-gray-700/50 text-gray-300"}`}>
-                          {isAttended ? "Attended" : "Pending"}
+                        <div className={`text-xs font-semibold px-3 py-1 rounded-full ${team.attended === true ? "bg-green-500/20 text-green-300" : "bg-gray-700/50 text-gray-300"}`}>
+                          {team.attended === true ? "Attended" : "Pending"}
                         </div>
                       </div>
                     </div>
