@@ -560,6 +560,59 @@ export default function EventDetailsPage() {
                           )}
                         </div>
                       )}
+
+                      {/* Show user's team details if they are part of a team */}
+                      {user && isUserInTeamForEvent(userTeams, String(event.slug), user) && (
+                        <div className="mt-6 bg-gray-900/30 rounded-xl p-6 border border-gray-800/50">
+                          <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                            <Users className="w-5 h-5 text-green-400" />
+                            Your Team
+                          </h3>
+                          
+                          {userTeams && userTeams.length > 0 && (
+                            <div className="space-y-4">
+                              {userTeams.filter(team => String(team.event_slug) === String(event.slug) && isUserInTeam(team, user)).map(team => {
+                                const leaderName = team.leader && (team.leader.first_name || team.leader.last_name) 
+                                  ? `${team.leader.first_name || ''} ${team.leader.last_name || ''}`.trim() 
+                                  : (team.leader?.moodleID || 'Unknown')
+                                const leaderId = team.leader?.moodleID || team.leader || 'N/A'
+                                
+                                return (
+                                  <div key={team.id} className="bg-gray-800/30 rounded-lg p-4 border border-gray-700/50">
+                                    <div className="mb-3">
+                                      <p className="font-semibold text-white text-base mb-1">{team.name}</p>
+                                      <p className="text-sm text-gray-400">
+                                        <span className="font-medium">Leader:</span> {leaderName} (ID: {leaderId})
+                                      </p>
+                                    </div>
+                                    
+                                    {team.members && team.members.length > 0 ? (
+                                      <div>
+                                        <p className="text-xs font-medium text-gray-400 mb-2">Members:</p>
+                                        <ul className="space-y-1 ml-2">
+                                          {team.members.map((member, idx) => {
+                                            const memberId = typeof member === 'object' ? (member.moodleID || member.id || 'N/A') : member
+                                            const memberName = typeof member === 'object' && (member.first_name || member.last_name)
+                                              ? `${member.first_name || ''} ${member.last_name || ''}`.trim()
+                                              : null
+                                            return (
+                                              <li key={idx} className="text-sm text-gray-300">
+                                                • {memberName ? `${memberName} (ID: ${memberId})` : `ID: ${memberId}`}
+                                              </li>
+                                            )
+                                          })}
+                                        </ul>
+                                      </div>
+                                    ) : (
+                                      <p className="text-xs text-gray-500 italic">No members added yet</p>
+                                    )}
+                                  </div>
+                                )
+                              })}
+                            </div>
+                          )}
+                        </div>
+                      )}
                     </div>
                   ) : (
                     // Individual registration flow (unchanged) but block if user is part of a team
