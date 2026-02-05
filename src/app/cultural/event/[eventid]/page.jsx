@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { culturalEventsData } from "@/lib/culturalData";
 import api from "@/api/api";
+import { isUserInTeam, isUserInTeamForEvent } from "@/utils/teamUtils";
 
 import {toast} from "react-hot-toast"
 
@@ -215,24 +216,53 @@ export default function EventDetailsPage() {
         secondary_contact_number: teamSecondary,
       }
       const res = await api.post('cultural/teams/create/', payload)
-      if (res.status === 201) {
-        toast.success('Team created')
-        // add to user teams and event teams
-        setUserTeams(prev => [res.data, ...prev])
-        setEventTeams(prev => [res.data, ...prev])
+      if (res.status === 201 || res.status === 200) {
+        toast.success('Team created successfully')
+        
+        // Refetch teams from backend instead of relying on local mutation
+        try {
+          const t = await api.get('cultural/teams/my/')
+          if (t.status === 200) {
+            setUserTeams(t.data)
+          }
+          
+          // Also refetch event teams
+          if (event?.slug) {
+            const eventRes = await api.get(`cultural/teams/event/${event.slug}/`)
+            if (eventRes.status === 200) {
+              setEventTeams(eventRes.data)
+            }
+          }
+        } catch (err) {
+          console.error('Error refetching teams:', err)
+        }
+        
+        // Clear form inputs
         setTeamName('')
         setMemberIdsInput('')
         setTeamSecondary('')
+      }
+    } catch (err) {
+      console.error('Error creating team:', err)
+      const serverMsg = err?.response?.data
+      
+      if (typeof serverMsg === 'string') {
+        toast.error(serverMsg)
+      } else if (serverMsg?.error) {
+        toast.error(serverMsg.error)
+      } else if (serverMsg?.member_moodle_ids) {
+        toast.error(Array.isArray(serverMsg.member_moodle_ids) ? serverMsg.member_moodle_ids[0] : serverMsg.member_moodle_ids)
+      } else if (serverMsg?.non_field_errors) {
+        const msg = Array.isArray(serverMsg.non_field_errors) ? serverMsg.non_field_errors[0] : serverMsg.non_field_errors
+        toast.error(msg)
+      } else if (serverMsg?.name) {
+        const msg = Array.isArray(serverMsg.name) ? serverMsg.name[0] : serverMsg.name
+        toast.error(msg)
+      } else if (err?.message) {
+        toast.error(err.message)
       } else {
         toast.error('Failed to create team')
       }
-    } catch (err) {
-      const serverMsg = err?.response?.data || err?.message || 'Something went wrong'
-      if (typeof serverMsg === 'string') toast.error(serverMsg)
-      else if (serverMsg?.member_moodle_ids) toast.error(serverMsg.member_moodle_ids[0])
-      else if (serverMsg?.non_field_errors) toast.error(serverMsg.non_field_errors[0] || serverMsg.non_field_errors)
-      else toast.error('Could not create team')
-      console.log(err)
     } finally {
       setTeamCreating(false)
     }
@@ -470,9 +500,9 @@ export default function EventDetailsPage() {
                     // Team flow
                     <div>
                       {/* If user is part of a team for this event */}
-                      {user && (userTeams || []).some(t => t.event_slug === String(event.slug) && (t.leader === user.moodleID || (t.members || []).includes(user.moodleID))) ? (
+                      {user && isUserInTeamForEvent(userTeams, String(event.slug), user) ? (
                         <div className="w-full py-4 bg-gray-700 text-gray-200 rounded-xl font-bold text-lg text-center">
-                          You are part of a team for this event.
+                          You are already part of a team for this event.
                         </div>
                       ) : (
                         // show team creation form for authenticated users
@@ -530,21 +560,6 @@ export default function EventDetailsPage() {
                           )}
                         </div>
                       )}
-
-                      {/* show event teams list (optional) */}
-                      <div className="mt-4 text-sm text-gray-400">
-                        <button
-                          onClick={fetchEventTeams}
-                          className="underline"
-                        >View all teams for this event</button>
-                        {eventTeams && eventTeams.length > 0 && (
-                          <ul className="mt-2 list-disc list-inside text-gray-300">
-                            {eventTeams.map(t => (
-                              <li key={t.id}>{t.name} — Leader: {t.leader}</li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
                     </div>
                   ) : (
                     // Individual registration flow (unchanged) but block if user is part of a team
@@ -557,7 +572,7 @@ export default function EventDetailsPage() {
                       </button>
                     ) : (
                       // If user is in a team for the event, block
-                      user && (userTeams || []).some(t => t.event_slug === String(event.slug) && (t.leader === user.moodleID || (t.members || []).includes(user.moodleID))) ? (
+                      user && isUserInTeamForEvent(userTeams, String(event.slug), user) ? (
                         <div className="w-full py-4 bg-gray-700 text-gray-200 rounded-xl font-bold text-lg text-center">
                           Cannot register individually while part of a team for this event
                         </div>
