@@ -1,5 +1,4 @@
-// lib/culturalData.js or data/culturalData.js
-// Centralized event data for all days
+
 
 export const culturalEventsData = {
   "1": {
@@ -111,23 +110,7 @@ export const culturalEventsData = {
       url: "/cultural/event/6",
       heads: []
     },
-    {
-      id: 7,
-      slug: "mrnmrs",
-      name: "MR & MRS APSIT",
-      category: "Personality",
-      time: "2PM-4PM",
-      venue: "Room 008",
-      descp: "Personality-based paired competition.",
-      description: "Personality-based paired competition.",
-      img: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&auto=format&fit=crop",
-      image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&auto=format&fit=crop",
-      registrationLink: "/register/mr-mrs-apsit",
-      participants: "Pairs",
-      prize: "TBA",
-      url: "/cultural/event/7",
-      heads: [{ name: "Shivansh Shukla", contact: "7718992512" }]
-    },
+    
     {
       id: 8,
       name: "Doors of Fortune",
@@ -254,22 +237,21 @@ export const culturalEventsData = {
     },
     {
       id: 15,
-      name: "Treasure Hunt",
+      name: "Treasure Hunt (Round 1)",
       category: "Adventure",
-      time: "11AM-4PM",
+      time: "11AM-3PM",
       venue: "Room 203",
       descp: "Clue-based hunt involving riddles and navigation.",
       description: "Clue-based hunt involving riddles and navigation.",
-      img: "https://imgs.search.brave.com/kcokFEQHq34Ulckr6rQZaJFZUamhLuADVIS21P-DhaY/rs:fit:0:180:1:0/g:ce/aHR0cHM6Ly9lbi13/aWtpLm1ldGluMi5n/YW1lZm9yZ2UuY29t/L2ltYWdlcy90aHVt/Yi9iL2I1L1RyZWFz/dXJlX0h1bnRfSGVh/ZGVyLmpwZy84MDBw/eC1UcmVhc3VyZV9I/dW50X0hlYWRlci5qcGc",
-      image: "https://imgs.search.brave.com/kcokFEQHq34Ulckr6rQZaJFZUamhLuADVIS21P-DhaY/rs:fit:0:180:1:0/g:ce/aHR0cHM6Ly9lbi13/aWtpLm1ldGluMi5n/YW1lZm9yZ2UuY29t/L2ltYWdlcy90aHVt/Yi9iL2I1L1RyZWFz/dXJlX0h1bnRfSGVh/ZGVyLmpwZy84MDBw/eC1UcmVhc3VyZV9I/dW50X0hlYWRlci5q/cGc",
+      img: "https://imgs.search.brave.com/k7J1SmsB2I7umIADH0FDkVVL6OFiYbmVDYHj_RV5icI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA3LzkyLzU4LzQ0/LzM2MF9GXzc5MjU4/NDQ4MV84dDAxQWhv/cTBTZ1JzbjdwbE5I/VlRMQ0tQT0FGSERr/VC5qcGc",
+      image: "https://imgs.search.brave.com/k7J1SmsB2I7umIADH0FDkVVL6OFiYbmVDYHj_RV5icI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA3LzkyLzU4LzQ0/LzM2MF9GXzc5MjU4/NDQ4MV84dDAxQWhv/cTBTZ1JzbjdwbE5I/VlRMQ0tQT0FGSERr/VC5qcGc",
       registrationLink: "/register/treasure-hunt",
       participants: "Team-based",
       prize: "TBA",
-      url: "/cultural/event/15",
+      url: "/cultural/event/43",
       heads: [
         { name: "Manthan Patil", contact: "9324345357" },
-        { name: "Shravani Yeola", contact: "7021441964" },
-        { name: "Pushkaraj Narkhade", contact: "9920201999" }
+        { name: "Arya Hegiste", contact: "7900184769" }
       ]
     },
     {
@@ -549,8 +531,8 @@ export const culturalEventsData = {
       venue: "Room 008",
       descp: "Personality-based paired competition.",
       description: "Personality-based paired competition.",
-      img: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&auto=format&fit=crop",
-      image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&auto=format&fit=crop",
+      img: "https://ojus.apsit.edu.in/suits_saree.png",
+      image: "https://ojus.apsit.edu.in/suits_saree.png",
       registrationLink: "/register/mr-mrs-apsit",
       participants: "Pairs",
       prize: "TBA",
@@ -686,8 +668,8 @@ export const culturalEventsData = {
       venue: "Room 203",
       descp: "Clue-based hunt involving riddles and navigation.",
       description: "Clue-based hunt involving riddles and navigation.",
-      img: "https://imgs.search.brave.com/kcokFEQHq34Ulckr6rQZaJFZUamhLuADVIS21P-DhaY/rs:fit:0:180:1:0/g:ce/aHR0cHM6Ly9lbi13/aWtpLm1ldGluMi5n/YW1lZm9yZ2UuY29t/L2ltYWdlcy90aHVt/Yi9iL2I1L1RyZWFz/dXJlX0h1bnRfSGVh/ZGVyLmpwZy84MDBw/eC1UcmVhc3VyZV9I/dW50X0hlYWRlci5qcGc",
-      image: "https://imgs.search.brave.com/kcokFEQHq34Ulckr6rQZaJFZUamhLuADVIS21P-DhaY/rs:fit:0:180:1:0/g:ce/aHR0cHM6Ly9lbi13/aWtpLm1ldGluMi5n/YW1lZm9yZ2UuY29t/L2ltYWdlcy90aHVt/Yi9iL2I1L1RyZWFz/dXJlX0h1bnRfSGVh/ZGVyLmpwZy84MDBw/eC1UcmVhc3VyZV9I/dW50X0hlYWRlci5qcGc",
+      img: "https://imgs.search.brave.com/k7J1SmsB2I7umIADH0FDkVVL6OFiYbmVDYHj_RV5icI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA3LzkyLzU4LzQ0/LzM2MF9GXzc5MjU4/NDQ4MV84dDAxQWhv/cTBTZ1JzbjdwbE5I/VlRMQ0tQT0FGSERr/VC5qcGc",
+      image: "https://imgs.search.brave.com/k7J1SmsB2I7umIADH0FDkVVL6OFiYbmVDYHj_RV5icI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA3LzkyLzU4LzQ0/LzM2MF9GXzc5MjU4/NDQ4MV84dDAxQWhv/cTBTZ1JzbjdwbE5I/VlRMQ0tQT0FGSERr/VC5qcGc",
       registrationLink: "/register/treasure-hunt",
       participants: "Team-based",
       prize: "TBA",
@@ -906,6 +888,25 @@ export const culturalEventsData = {
       prize: "TBA",
       url: "/cultural/event/55",
       heads: [{ name: "Soham Patil", contact: "" }]
+    },
+    {
+      id: 56,
+      name: "Fun Fair",
+      category: "Entertainment",
+      time: "FULL DAY",
+      venue: "Room 202",
+      descp: "Carnival-style stalls and games.",
+      description: "Carnival-style stalls and games.",
+      img: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&auto=format&fit=crop",
+      registrationLink: "/register/fun-fair",
+      participants: "Open",
+      prize: "TBA",
+      url: "/cultural/event/67",
+      heads: [
+        { name: "Riddhi Jain", contact: "9422876240" },
+        { name: "Shivank Tiwari", contact: "8104796055" }
+      ]
     }
   ]
 },
@@ -972,8 +973,8 @@ export const culturalEventsData = {
       venue: "Room 008",
       descp: "Final round of MR & MRS APSIT.",
       description: "Final round of MR & MRS APSIT.",
-      img: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&auto=format&fit=crop",
-      image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&auto=format&fit=crop",
+      img: "https://ojus.apsit.edu.in/suits_saree.png",
+      image: "https://ojus.apsit.edu.in/suits_saree.png",
       registrationLink: "/register/mr-mrs-apsit",
       participants: "Pairs",
       prize: "TBA",

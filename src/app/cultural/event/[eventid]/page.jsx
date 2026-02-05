@@ -688,7 +688,7 @@ export default function EventDetailsPage() {
         <div className="container mx-auto max-w-4xl">
           <div className="text-center">
             <p className="text-gray-500 text-xs">
-              © 2024 Ojus Cultural Fest • Day {dayNumber}
+              © 2026 Ojus Cultural Fest • Day {dayNumber}
             </p>
           </div>
         </div>
