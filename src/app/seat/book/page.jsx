@@ -173,13 +173,18 @@ export default function Book() {
 
               {/* Enhanced Progress Bar */}
               <div className="relative h-4 bg-white/5 rounded-full mb-10 overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: `${availablePercent}%` }}
-                  className={`absolute inset-y-0 left-0 bg-linear-to-r from-${barColor}-600  to-${barColor}-500 rounded-full`}
-                >
-                  <div className="absolute inset-0 bg-[linear-gradient(45deg,rgba(255,255,255,0.2)_25%,transparent_25%,transparent_50%,rgba(255,255,255,0.2)_50%,rgba(255,255,255,0.2)_75%,transparent_75%,transparent)] bg-[length:20px_20px] animate-[move_1s_linear_infinite]" />
-                </motion.div>
+              <motion.div
+  style={{
+    background: barColor === "green"
+      ? "linear-gradient(to right, #16a34a, #22c55e)"
+      : barColor === "yellow"
+      ? "linear-gradient(to right, #ca8a04, #eab308)"
+      : "linear-gradient(to right, #dc2626, #ef4444)",
+  }}
+  animate={{ width: `${availablePercent}%` }}
+  className="absolute inset-y-0 left-0 rounded-full"
+/>
+
               </div>
 
               <AnimatePresence mode="wait">
