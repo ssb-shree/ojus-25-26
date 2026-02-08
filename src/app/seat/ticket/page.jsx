@@ -100,7 +100,7 @@ export default function Ticket() {
           {/* QR */}
           <div className="flex flex-col items-center gap-3">
             <div className="bg-base-100 p-4 rounded-2xl shadow-inner border">
-              <QRCodeSVG value={String(`https://cycles-annual-essay-handles.trycloudflare.com/booking/mark-present/${booking.moodleID}`)} width={180} height={180} />
+              <QRCodeSVG value={String(`https://ojus.apsit.edu.in/seat/scan/${booking.moodleID}`)} width={180} height={180} />
             </div>
 
             <span className="badge badge-outline">Scan at gate</span>
