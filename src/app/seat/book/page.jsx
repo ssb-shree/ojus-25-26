@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 import api from "@/api/api";
 
-const TOTAL_CAPACITY = 5;
+const TOTAL_CAPACITY = 900;
 const WS_URL = 'ws://localhost:8000/ws/bookings/';
 
 export default function Book() {
