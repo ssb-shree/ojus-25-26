@@ -166,7 +166,7 @@ export default function Book() {
                   <p className="text-sm text-gray-500">Book Your Seats</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-[10px] text-gray-500 uppercase tracking-widest"></p>
+                  <p className="text-[10px] text-gray-500 uppercase tracking-widest">{remaining === 900 ? "all seats are reserved, few seats will open after lunch" : "booking has started!!!"}</p>
                 </div>
               </div>
 
