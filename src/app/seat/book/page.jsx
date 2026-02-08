@@ -166,7 +166,6 @@ export default function Book() {
                   <p className="text-sm text-gray-500">Live seat counter</p>
                 </div>
                 <div className="text-right">
-                  <span className="text-3xl font-mono font-bold text-orange-500">{remaining}</span>
                   <p className="text-[10px] text-gray-500 uppercase tracking-widest">Left</p>
                 </div>
               </div>
