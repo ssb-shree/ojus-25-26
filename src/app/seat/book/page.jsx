@@ -35,14 +35,6 @@ export default function Book() {
   const [barColor, setBarColor] = useState("green");
 
    const { isAuthenticated } = useAuth();
-    // Redirect if not authenticated
-  useEffect(() => {
-    if (!isAuthenticated) {
-      router.push("/auth/login");
-    }
-  }, [loading, isAuthenticated, router]);
-
-  const wsRef = useRef(null);
 
   // Initial Logic (Simplified for brevity, keep your original fetch logic here)
   useEffect(() => {
@@ -77,6 +69,10 @@ export default function Book() {
   }, []);
 
   const handleBook = async () => {
+    if(!isAuthenticated){
+      alert("you are not logged in")
+      return
+    }
     setBookingLoading(true);
     try {
       const res = await api.post("/booking/book/");
