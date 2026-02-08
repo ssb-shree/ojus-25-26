@@ -67,7 +67,7 @@ export default function Ticket() {
 
   /* ---------------- Ticket ---------------- */
   return (
-   <div className="bg-gradient-to-r from-primary to-secondary text-primary-content px-6 py-6 rounded-t-2xl">
+   <div className="min-h-screen flex items-center justify-center bg-black text-white px-6 py-6 rounded-t-2xl">
       <div ref={ticketRef} className="card w-full max-w-md bg-base-100 shadow-2xl border border-base-300">
         {/* Header */}
         <div className="bg-gradient-to-r from-primary to-secondary text-primary-content px-6 py-6 rounded-t-2xl">
