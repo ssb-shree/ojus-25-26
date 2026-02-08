@@ -2,18 +2,18 @@ import axiosInstance from "@/api/api";
 import { ShieldCheck, ShieldX, User, Hash } from "lucide-react";
 
 const GetTicketInfo = async ({ params }) => {
-  const { id } = params;
+  const { id } = await params;
 
   const getData = async () => {
     try {
-      return await axiosInstance.get("/booking/book/");
+      return await axiosInstance.get(`/booking/verify/${id}/`);
     } catch (error) {
       return null;
     }
   };
 
   const data = await getData();
-
+  console.log(data);
   if (!data) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-red-50">
@@ -28,7 +28,11 @@ const GetTicketInfo = async ({ params }) => {
     );
   }
 
-  const { isBooked, name, year, moodleID } = data;
+  // const { isBooked, name, year, moodleID } = data;
+  const {student, register_on} = data.data;
+  console.log(data.data);
+  const {name, year, moodleID} = student;
+  // console.log(name, year, moodleID);
 
   // ✅ BOOKED / VALID UI
   return (
@@ -42,7 +46,7 @@ const GetTicketInfo = async ({ params }) => {
           </div>
         </div>
 
-        <div className="space-y-3 text-sm">
+        <div className="space-y-3 text-sm text-black ">
           <div className="flex items-center gap-2 rounded-lg bg-gray-50 px-3 py-2">
             <User className="h-4 w-4 text-gray-500" />
             <span className="font-medium">Name:</span>

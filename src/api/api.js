@@ -4,7 +4,7 @@ const axiosInstance = axios.create({
   baseURL: baseURL[3],
   headers: {
     "Content-Type": "application/json",
-  },
+  }
 });
 
 // Automatically attach token to every request
