@@ -96,7 +96,7 @@ export default function Book() {
     );
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white overflow-x-hidden">
+    <div className="min-h-screen bg-primary text-primary-content overflow-x-hidden">
       {/* --- Aesthetic Background Elements --- */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-orange-900/20 blur-[120px] rounded-full" />
