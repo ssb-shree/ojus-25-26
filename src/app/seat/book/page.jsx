@@ -71,7 +71,7 @@ export default function Book() {
   const handleBook = async () => {
     if(!isAuthenticated){
       alert("you are not logged in")
-      router.push("/login")
+      router.push("/auth/login")
       return
     }
     setBookingLoading(true);
