@@ -198,7 +198,6 @@ export default function Book() {
                       <CheckCircle size={32} />
                     </div>
                     <h4 className="text-xl font-bold mb-2">You're on the list!</h4>
-                    <p className="text-gray-500 text-sm mb-6">Check your dashboard for the QR pass.</p>
                     <button
                       onClick={() => router.push("/seat/ticket")}
                       className="w-full py-4 bg-white text-black font-bold rounded-2xl hover:bg-gray-200 transition-all"
