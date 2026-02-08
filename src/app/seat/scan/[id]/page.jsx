@@ -4,10 +4,17 @@ import { ShieldCheck, ShieldX, User, Hash } from "lucide-react";
 const GetTicketInfo = async ({ params }) => {
   const { id } = params;
 
-  const { data } = await axiosInstance.get("/booking/book/");
-  const { isBooked, name, year, moodleID } = data;
+  const getData = async () => {
+    try {
+      return await axiosInstance.get("/booking/book/");
+    } catch (error) {
+      return null;
+    }
+  };
 
-  if (!isBooked) {
+  const data = await getData();
+
+  if (!data) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-red-50">
         <div className="max-w-md w-full rounded-2xl border border-red-200 bg-white p-6 text-center shadow-lg">
@@ -20,6 +27,8 @@ const GetTicketInfo = async ({ params }) => {
       </div>
     );
   }
+
+  const { isBooked, name, year, moodleID } = data;
 
   // ✅ BOOKED / VALID UI
   return (
