@@ -163,10 +163,10 @@ export default function Book() {
               <div className="flex items-center justify-between mb-8">
                 <div>
                   <h3 className="text-2xl font-bold">Booking</h3>
-                  <p className="text-sm text-gray-500">Live seat counter</p>
+                  <p className="text-sm text-gray-500">Book Your Seats</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-[10px] text-gray-500 uppercase tracking-widest">Left</p>
+                  <p className="text-[10px] text-gray-500 uppercase tracking-widest"></p>
                 </div>
               </div>
 
