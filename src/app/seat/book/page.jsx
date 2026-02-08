@@ -134,7 +134,7 @@ export default function Book() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
               { icon: Calendar, label: "Date", val: "Feb 9, 2026" },
-              { icon: Clock, label: "Doors Open", val: "7:30 AM" },
+              { icon: Clock, label: "Doors Open", val: "7:00 AM" },
               { icon: MapPin, label: "Venue", val: "Kashinath Ghanekar" },
               { icon: ShieldCheck, label: "Entry", val: "Student ID Required" },
             ].map((item, i) => (
