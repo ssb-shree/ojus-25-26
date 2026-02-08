@@ -6,6 +6,8 @@ import api from "@/api/api";
 import { QRCodeSVG } from "qrcode.react";
 import { toPng } from "html-to-image";
 
+import Link from "next/link"
+
 export default function Ticket() {
   const router = useRouter();
   const ticketRef = useRef(null);
@@ -67,8 +69,8 @@ export default function Ticket() {
 
   /* ---------------- Ticket ---------------- */
   return (
-   <div className="min-h-screen flex items-center justify-center bg-black text-white px-6 py-6 rounded-t-2xl">
-      <div ref={ticketRef} className="card w-full max-w-md bg-base-100 shadow-2xl border border-base-300">
+   <div className="min-h-screen flex items-center justify-center bg-slate-500 text-white px-6 py-6 rounded-t-2xl">
+      <div ref={ticketRef} className="card w-full max-w-md bg-base-100 shadow-2xl border border-base-300 bg-black text-white">
         {/* Header */}
         <div className="bg-gradient-to-r from-primary to-secondary text-primary-content px-6 py-6 rounded-t-2xl">
           <h1 className="text-3xl font-extrabold tracking-wide">🎟 Booking Confirmed</h1>
@@ -114,9 +116,9 @@ export default function Ticket() {
               🖨 Print
             </button>
 
-            <button onClick={() => router.push("/book")} className="btn btn-ghost w-full">
+            <Link href="/seat/book" onClick={() => router.push("/book")} className="btn btn-ghost w-full">
               ← Back
-            </button>
+            </Link>
           </div>
         </div>
 
