@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowLeft,
@@ -32,6 +33,14 @@ export default function Book() {
   const [bookingError, setBookingError] = useState(null);
 
   const [barColor, setBarColor] = useState("green");
+
+   const { isAuthenticated } = useAuth();
+    // Redirect if not authenticated
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.push("/auth/login");
+    }
+  }, [loading, isAuthenticated, router]);
 
   const wsRef = useRef(null);
 
